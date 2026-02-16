@@ -1,5 +1,5 @@
 import './App.css'
-import { BlTooltip, BlButton } from '@trendyol/baklava/dist/baklava-react'
+import Calculator from './components/Calculator.jsx'
 
 function App() {
   return (
@@ -12,6 +12,8 @@ function App() {
             Split expenses fairly in 3 simple steps
           </p>
         </div>
+
+        <Calculator />
       </section>
     </>
   )

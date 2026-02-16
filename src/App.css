@@ -19,6 +19,7 @@
 .section-header {
   position: relative;
   z-index: 1;
+  margin-bottom: 3rem;
 
   h2 {
     color: var(--white);

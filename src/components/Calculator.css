@@ -1,0 +1,30 @@
+.calculator-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 20px 50px -12px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(124, 58, 237, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.calculator-header {
+  background: linear-gradient(to right, #f8fafc, #ffffff);
+  padding: 2.5rem 2rem 1rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.calculator-body {
+  padding: 2rem;
+}
+
+bl-stepper {
+  max-width: 500px;
+  margin: 0 auto;
+}

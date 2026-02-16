@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@trendyol/baklava": "^3.4.2",
+    "framer-motion": "^12.34.0",
     "normalize.css": "^8.0.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
