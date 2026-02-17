@@ -27,6 +27,20 @@
   --gray-800: #1f2937;
   --gray-900: #111827;
   --black: #000000;
+
+  --bl-color-primary: #10b981;
+  --color-primary-light: #34d399;
+  --gradient-primary: linear-gradient(
+    135deg,
+    #1beba6 0%,
+    #10b981 50%,
+    #0d9467 100%
+  );
+  --bl-color-success: #7c3aed;
+
+  --transition-fast: all 0.2s ease;
+  --transition-medium: all 0.3s ease;
+  --transition-slow: all 0.5s ease;
 }
 
 body {

@@ -1,15 +1,15 @@
 import './Calculator.css'
-import {
-  BlInput,
-  BlStepper,
-  BlStepperItem,
-} from '@trendyol/baklava/dist/baklava-react'
+import { BlStepper, BlStepperItem } from '@trendyol/baklava/dist/baklava-react'
 import { useState, useEffect } from 'react'
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion'
+import People from '../People/People.jsx'
+import Expenses from '../Expenses/Expenses.jsx'
+import Results from '../Results/Results.jsx'
+import { getPeople } from '../../data.js'
 
 function Calculator() {
   const [activeStep, setActiveStep] = useState(0)
+
+  const [people, setPeople] = useState(getPeople())
 
   useEffect(() => {
     document.addEventListener('bl-stepper-change', (e) => {
@@ -62,49 +62,13 @@ function Calculator() {
       <div className='calculator-body'>
         {
           {
-            0: <People />,
+            0: <People people={people} setPeople={setPeople} />,
             1: <Expenses />,
             2: <Results />,
           }[activeStep]
         }
       </div>
     </div>
-  )
-}
-
-function People() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
-    >
-      People
-    </motion.div>
-  )
-}
-
-function Expenses() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
-    >
-      Expenses
-    </motion.div>
-  )
-}
-
-function Results() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
-    >
-      Results
-    </motion.div>
   )
 }
 

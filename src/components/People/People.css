@@ -1,0 +1,68 @@
+.people-grid {
+  width: 100%;
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.badge {
+  padding: 1rem 0.8rem;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition-medium);
+
+  .badge-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 1;
+    text-align: left;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    border-color: var(--color-primary-light);
+  }
+
+  .badge-avatar {
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+.badge-delete {
+  opacity: 0;
+  transition: var(--transition-fast);
+  width: 24px;
+  height: 24px;
+  color: #ef4444;
+  background: #fee2e2;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0.8);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.badge:hover .badge-delete {
+  opacity: 1;
+  transform: scale(1);
+}
