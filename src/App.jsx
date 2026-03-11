@@ -1,7 +1,23 @@
 import './App.css'
 import Calculator from './components/Calculator/Calculator.jsx'
+import { BlNotification } from '@trendyol/baklava/dist/baklava-react.js'
+import { useRef } from 'react'
 
 function App() {
+  const blNotification = useRef(null)
+
+  const notify = ({
+    caption,
+    description,
+    variant = 'warning',
+    duration = 3,
+  }) => {
+    const api = blNotification.current
+    if (api && typeof api.addNotification === 'function') {
+      api.addNotification({ caption, description, variant, duration })
+    }
+  }
+
   return (
     <>
       <section className='main'>
@@ -13,8 +29,9 @@ function App() {
           </p>
         </div>
 
-        <Calculator />
+        <Calculator notify={notify} />
       </section>
+      <BlNotification ref={blNotification} />
     </>
   )
 }

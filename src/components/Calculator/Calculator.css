@@ -39,6 +39,16 @@ bl-stepper {
   margin: 0 auto;
 }
 
+bl-stepper-item,
+.bl-stepper-item {
+  cursor: pointer;
+}
+
+bl-stepper-item:hover,
+.bl-stepper-item:hover {
+  filter: brightness(1.05);
+}
+
 .people-container {
   display: flex;
   flex-direction: column;
