@@ -1,3 +1,8 @@
+.people-container {
+  display: flex;
+  justify-items: stretch;
+}
+
 .people-grid {
   width: 100%;
   margin-top: 1.5rem;
@@ -15,6 +20,7 @@
   justify-content: space-between;
   align-items: center;
   transition: var(--transition-medium);
+  transform: translateY(0px);
 
   .badge-name {
     text-overflow: ellipsis;
@@ -65,4 +71,10 @@
 .badge:hover .badge-delete {
   opacity: 1;
   transform: scale(1);
+}
+
+.people-next {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
 }

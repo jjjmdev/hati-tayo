@@ -1,13 +1,13 @@
 import './People.css'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import { UserRound, UsersRound, Plus, X } from 'lucide-react'
+import { UserRound, UsersRound, Plus, X, ArrowRight } from 'lucide-react'
 import { getPeople, addPeople, deletePeople } from '../../data.js'
 import { useState } from 'react'
 import { bgColors } from '../../utils/constants.js'
 import EmptyTable from '../EmptyTable/EmptyTable.jsx'
 
-function People({ people, setPeople }) {
+function People({ people, setPeople, handleStep }) {
   const [name, setName] = useState('')
 
   function handleAdd() {
@@ -56,22 +56,32 @@ function People({ people, setPeople }) {
           <span>No one here yet. Add people to start splitting.</span>
         </EmptyTable>
       ) : (
-        <div className='people-grid'>
-          {people.map(({ id, name }, index) => (
-            <div className='badge' key={id}>
-              <span
-                className='badge-avatar'
-                style={{ backgroundColor: bgColors[index % bgColors.length] }}
-              >
-                {name.charAt(0).toUpperCase()}
-              </span>
-              <span className='badge-name'>{name}</span>
-              <div className='badge-delete' onClick={() => handleDelete(id)}>
-                <X />
+        <>
+          <div className='people-grid'>
+            {people.map(({ id, name }, index) => (
+              <div className='badge' key={id}>
+                <span
+                  className='badge-avatar'
+                  style={{ backgroundColor: bgColors[index % bgColors.length] }}
+                >
+                  {name.charAt(0).toUpperCase()}
+                </span>
+                <span className='badge-name'>{name}</span>
+                <div className='badge-delete' onClick={() => handleDelete(id)}>
+                  <X />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+
+          <button
+            className='people-next btn-secondary'
+            onClick={() => handleStep(1)}
+          >
+            Next: Add Expenses
+            <ArrowRight />
+          </button>
+        </>
       )}
     </motion.div>
   )

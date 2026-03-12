@@ -68,7 +68,13 @@ function Calculator({ notify }) {
       <div className='calculator-body'>
         {
           {
-            0: <People people={people} setPeople={setPeople} />,
+            0: (
+              <People
+                people={people}
+                setPeople={setPeople}
+                handleStep={handleStep}
+              />
+            ),
             1: <Expenses />,
             2: <Results />,
           }[activeStep]
