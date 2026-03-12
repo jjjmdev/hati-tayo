@@ -10,9 +10,9 @@ function Calculator({ notify }) {
   const [activeStep, setActiveStep] = useState(0)
   const [people, setPeople] = useState(getPeople())
 
-  const handleStep = (step) => {
+  const handleStep = (toStep) => {
     // case: Going from 'People' to 'Expenses'
-    if (step > 0 && people.length < 2) {
+    if (!canStep(toStep)) {
       notify({
         caption: 'Add at least 2 people',
         description: 'You need 2 people before using Expenses/Results.',
@@ -20,7 +20,15 @@ function Calculator({ notify }) {
       return
     }
 
-    setActiveStep(step)
+    setActiveStep(toStep)
+  }
+
+  const canStep = (toStep) => {
+    if (toStep == 1 && people.length < 2) {
+      return false
+    }
+
+    return true
   }
 
   return (
@@ -48,6 +56,8 @@ function Calculator({ notify }) {
                   ? 'default'
                   : 'success'
             }
+            className={canStep(1) ? '' : 'bl-stepper-item--blocked'}
+            aria-disabled={!canStep(1)}
             onClick={() => handleStep(1)}
           />
           <BlStepperItem

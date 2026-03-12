@@ -44,7 +44,7 @@ function People({ people, setPeople, handleStep }) {
           <UserRound />
         </div>
 
-        <button className='btn-primary' onClick={handleAdd}>
+        <button className='btn btn-primary' onClick={handleAdd}>
           <Plus />
           Add
         </button>
@@ -75,7 +75,7 @@ function People({ people, setPeople, handleStep }) {
           </div>
 
           <button
-            className='people-next btn-secondary'
+            className='people-next btn btn-secondary'
             onClick={() => handleStep(1)}
           >
             Next: Add Expenses
