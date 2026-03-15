@@ -12,16 +12,30 @@ export function setPeople(people) {
 
 export function addPeople(name) {
   const people = getPeople()
+  const normalizedName = name.trim()
 
-  if (name === '' || people.some((person) => person.name === name)) return false
+  // Check for empty name
+  if (normalizedName === '') {
+    return {
+      success: false,
+      reason: 'empty',
+    }
+  }
+
+  // Check for duplicate name (case-insensitive)
+  if (people.some((person) => person.name === name))
+    return {
+      success: false,
+      reason: 'duplicate',
+    }
 
   people.push({
     id: crypto.randomUUID(),
-    name,
+    name: normalizedName,
   })
   setPeople(people)
 
-  return true
+  return { success: true }
 }
 
 export function deletePeople(id) {

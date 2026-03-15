@@ -7,16 +7,36 @@ import { useState } from 'react'
 import { bgColors } from '../../utils/constants.js'
 import EmptyTable from '../EmptyTable/EmptyTable.jsx'
 
-function People({ people, setPeople, handleStep }) {
+function People({ people, setPeople, handleStep, notify }) {
   const [name, setName] = useState('')
 
   function handleAdd() {
-    if (addPeople(name)) {
+    const result = addPeople(name)
+
+    // Success: refresh list and clear input
+    if (result.success) {
       setPeople(getPeople())
       setName('')
+      return
     }
 
-    // Error handling
+    // Fail: error handling
+    if (result.reason === 'empty') {
+      notify({
+        caption: 'Name required',
+        description: 'Please enter a person name before adding.',
+        variant: 'warning',
+      })
+      return
+    }
+
+    if (result.reason === 'duplicate') {
+      notify({
+        caption: 'Duplicate name',
+        description: 'This person is already in the list',
+        variant: 'danger',
+      })
+    }
   }
 
   function handleDelete(id) {

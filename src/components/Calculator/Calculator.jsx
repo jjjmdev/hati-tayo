@@ -83,6 +83,7 @@ function Calculator({ notify }) {
                 people={people}
                 setPeople={setPeople}
                 handleStep={handleStep}
+                notify={notify}
               />
             ),
             1: <Expenses />,
