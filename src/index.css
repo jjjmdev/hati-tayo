@@ -154,6 +154,12 @@ h4 {
   margin-left: 3px;
 }
 
+.btn-across {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
 h3,
 input,
 button,

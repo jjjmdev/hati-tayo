@@ -95,7 +95,7 @@ function People({ people, setPeople, handleStep, notify }) {
           </div>
 
           <button
-            className='people-next btn btn-secondary'
+            className='btn btn-secondary btn-across'
             onClick={() => handleStep(1)}
           >
             Next: Add Expenses

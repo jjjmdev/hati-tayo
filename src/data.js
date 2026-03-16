@@ -47,3 +47,72 @@ export function deletePeople(id) {
     }),
   )
 }
+
+// == EXPENSES ==
+// Get all expenses from localStorage
+export function getExpenses() {
+  if (!localStorage.getItem('expenses')) {
+    return []
+  }
+
+  return JSON.parse(localStorage.getItem('expenses'))
+}
+
+// Save expenses to localStorage
+export function setExpenses(expenses) {
+  localStorage.setItem('expenses', JSON.stringify(expenses))
+}
+
+// Add a new expense
+export function addExpense({ name, amount, paidBy, splitAmong, splits }) {
+  const expenses = getExpenses()
+
+  // Validation
+  if (name.trim() === '') {
+    return {
+      success: false,
+      reason: 'empty_name',
+    }
+  }
+  if (!amount || amount <= 0) {
+    return {
+      success: false,
+      reason: 'invalid_amount',
+    }
+  }
+  if (!paidBy || paidBy.length === 0) {
+    return {
+      success: false,
+      reason: 'no_payer',
+    }
+  }
+  if (!splitAmong || splitAmong.length === 0) {
+    return {
+      success: false,
+      reason: 'no_split',
+    }
+  }
+
+  // Create expense object
+  const expense = {
+    id: crypto.randomUUID(),
+    name: name.trim(),
+    amount: parseFloat(amount),
+    paidBy,
+    splitAmong,
+    splits,
+    createdAt: new Date().toISOString(),
+  }
+
+  expenses.push(expense)
+  setExpenses(expenses)
+
+  return { success: true, expense }
+}
+
+// Delete an expense
+export function deleteExpense(id) {
+  const expenses = getExpenses()
+
+  setExpenses(expenses.filter((expenses) => expenses.id !== id))
+}

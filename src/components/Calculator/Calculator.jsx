@@ -4,11 +4,12 @@ import { useState } from 'react'
 import People from '../People/People.jsx'
 import Expenses from '../Expenses/Expenses.jsx'
 import Results from '../Results/Results.jsx'
-import { getPeople } from '../../data.js'
+import { getPeople, getExpenses } from '../../data.js'
 
 function Calculator({ notify }) {
   const [activeStep, setActiveStep] = useState(0)
   const [people, setPeople] = useState(getPeople())
+  const [expenses, setExpenses] = useState(getExpenses())
 
   const handleStep = (toStep) => {
     // case: Going from 'People' to 'Expenses'
@@ -86,7 +87,14 @@ function Calculator({ notify }) {
                 notify={notify}
               />
             ),
-            1: <Expenses />,
+            1: (
+              <Expenses
+                people={people}
+                expenses={expenses}
+                setExpenses={setExpenses}
+                notify={notify}
+              />
+            ),
             2: <Results />,
           }[activeStep]
         }
