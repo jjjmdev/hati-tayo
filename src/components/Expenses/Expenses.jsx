@@ -147,7 +147,7 @@ function Expenses({ people, expenses, setExpenses, notify }) {
       <div className='expenses-container'>
         {/* Item Name and Total */}
         <div className='form-section'>
-          <label className='form-label'>What's this for?</label>
+          <div className='form-label'>What's this for?</div>
           <div className='detail-row'>
             <div className='input-group'>
               <input
@@ -169,7 +169,7 @@ function Expenses({ people, expenses, setExpenses, notify }) {
 
         {/* Who Paid */}
         <div className='form-section'>
-          <label className='form-label'>Who paid?</label>
+          <div className='form-label'>Who paid?</div>
 
           <div className='payers-list'>
             {payers.map((payer, index) => (
@@ -233,7 +233,7 @@ function Expenses({ people, expenses, setExpenses, notify }) {
 
         {/* Split Among */}
         <div className='form-section'>
-          <label className='form-label'>
+          <div className='form-label'>
             Split among
             <button
               type='button'
@@ -244,7 +244,7 @@ function Expenses({ people, expenses, setExpenses, notify }) {
                 ? 'Deselect all'
                 : 'Select all'}
             </button>
-          </label>
+          </div>
           <div className='checkbox-grid'>
             {people.map((person) => (
               <label key={person.id} className='checkbox-item'>
