@@ -18,12 +18,16 @@
   border: 2px solid var(--border-color);
   border-radius: 12px;
   padding: 1rem;
-  margin-bottom: 0.5rem;
   transition: all 0.2s ease;
 }
 
 .expense-card:hover {
   border-color: var(--primary-light);
+}
+
+.expense-card:hover .btn-danger {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* Card Header */
