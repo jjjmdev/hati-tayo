@@ -1,7 +1,7 @@
 import './Expenses.css'
 import EmptyTable from '../EmptyTable/EmptyTable.jsx'
 import ExpenseList from '../ExpenseList/ExpenseList'
-import { bgColors } from '../../utils/constants.js'
+import { usePeople } from '../../hooks/usePeople'
 import { formatAmount } from '../../utils/utils.js'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
@@ -22,6 +22,9 @@ function Expenses({ people, expenses, setExpenses, notify }) {
   const [amount, setAmount] = useState('')
   const [payers, setPayers] = useState([{ personId: '', amount: '' }])
   const [splitAmong, setSplitAmong] = useState([])
+
+  // Helpers
+  const { getPersonColor } = usePeople(people)
 
   const payerTotal = payers
     .filter((p) => p.personId && p.amount)
@@ -129,12 +132,6 @@ function Expenses({ people, expenses, setExpenses, notify }) {
   const handleDeleteExpense = (id) => {
     deleteExpense(id)
     setExpenses(getExpenses())
-  }
-
-  // Helpers
-  const getPersonColor = (id) => {
-    const index = people.findIndex((p) => p.id === id)
-    return bgColors[index % bgColors.length]
   }
 
   return (

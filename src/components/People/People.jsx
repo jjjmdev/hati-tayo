@@ -1,14 +1,17 @@
 import './People.css'
+import { usePeople } from '../../hooks/usePeople'
+import EmptyTable from '../EmptyTable/EmptyTable.jsx'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import { UserRound, UsersRound, Plus, X, ArrowRight } from 'lucide-react'
 import { getPeople, addPeople, deletePeople } from '../../data.js'
 import { useState } from 'react'
-import { bgColors } from '../../utils/constants.js'
-import EmptyTable from '../EmptyTable/EmptyTable.jsx'
 
 function People({ people, setPeople, handleStep, notify }) {
   const [name, setName] = useState('')
+
+  // Helper
+  const { getPersonColor } = usePeople(people)
 
   function handleAdd() {
     const result = addPeople(name)
@@ -78,11 +81,11 @@ function People({ people, setPeople, handleStep, notify }) {
       ) : (
         <>
           <div className='people-grid'>
-            {people.map(({ id, name }, index) => (
+            {people.map(({ id, name }) => (
               <div className='badge' key={id}>
                 <span
                   className='badge-avatar'
-                  style={{ backgroundColor: bgColors[index % bgColors.length] }}
+                  style={{ backgroundColor: getPersonColor(id) }}
                 >
                   {name.charAt(0).toUpperCase()}
                 </span>

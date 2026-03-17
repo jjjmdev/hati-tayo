@@ -1,14 +1,10 @@
+import './ExpenseList.css'
+import { usePeople } from '../../hooks/usePeople'
 import { Trash2 } from 'lucide-react'
 import { formatAmount } from '../../utils/utils'
-import { bgColors } from '../../utils/constants'
-import './ExpenseList.css'
 
 function ExpenseList({ expenses, people, onDelete }) {
-  const getPersonName = (id) => people.find((p) => p.id === id)?.name || ''
-  const getPersonColor = (id) => {
-    const index = people.findIndex((p) => p.id === id)
-    return bgColors[index % bgColors.length]
-  }
+  const { getPersonName, getPersonColor, getPersonInitial } = usePeople(people)
 
   if (expenses.length === 0) {
     return <EmptyTable>...</EmptyTable>
@@ -54,7 +50,7 @@ function ExpenseList({ expenses, people, onDelete }) {
                         backgroundColor: getPersonColor(payer.personId),
                       }}
                     >
-                      {getPersonName(payer.personId).charAt(0).toUpperCase()}
+                      {getPersonInitial(payer.personId)}
                     </span>
                     <span>{getPersonName(payer.personId)}</span>
                     <span className='tag-amount'>
@@ -75,7 +71,7 @@ function ExpenseList({ expenses, people, onDelete }) {
                       className='tag-avatar'
                       style={{ backgroundColor: getPersonColor(personId) }}
                     >
-                      {getPersonName(personId).charAt(0).toUpperCase()}
+                      {getPersonInitial(personId)}
                     </span>
                     <span>{getPersonName(personId)}</span>
                   </span>
