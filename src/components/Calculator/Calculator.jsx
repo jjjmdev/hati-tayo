@@ -30,7 +30,8 @@ function Calculator({ notify }) {
       return true
     }
 
-    if (toStep == 1 && people.length < 2) {
+    // Must have two people to navigate
+    if (toStep > 0 && people.length < 2) {
       return false
     }
 
@@ -75,6 +76,8 @@ function Calculator({ notify }) {
                   ? 'success'
                   : 'default'
             }
+            className={canStep(2) ? '' : 'bl-stepper-item--blocked'}
+            aria-disabled={!canStep(2)}
           />
         </BlStepper>
       </div>
