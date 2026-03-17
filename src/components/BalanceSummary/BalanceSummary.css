@@ -1,0 +1,95 @@
+/* Balance Summary Component */
+.balance-summary {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.balance-summary h4 {
+  font-size: 1rem;
+  color: var(--gray-600);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.summary-card {
+  background: var(--white);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.summary-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.summary-avatar {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.summary-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--gray-800);
+}
+
+.summary-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--gray-100);
+}
+
+.summary-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.summary-stat-label {
+  color: var(--gray-500);
+}
+
+.summary-stat-value {
+  font-weight: 600;
+}
+
+.summary-stat-value.paid {
+  color: var(--primary);
+}
+
+.summary-stat-value.spent {
+  color: var(--secondary);
+}
+
+.summary-stat-value.positive {
+  color: var(--primary);
+}
+
+.summary-stat-value.negative {
+  color: var(--danger);
+}

@@ -19,7 +19,6 @@ import { addExpense, deleteExpense, getExpenses } from '../../data'
 function Expenses({ people, expenses, setExpenses, notify }) {
   // Form state
   const [itemName, setItemName] = useState('')
-  const [amount, setAmount] = useState('')
   const [payers, setPayers] = useState([{ personId: '', amount: '' }])
   const [splitAmong, setSplitAmong] = useState([])
 
@@ -82,7 +81,7 @@ function Expenses({ people, expenses, setExpenses, notify }) {
   const calculateSplits = () => {
     if (splitAmong.length === 0) return []
 
-    const splitAmount = parseFloat(amount) / splitAmong.length
+    const splitAmount = payerTotal / splitAmong.length
     return splitAmong.map((personId) => ({ personId, amount: splitAmount }))
   }
 
@@ -105,7 +104,6 @@ function Expenses({ people, expenses, setExpenses, notify }) {
     if (result.success) {
       setExpenses(getExpenses())
       setItemName('')
-      setAmount('')
       setPayers([{ personId: '', amount: '' }])
       setSplitAmong([])
       notify({

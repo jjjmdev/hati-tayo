@@ -1,13 +1,19 @@
 import './ExpenseList.css'
 import { usePeople } from '../../hooks/usePeople'
-import { Trash2 } from 'lucide-react'
+import EmptyTable from '../EmptyTable/EmptyTable'
+import { ShoppingCart, Trash2 } from 'lucide-react'
 import { formatAmount } from '../../utils/utils'
 
 function ExpenseList({ expenses, people, onDelete }) {
   const { getPersonName, getPersonColor, getPersonInitial } = usePeople(people)
 
   if (expenses.length === 0) {
-    return <EmptyTable>...</EmptyTable>
+    return (
+      <EmptyTable>
+        <ShoppingCart />
+        No expenses yet.
+      </EmptyTable>
+    )
   }
 
   return (
@@ -54,7 +60,7 @@ function ExpenseList({ expenses, people, onDelete }) {
                     </span>
                     <span>{getPersonName(payer.personId)}</span>
                     <span className='tag-amount'>
-                      ₱{formatAmount(payer.amount.toFixed(0))}
+                      ₱{formatAmount(payer.amount)}
                     </span>
                   </span>
                 ))}

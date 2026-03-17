@@ -95,7 +95,7 @@ function Calculator({ notify }) {
                 notify={notify}
               />
             ),
-            2: <Results />,
+            2: <Results people={people} expenses={expenses} />,
           }[activeStep]
         }
       </div>
