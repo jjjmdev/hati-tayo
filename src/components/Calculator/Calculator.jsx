@@ -25,6 +25,11 @@ function Calculator({ notify }) {
   }
 
   const canStep = (toStep) => {
+    // case: Going back
+    if (toStep < activeStep) {
+      return true
+    }
+
     if (toStep == 1 && people.length < 2) {
       return false
     }
@@ -38,14 +43,14 @@ function Calculator({ notify }) {
         <BlStepper
           type='number'
           direction='horizontal'
-          usage='non-clickable'
+          usage='clickable'
           id='stepper'
+          onBlStepperChange={(e) => handleStep(e.detail.activeStep)}
         >
           <BlStepperItem
             id='0'
             title='People'
             variant={activeStep == 0 ? 'active' : 'success'}
-            onClick={() => handleStep(0)}
           />
           <BlStepperItem
             id='1'
@@ -59,7 +64,6 @@ function Calculator({ notify }) {
             }
             className={canStep(1) ? '' : 'bl-stepper-item--blocked'}
             aria-disabled={!canStep(1)}
-            onClick={() => handleStep(1)}
           />
           <BlStepperItem
             id='2'
@@ -71,7 +75,6 @@ function Calculator({ notify }) {
                   ? 'success'
                   : 'default'
             }
-            onClick={() => handleStep(2)}
           />
         </BlStepper>
       </div>
