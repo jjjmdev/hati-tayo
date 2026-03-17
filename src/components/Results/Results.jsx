@@ -3,6 +3,7 @@ import { usePeople } from '../../hooks/usePeople'
 import { formatAmount, calcSettlements } from '../../utils/utils'
 import { Check, ArrowRightLeft, Receipt } from 'lucide-react'
 import BalanceSummary from '../BalanceSummary/BalanceSummary'
+import TransactionTable from '../TransactionTable/TransactionTable'
 
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
@@ -47,6 +48,9 @@ function Result({ people, expenses }) {
       >
         <BalanceSummary people={people} expenses={expenses} />
 
+        {/* Transaction Table */}
+        <TransactionTable people={people} expenses={expenses} />
+
         <div className='all-settled'>
           <div className='all-settled-icon'>
             <Check />
@@ -68,6 +72,9 @@ function Result({ people, expenses }) {
       className='results-container'
     >
       <BalanceSummary people={people} expenses={expenses} />
+
+      {/* Transaction Table */}
+      <TransactionTable people={people} expenses={expenses} />
 
       {/* Settlements List */}
       <div className='results-summary'>

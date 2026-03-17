@@ -1,0 +1,167 @@
+/* Transaction Table Component */
+.transaction-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.transaction-table-container h4 {
+  font-size: 1rem;
+  color: var(--gray-600);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table-wrapper {
+  border-radius: 16px;
+  overflow-x: auto;
+
+  border: 2px solid var(--border-color);
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  min-width: 600px;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 0.875rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+/* Header styles */
+.transaction-table th {
+  background: var(--gray-50);
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.expense-col {
+  text-align: left !important;
+  min-width: 120px;
+}
+
+.amount-col {
+  min-width: 90px;
+}
+
+.person-col {
+  min-width: 120px;
+}
+
+.person-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.person-avatar-small {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Body styles */
+.transaction-table td {
+  background: var(--white);
+}
+
+.transaction-table tr:hover td {
+  background: var(--gray-50);
+}
+
+.transaction-table tr:last-child td {
+  border-bottom: none;
+}
+
+.expense-name-cell {
+  text-align: left !important;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.amount-cell {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.person-cell {
+  vertical-align: middle;
+}
+
+.person-amounts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  font-size: 0.8rem;
+}
+
+.paid-amount {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.owed-amount {
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.zero-amount {
+  color: var(--gray-300);
+}
+
+.net-amount {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.net-amount.positive {
+  color: var(--primary);
+}
+
+.net-amount.negative {
+  color: var(--danger);
+}
+
+.total-net {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.total-net.positive {
+  color: var(--primary);
+}
+
+.total-net.negative {
+  color: var(--danger);
+}
+
+/* Total row */
+.total-row td {
+  background: var(--gray-50) !important;
+  border-top: 2px solid var(--gray-200);
+}
+
+.total-row:hover td {
+  background: var(--gray-100) !important;
+}
+
+.total-cell {
+  padding-top: 1rem !important;
+  white-space: nowrap !important;
+}
