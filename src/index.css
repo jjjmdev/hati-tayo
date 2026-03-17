@@ -176,6 +176,7 @@ h4 {
 
 .btn-cancel:hover {
   box-shadow: var(--shadow-base);
+  color: var(--gray-900);
 }
 
 .btn-cancel svg {

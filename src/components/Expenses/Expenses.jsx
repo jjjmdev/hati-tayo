@@ -1,22 +1,14 @@
 import './Expenses.css'
-import EmptyTable from '../EmptyTable/EmptyTable.jsx'
 import ExpenseList from '../ExpenseList/ExpenseList'
 import { usePeople } from '../../hooks/usePeople'
 import { formatAmount } from '../../utils/utils.js'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import {
-  PhilippinePeso,
-  Plus,
-  ShoppingCart,
-  Trash2,
-  HandCoins,
-  X,
-} from 'lucide-react'
+import { PhilippinePeso, Plus, ArrowLeft, ArrowRight, X } from 'lucide-react'
 import { useState } from 'react'
 import { addExpense, deleteExpense, getExpenses } from '../../data'
 
-function Expenses({ people, expenses, setExpenses, notify }) {
+function Expenses({ people, expenses, setExpenses, handleStep, notify }) {
   // Form state
   const [itemName, setItemName] = useState('')
   const [payers, setPayers] = useState([{ personId: '', amount: '' }])
@@ -275,6 +267,18 @@ function Expenses({ people, expenses, setExpenses, notify }) {
         people={people}
         onDelete={handleDeleteExpense}
       />
+
+      <div className='btns-container'>
+        <button className='btn btn-cancel' onClick={() => handleStep(0)}>
+          <ArrowLeft />
+          Back
+        </button>
+
+        <button className='btn btn-secondary' onClick={() => handleStep(2)}>
+          Calculate Results
+          <ArrowRight />
+        </button>
+      </div>
     </motion.div>
   )
 }

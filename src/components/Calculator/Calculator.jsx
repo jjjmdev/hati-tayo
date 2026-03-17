@@ -105,10 +105,17 @@ function Calculator({ notify }) {
                 people={people}
                 expenses={expenses}
                 setExpenses={setExpenses}
+                handleStep={handleStep}
                 notify={notify}
               />
             ),
-            2: <Results people={people} expenses={expenses} />,
+            2: (
+              <Results
+                people={people}
+                expenses={expenses}
+                handleStep={handleStep}
+              />
+            ),
           }[activeStep]
         }
       </div>
