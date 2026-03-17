@@ -20,6 +20,7 @@
   --shadow-primary-hover: 0 8px 25px rgba(16, 185, 129, 0.45);
   --shadow-secondary-base: 0 4px 15px rgba(108, 99, 255, 0.35);
   --shadow-secondary-hover: 0 8px 25px rgba(108, 99, 255, 0.45);
+  --shadow-disabled: 0 4px 15px rgba(0, 0, 0, 0.35);
 
   --transition-fast: all 0.2s ease;
   --transition-medium: all 0.3s ease;
@@ -128,6 +129,20 @@ h4 {
 .btn svg {
   width: 26px;
   margin-right: 0.2rem;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #e2e8f0;
+  color: var(--gray-600);
+  box-shadow: var(--shadow-disabled);
+}
+
+.btn-add-payer:disabled:hover {
+  transform: none;
+  background: #e2e8f0;
+  box-shadow: var(--shadow-disabled);
 }
 
 .btn-primary:hover {

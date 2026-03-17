@@ -218,16 +218,17 @@ function Expenses({ people, expenses, setExpenses, notify }) {
           </div>
 
           {/* Add another payer button */}
-          {people.length !== payers.length && (
-            <button
-              type='button'
-              className='btn btn-secondary btn-add-payer'
-              onClick={handleAddPayer}
-            >
-              <Plus size={16} />
-              Add another payer
-            </button>
-          )}
+          <button
+            type='button'
+            className='btn btn-secondary btn-add-payer'
+            onClick={handleAddPayer}
+            disabled={people.length === payers.length}
+          >
+            <Plus size={16} />
+            {people.length === payers.length
+              ? 'All people added'
+              : 'Add another payer'}
+          </button>
         </div>
 
         {/* Split Among */}
