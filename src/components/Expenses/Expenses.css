@@ -181,26 +181,6 @@ h3 {
   width: 18px;
 }
 
-.payer-remove {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--danger-light);
-  border: none;
-  border-radius: 50%;
-  color: var(--danger);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-
-.payer-remove:hover {
-  background: var(--danger-lighter);
-  transform: scale(1.05);
-}
-
 .btn-add-payer {
   margin-top: 0.75rem;
   width: 100%;
@@ -340,27 +320,6 @@ h3 {
   font-size: 1.5rem;
   color: var(--gray-800);
   margin-left: 0.5rem;
-}
-
-.expense-delete {
-  width: 28px;
-  height: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--danger-light);
-  border: none;
-  border-radius: 6px;
-  color: var(--danger);
-  cursor: pointer;
-  opacity: 0;
-  transition: all 0.2s ease;
-  transform: scale(0.8);
-}
-
-.expense-card:hover .expense-delete {
-  opacity: 1;
-  transform: scale(1);
 }
 
 /* Combined Amount Display */

@@ -207,7 +207,7 @@ function Expenses({ people, expenses, setExpenses, notify }) {
                 {payers.length > 1 && (
                   <button
                     type='button'
-                    className='payer-remove'
+                    className='btn-danger btn-danger-md'
                     onClick={() => handleRemovePayer(index)}
                   >
                     <X size={16} />
@@ -290,7 +290,7 @@ function Expenses({ people, expenses, setExpenses, notify }) {
                 <div className='expense-card-header'>
                   <span className='expense-name'>{expense.name}</span>
                   <button
-                    className='expense-delete'
+                    className='btn-danger btn-danger-sm'
                     onClick={() => handleDeleteExpense(expense.id)}
                   >
                     <Trash2 size={16} />

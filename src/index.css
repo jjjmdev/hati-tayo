@@ -175,6 +175,45 @@ h4 {
   margin-left: 3px;
 }
 
+/* Base danger button */
+.btn-danger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--danger-light);
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Danger button small */
+.btn-danger-sm {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.btn-danger-sm:hover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Danger button medium */
+.btn-danger-md {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btn-danger-md:hover {
+  background: var(--danger-lighter);
+  transform: scale(1.05);
+}
+
 .btn-across {
   width: 100%;
   padding: 1rem;
