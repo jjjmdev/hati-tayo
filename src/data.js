@@ -1,3 +1,9 @@
+export function resetData() {
+  localStorage.clear()
+
+  return true
+}
+
 export function getPeople() {
   if (!localStorage.getItem('people')) {
     return []

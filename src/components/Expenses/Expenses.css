@@ -182,7 +182,7 @@ h3 {
 }
 
 .btn-add-payer {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   width: 100%;
   padding: 0.875rem;
   font-size: 0.9rem;
@@ -192,6 +192,12 @@ h3 {
 .btn-add-payer svg {
   width: 18px;
   margin-right: 0.3rem;
+}
+
+.btn-add-payer:disabled:hover {
+  transform: none;
+  background: #e2e8f0;
+  box-shadow: var(--shadow-disabled);
 }
 
 /* Split Header with Select All */

@@ -87,9 +87,9 @@ h4 {
   border: none;
   cursor: pointer;
   text-wrap: nowrap;
+  padding: 1rem 1.5rem;
 
   border-radius: var(--radius);
-  padding: 0 2rem;
   width: min-content;
   position: relative;
   overflow: hidden;
@@ -114,6 +114,7 @@ h4 {
   );
   color: var(--white);
   box-shadow: var(--shadow-primary-base);
+  padding: 1rem 2rem;
 }
 
 .btn-primary::before {
@@ -145,12 +146,6 @@ h4 {
   box-shadow: var(--shadow-disabled);
 }
 
-.btn-add-payer:disabled:hover {
-  transform: none;
-  background: #e2e8f0;
-  box-shadow: var(--shadow-disabled);
-}
-
 .btn-primary:hover {
   box-shadow: var(--shadow-primary-hover);
 }
@@ -173,6 +168,24 @@ h4 {
 .btn-secondary svg {
   width: 18px;
   margin-left: 3px;
+}
+
+.btn-cancel {
+  box-shadow: none;
+}
+
+.btn-cancel:hover {
+  box-shadow: var(--shadow-base);
+}
+
+.btn-cancel svg {
+  width: 18px;
+  margin-right: 3px;
+}
+
+.btn-reset:hover {
+  color: var(--white);
+  background: var(--danger);
 }
 
 /* Base danger button */
@@ -215,9 +228,8 @@ h4 {
 }
 
 .btn-across {
-  width: 100%;
-  padding: 1rem;
   margin-top: 2rem;
+  width: 100%;
 }
 
 h3,
@@ -229,4 +241,13 @@ button,
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
+}
+
+/* Opposing Buttons */
+.btns-container {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

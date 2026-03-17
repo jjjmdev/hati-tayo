@@ -3,11 +3,18 @@ import { usePeople } from '../../hooks/usePeople'
 import EmptyTable from '../EmptyTable/EmptyTable.jsx'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import { UserRound, UsersRound, Plus, X, ArrowRight } from 'lucide-react'
+import {
+  UserRound,
+  UsersRound,
+  Plus,
+  X,
+  ArrowRight,
+  RotateCcw,
+} from 'lucide-react'
 import { getPeople, addPeople, deletePeople } from '../../data.js'
 import { useState } from 'react'
 
-function People({ people, setPeople, handleStep, notify }) {
+function People({ people, setPeople, handleStep, handleReset, notify }) {
   const [name, setName] = useState('')
 
   // Helper
@@ -45,6 +52,11 @@ function People({ people, setPeople, handleStep, notify }) {
   function handleDelete(id) {
     deletePeople(id)
     setPeople(getPeople())
+  }
+
+  function onResetClick() {
+    handleReset()
+    setName('')
   }
 
   return (
@@ -97,13 +109,17 @@ function People({ people, setPeople, handleStep, notify }) {
             ))}
           </div>
 
-          <button
-            className='btn btn-secondary btn-across'
-            onClick={() => handleStep(1)}
-          >
-            Next: Add Expenses
-            <ArrowRight />
-          </button>
+          <div className='btns-container'>
+            <button className='btn btn-cancel btn-reset' onClick={onResetClick}>
+              <RotateCcw />
+              Start Over
+            </button>
+
+            <button className='btn btn-secondary' onClick={() => handleStep(1)}>
+              Next: Add Expenses
+              <ArrowRight />
+            </button>
+          </div>
         </>
       )}
     </motion.div>

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import People from '../People/People.jsx'
 import Expenses from '../Expenses/Expenses.jsx'
 import Results from '../Results/Results.jsx'
-import { getPeople, getExpenses } from '../../data.js'
+import { getPeople, getExpenses, resetData } from '../../data.js'
 
 function Calculator({ notify }) {
   const [activeStep, setActiveStep] = useState(0)
@@ -36,6 +36,12 @@ function Calculator({ notify }) {
     }
 
     return true
+  }
+
+  const handleReset = () => {
+    resetData()
+    setPeople(getPeople())
+    setExpenses(getExpenses())
   }
 
   return (
@@ -91,6 +97,7 @@ function Calculator({ notify }) {
                 setPeople={setPeople}
                 handleStep={handleStep}
                 notify={notify}
+                handleReset={handleReset}
               />
             ),
             1: (
