@@ -10,7 +10,7 @@ function TransactionTable({ people, expenses }) {
   }
 
   return (
-    <div className='transaction-table-container'>
+    <section className='transaction-table-container'>
       <h4>Transaction Details</h4>
       <div className='table-wrapper'>
         <table className='transaction-table'>
@@ -76,7 +76,7 @@ function TransactionTable({ people, expenses }) {
             {/* Total row */}
             <tr className='total-row'>
               <td className='expense-name-cell'>
-                <strong>TOTAL</strong>
+                <strong>Total</strong>
               </td>
               <td className='amount-cell'>
                 <strong>
@@ -116,7 +116,7 @@ function TransactionTable({ people, expenses }) {
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
   )
 }
 

@@ -1,18 +1,4 @@
 /* Balance Summary Component */
-.balance-summary {
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.balance-summary h4 {
-  font-size: 1rem;
-  color: var(--gray-600);
-  margin-bottom: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

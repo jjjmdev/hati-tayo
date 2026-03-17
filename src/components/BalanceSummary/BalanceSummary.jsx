@@ -49,7 +49,7 @@ function BalanceSummary({ people, expenses }) {
   const { getPersonColor } = usePeople(people)
 
   return (
-    <div className='balance-summary'>
+    <section className='balance-summary'>
       <h4>Balance Summary</h4>
       <div className='summary-grid'>
         {people.map((person) => {
@@ -104,7 +104,7 @@ function BalanceSummary({ people, expenses }) {
           )
         })}
       </div>
-    </div>
+    </section>
   )
 }
 

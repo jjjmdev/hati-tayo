@@ -1,0 +1,117 @@
+/* Settlement Cards */
+.settlements-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.settlement-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--white);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.settlement-card:hover {
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Person Info */
+.settlement-person {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.settlement-avatar {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.settlement-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--gray-800);
+}
+
+/* Action Text */
+.settlement-action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gray-500);
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.settlement-arrow {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Amount */
+.settlement-amount {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* All Settled Up Message */
+.all-settled {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.all-settled-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--gray-100);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.all-settled-icon svg {
+  width: 40px;
+  height: 40px;
+  color: var(--primary);
+}
+
+.all-settled-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 0.25rem;
+}
+
+.all-settled-subtext {
+  font-size: 0.95rem;
+  color: var(--gray-500);
+}
