@@ -11,7 +11,7 @@
 }
 
 h3 {
-  color: var(--dark-text);
+  color: var(--gray-800);
   margin-bottom: 1.5rem;
   width: 100%;
   text-align: left;
@@ -25,22 +25,22 @@ h3 {
 .expenses-container .input-group input {
   width: 100%;
   padding: 1.2rem 1rem 1.2rem 1rem;
-  background-color: #f9fafb;
+  background-color: var(--gray-50);
   font-size: 16px;
   border: 2px solid transparent;
   border-radius: 16px;
-  color: #1f2937;
+  color: var(--gray-800);
   transition: all 0.3s ease;
 }
 
 .expenses-container .input-group input::placeholder {
-  color: #cbd5e1;
+  color: var(--input-placeholder);
 }
 .expenses-container .input-group input:focus {
-  border-color: #10b981;
+  border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
   outline: none;
-  background: white;
+  background: var(--white);
 }
 
 .expenses-container .input-group svg {
@@ -48,12 +48,12 @@ h3 {
   top: 50%;
   transform: translateY(-50%);
   left: 16px;
-  stroke: #94a3b8;
+  stroke: var(--gray-text);
   width: 20px;
 }
 
 .expenses-container .input-group input:focus + svg {
-  stroke: #10b981;
+  stroke: var(--primary);
 }
 
 .expenses-container .input-group .expense-name-input {
@@ -76,14 +76,14 @@ h3 {
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--gray-700);
   margin-bottom: 0.75rem;
   font-size: 1.3rem;
   font-family: 'Space Grotesk', sans-serif;
 }
 
 .form-label svg {
-  color: #10b981;
+  color: var(--primary);
   width: 20px;
 }
 
@@ -109,7 +109,7 @@ h3 {
 .amount-total-value {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #10b981;
+  color: var(--primary);
   flex: 1;
   text-align: right;
 }
@@ -131,19 +131,19 @@ h3 {
 .payer-select {
   flex: 1;
   padding: 1rem 1rem 1rem 1rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-color);
   border-radius: 16px;
   font-size: 16px;
-  color: #1f2937;
-  background: #f9fafb;
+  color: var(--gray-800);
+  background: var(--gray-50);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .payer-select:focus {
-  border-color: #10b981;
+  border-color: var(--primary);
   outline: none;
-  background: white;
+  background: var(--white);
 }
 
 .payer-amount {
@@ -154,22 +154,22 @@ h3 {
 .payer-amount input {
   width: 100%;
   padding: 1rem 1rem 1rem 2.5rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-color);
   border-radius: 16px;
   font-size: 16px;
-  color: #1f2937;
-  background: #f9fafb;
+  color: var(--gray-800);
+  background: var(--gray-50);
   transition: all 0.3s ease;
 }
 
 .payer-amount input:focus {
-  border-color: #10b981;
+  border-color: var(--primary);
   outline: none;
-  background: white;
+  background: var(--white);
 }
 
 .payer-amount input::placeholder {
-  color: #cbd5e1;
+  color: var(--input-placeholder);
 }
 
 .payer-amount svg {
@@ -177,7 +177,7 @@ h3 {
   top: 50%;
   transform: translateY(-50%);
   left: 12px;
-  stroke: #94a3b8;
+  stroke: var(--gray-text);
   width: 18px;
 }
 
@@ -187,17 +187,17 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fee2e2;
+  background: var(--danger-light);
   border: none;
   border-radius: 50%;
-  color: #ef4444;
+  color: var(--danger);
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
 .payer-remove:hover {
-  background: #fecaca;
+  background: var(--danger-lighter);
   transform: scale(1.05);
 }
 
@@ -229,9 +229,9 @@ h3 {
 .btn-select-all {
   padding: 0.5rem 1rem;
   background: transparent;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-color);
   border-radius: 12px;
-  color: #6b7280;
+  color: var(--gray-500);
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -240,8 +240,8 @@ h3 {
 }
 
 .btn-select-all:hover {
-  border-color: #10b981;
-  color: #10b981;
+  border-color: var(--primary);
+  color: var(--primary);
   background: rgba(16, 185, 129, 0.05);
 }
 
@@ -258,15 +258,15 @@ h3 {
   align-items: center;
   gap: 0.75rem;
   padding: 0.875rem 1rem;
-  background: white;
-  border: 2px solid #e2e8f0;
+  background: var(--white);
+  border: 2px solid var(--border-color);
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .checkbox-item:hover {
-  border-color: #34d399;
+  border-color: var(--primary-light);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
@@ -274,7 +274,7 @@ h3 {
 .checkbox-item input[type='checkbox'] {
   width: 18px;
   height: 18px;
-  accent-color: #10b981;
+  accent-color: var(--primary);
   cursor: pointer;
 }
 
@@ -284,7 +284,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--white);
   border-radius: 12px;
   font-size: 0.875rem;
   font-weight: 600;
@@ -293,7 +293,7 @@ h3 {
 
 .checkbox-name {
   font-size: 0.95rem;
-  color: #374151;
+  color: var(--gray-700);
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -309,15 +309,15 @@ h3 {
 }
 
 .expense-list-container {
-  border-top: 2px solid #e2e8f0;
+  border-top: 2px solid var(--border-color);
   margin-top: 1.5rem;
   padding-top: 1rem;
 }
 
 /* Compact Card */
 .expense-card {
-  background: white;
-  border: 2px solid #e2e8f0;
+  background: var(--white);
+  border: 2px solid var(--border-color);
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 0.5rem;
@@ -325,7 +325,7 @@ h3 {
 }
 
 .expense-card:hover {
-  border-color: #34d399;
+  border-color: var(--primary-light);
 }
 
 /* Card Header */
@@ -338,7 +338,7 @@ h3 {
 .expense-name {
   font-weight: 600;
   font-size: 1.5rem;
-  color: #1f2937;
+  color: var(--gray-800);
   margin-left: 0.5rem;
 }
 
@@ -348,10 +348,10 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fee2e2;
+  background: var(--danger-light);
   border: none;
   border-radius: 6px;
-  color: #ef4444;
+  color: var(--danger);
   cursor: pointer;
   opacity: 0;
   transition: all 0.2s ease;
@@ -375,12 +375,12 @@ h3 {
 .expense-amount {
   font-size: 1.2rem; /* Slightly bigger */
   font-weight: 700;
-  color: #10b981;
+  color: var(--primary);
 }
 
 .expense-split-amount {
   font-size: 0.85rem;
-  color: #9ca3af;
+  color: var(--gray-400);
   font-weight: 500;
 }
 
@@ -399,7 +399,7 @@ h3 {
 .expense-label {
   font-size: 0.7rem;
   font-weight: 600;
-  color: #9ca3af;
+  color: var(--gray-400);
   text-transform: uppercase;
   width: 60px;
   flex-shrink: 0;
@@ -417,7 +417,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  background: #f3f4f6;
+  background: var(--gray-100);
   padding: 0.2rem 0.4rem;
   border-radius: 6px;
   font-size: 0.75rem;
@@ -429,14 +429,14 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--white);
   border-radius: 4px;
   font-size: 0.6rem;
   font-weight: 600;
 }
 
 .tag-amount {
-  color: #10b981;
+  color: var(--primary);
   font-weight: 600;
 }
 
@@ -453,7 +453,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--white);
   border-radius: 6px;
   font-size: 0.65rem;
   font-weight: 600;
@@ -461,5 +461,5 @@ h3 {
 
 .split-each {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--gray-500);
 }
