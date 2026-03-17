@@ -122,9 +122,9 @@ function Result({ people, expenses, handleStep }) {
           <ArrowLeft />
           Back
         </button>
-        <button className='btn btn-secondary'>
+        <button className='btn btn-primary'>
           Save Image
-          <Download />
+          <Download size={18} />
         </button>
       </div>
     </motion.div>

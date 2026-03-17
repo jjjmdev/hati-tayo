@@ -3,14 +3,7 @@ import { usePeople } from '../../hooks/usePeople'
 import EmptyTable from '../EmptyTable/EmptyTable.jsx'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import {
-  UserRound,
-  UsersRound,
-  Plus,
-  X,
-  ArrowRight,
-  RotateCcw,
-} from 'lucide-react'
+import { UserRound, UsersRound, X, ArrowRight, RotateCcw } from 'lucide-react'
 import { getPeople, addPeople, deletePeople } from '../../data.js'
 import { useState } from 'react'
 
@@ -80,7 +73,6 @@ function People({ people, setPeople, handleStep, handleReset, notify }) {
         </div>
 
         <button className='btn btn-primary' onClick={handleAdd}>
-          <Plus />
           Add
         </button>
       </div>

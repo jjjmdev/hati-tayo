@@ -133,11 +133,6 @@ h4 {
   transition: var(--transition-slow);
 }
 
-.btn svg {
-  width: 26px;
-  margin-right: 0.2rem;
-}
-
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -165,11 +160,6 @@ h4 {
   box-shadow: var(--shadow-secondary-hover);
 }
 
-.btn-secondary svg {
-  width: 18px;
-  margin-left: 3px;
-}
-
 .btn-cancel {
   box-shadow: none;
 }
@@ -179,14 +169,28 @@ h4 {
   color: var(--gray-900);
 }
 
-.btn-cancel svg {
-  width: 18px;
-  margin-right: 3px;
-}
-
 .btn-reset:hover {
   color: var(--white);
   background: var(--danger);
+}
+
+/* Buttons with SVG */
+
+.btn svg {
+  min-width: 18px;
+}
+
+.btn-primary svg {
+  margin-left: 3px;
+}
+
+.btn-secondary svg {
+  margin-left: 3px;
+}
+
+.btn-cancel svg {
+  width: 18px;
+  margin-right: 3px;
 }
 
 /* Base danger button */

@@ -211,7 +211,6 @@ function Expenses({ people, expenses, setExpenses, handleStep, notify }) {
             onClick={handleAddPayer}
             disabled={people.length === payers.length}
           >
-            <Plus size={16} />
             {people.length === payers.length
               ? 'All people added'
               : 'Add another payer'}
@@ -258,6 +257,7 @@ function Expenses({ people, expenses, setExpenses, handleStep, notify }) {
           onClick={handleAddExpense}
         >
           Add Expense
+          <Plus size={18} />
         </button>
       </div>
 
