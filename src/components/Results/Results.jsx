@@ -14,7 +14,7 @@ function Result({ people, expenses, handleStep }) {
   // Calculate settlements
   const settlements = calcSettlements(people, expenses)
 
-  const handleSaveImage = async () => {
+  const handleSaveFullImage = async () => {
     const element = document.getElementById('results-section')
 
     // Find and temporarily remove constraints from calculator-container
@@ -64,6 +64,40 @@ function Result({ people, expenses, handleStep }) {
     link.click()
   }
 
+  const handleSaveSummary = async () => {
+    const element = document.getElementById('results-section')
+
+    // Find and temporarily hide the transaction table
+    const transactionTable = element.querySelector(
+      '.transaction-table-container',
+    )
+
+    if (transactionTable) {
+      transactionTable.style.display = 'none'
+    }
+
+    // Add footer before capturing
+    const footer = document.createElement('h4')
+    footer.className = 'results-footer'
+    footer.textContent = 'Hatian App by jjjmdev 🐼'
+    element.appendChild(footer)
+
+    const dataUrl = await domtoimage.toPng(element)
+
+    // Restore transaction table visibility
+    if (transactionTable) {
+      transactionTable.style.display = ''
+    }
+
+    // Remove footer after capturing
+    element.removeChild(footer)
+
+    const link = document.createElement('a')
+    link.download = 'hatian-summary.png'
+    link.href = dataUrl
+    link.click()
+  }
+
   return (
     // Cases:
     // No expenses yet
@@ -93,12 +127,24 @@ function Result({ people, expenses, handleStep }) {
           <ArrowLeft />
           Back
         </button>
-        {expenses.length > 0 && (
-          <button className='btn btn-primary' onClick={handleSaveImage}>
-            Save Image
-            <Download size={18} />
-          </button>
-        )}
+        <div>
+          {expenses.length > 0 && (
+            <>
+              <button
+                className='btn btn-secondary'
+                style={{ marginRight: '1rem' }}
+                onClick={handleSaveSummary}
+              >
+                Save Summary
+                <Download size={18} />
+              </button>
+              <button className='btn btn-primary' onClick={handleSaveFullImage}>
+                Save Full
+                <Download size={18} />
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </motion.div>
   )
