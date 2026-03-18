@@ -14,49 +14,10 @@ function Result({ people, expenses, handleStep }) {
   // Calculate settlements
   const settlements = calcSettlements(people, expenses)
 
-  const handleSaveFullImage = async () => {
-    const element = document.getElementById('results-section')
+  const handleTableSave = async () => {
+    const element = document.getElementById('tx-table')
 
-    // Find and temporarily remove constraints from calculator-container
-    const calculatorContainer = document.querySelector('.calculator-container')
-    const originalStyles = {
-      maxWidth: calculatorContainer?.style.maxWidth,
-      overflow: calculatorContainer?.style.overflow,
-      width: calculatorContainer?.style.width,
-    }
-
-    // Apply export-friendly styles
-    if (calculatorContainer) {
-      calculatorContainer.style.maxWidth = 'none'
-      calculatorContainer.style.overflow = 'visible'
-      calculatorContainer.style.width = 'auto'
-    }
-
-    // Add footer before capturing
-    const footer = document.createElement('h4')
-    footer.className = 'results-footer'
-    footer.textContent = 'Hatian App by jjjmdev 🐼'
-    element.appendChild(footer)
-
-    const dataUrl = await domtoimage.toPng(element, {
-      quality: 1,
-      width: element.scrollWidth,
-      height: element.scrollHeight,
-      style: {
-        maxWidth: 'none',
-        overflow: 'visible',
-      },
-    })
-
-    // Remove footer after capturing
-    element.removeChild(footer)
-
-    // Restore calculator-container styles
-    if (calculatorContainer) {
-      calculatorContainer.style.maxWidth = originalStyles.maxWidth || ''
-      calculatorContainer.style.overflow = originalStyles.overflow || ''
-      calculatorContainer.style.width = originalStyles.width || ''
-    }
+    const dataUrl = await domtoimage.toPng(element)
 
     const link = document.createElement('a')
     link.download = 'hatian.png'
@@ -64,7 +25,7 @@ function Result({ people, expenses, handleStep }) {
     link.click()
   }
 
-  const handleSaveSummary = async () => {
+  const handleSummarySave = async () => {
     const element = document.getElementById('results-section')
 
     // Find and temporarily hide the transaction table
@@ -75,6 +36,10 @@ function Result({ people, expenses, handleStep }) {
     if (transactionTable) {
       transactionTable.style.display = 'none'
     }
+
+    // Force width to 900px for capture
+    const originalWidth = element.style.width
+    element.style.width = '900px'
 
     // Add footer before capturing
     const footer = document.createElement('h4')
@@ -88,6 +53,9 @@ function Result({ people, expenses, handleStep }) {
     if (transactionTable) {
       transactionTable.style.display = ''
     }
+
+    // Restore original width
+    element.style.width = originalWidth
 
     // Remove footer after capturing
     element.removeChild(footer)
@@ -133,12 +101,12 @@ function Result({ people, expenses, handleStep }) {
               <button
                 className='btn btn-secondary'
                 style={{ marginRight: '1rem' }}
-                onClick={handleSaveSummary}
+                onClick={handleSummarySave}
               >
                 Save Summary
                 <Download size={18} />
               </button>
-              <button className='btn btn-primary' onClick={handleSaveFullImage}>
+              <button className='btn btn-primary' onClick={handleTableSave}>
                 Save Full
                 <Download size={18} />
               </button>

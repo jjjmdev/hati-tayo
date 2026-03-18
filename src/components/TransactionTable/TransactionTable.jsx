@@ -13,7 +13,7 @@ function TransactionTable({ people, expenses }) {
     <section className='transaction-table-container'>
       <h4>Transaction Details</h4>
       <div className='table-wrapper'>
-        <table className='transaction-table'>
+        <table className='transaction-table' id='tx-table'>
           <thead>
             <tr>
               <th className='expense-col'>Expense</th>

@@ -23,9 +23,7 @@ function SettlementsList({ settlements, people }) {
 
   return (
     <section className='results-summary'>
-      <div className='results-summary'>
-        <h4 className='section-title-center'>Settlements</h4>
-      </div>
+      <h4 className='section-title-center'>Settlements</h4>
       <div className='settlements-list'>
         {settlements.map((settlement, index) => (
           <div key={index} className='settlement-card'>
