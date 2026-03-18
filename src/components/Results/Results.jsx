@@ -8,7 +8,7 @@ import EmptyTable from '../EmptyTable/EmptyTable'
 
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import html2canvas from 'html2canvas'
+import domtoimage from 'dom-to-image-more'
 
 function Result({ people, expenses, handleStep }) {
   // Calculate settlements
@@ -16,21 +16,51 @@ function Result({ people, expenses, handleStep }) {
 
   const handleSaveImage = async () => {
     const element = document.getElementById('results-section')
-    const canvas = await html2canvas(element, {
-      onclone: (clonedDoc) => {
-        const clonedElement = clonedDoc.getElementById('results-section')
-        // Create footer
-        const footer = clonedDoc.createElement('h4')
-        footer.className = 'results-footer'
-        footer.textContent = 'Hatian App by jjjmdev 🐼'
-        clonedElement.appendChild(footer)
+
+    // Find and temporarily remove constraints from calculator-container
+    const calculatorContainer = document.querySelector('.calculator-container')
+    const originalStyles = {
+      maxWidth: calculatorContainer?.style.maxWidth,
+      overflow: calculatorContainer?.style.overflow,
+      width: calculatorContainer?.style.width,
+    }
+
+    // Apply export-friendly styles
+    if (calculatorContainer) {
+      calculatorContainer.style.maxWidth = 'none'
+      calculatorContainer.style.overflow = 'visible'
+      calculatorContainer.style.width = 'auto'
+    }
+
+    // Add footer before capturing
+    const footer = document.createElement('h4')
+    footer.className = 'results-footer'
+    footer.textContent = 'Hatian App by jjjmdev 🐼'
+    element.appendChild(footer)
+
+    const dataUrl = await domtoimage.toPng(element, {
+      quality: 1,
+      width: element.scrollWidth,
+      height: element.scrollHeight,
+      style: {
+        maxWidth: 'none',
+        overflow: 'visible',
       },
     })
 
-    const image = canvas.toDataURL('image/png')
+    // Remove footer after capturing
+    element.removeChild(footer)
+
+    // Restore calculator-container styles
+    if (calculatorContainer) {
+      calculatorContainer.style.maxWidth = originalStyles.maxWidth || ''
+      calculatorContainer.style.overflow = originalStyles.overflow || ''
+      calculatorContainer.style.width = originalStyles.width || ''
+    }
+
     const link = document.createElement('a')
     link.download = 'hatian.png'
-    link.href = image
+    link.href = dataUrl
     link.click()
   }
 

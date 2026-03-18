@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@trendyol/baklava": "^3.4.2",
+    "dom-to-image-more": "^3.7.2",
     "framer-motion": "^12.34.0",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.564.0",
