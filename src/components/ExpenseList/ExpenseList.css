@@ -25,6 +25,7 @@
   border-color: var(--primary-light);
 }
 
+.expense-card:hover .btn-info,
 .expense-card:hover .btn-danger {
   opacity: 1;
   transform: scale(1);
@@ -34,7 +35,7 @@
 .expense-card-header {
   display: flex;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .expense-name {
@@ -42,6 +43,9 @@
   font-size: 1.5rem;
   color: var(--gray-800);
   margin-left: 0.5rem;
+  flex: 1;
+  width: 100%;
+  text-align: left;
 }
 
 /* Combined Amount Display */

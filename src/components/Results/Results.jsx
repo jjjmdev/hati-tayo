@@ -100,14 +100,14 @@ function Result({ people, expenses, handleStep }) {
             <>
               <button
                 className='btn btn-secondary'
+                onClick={handleTableSave}
                 style={{ marginRight: '1rem' }}
-                onClick={handleSummarySave}
               >
-                Save Summary
+                Table
                 <Download size={18} />
               </button>
-              <button className='btn btn-primary' onClick={handleTableSave}>
-                Save Full
+              <button className='btn btn-primary' onClick={handleSummarySave}>
+                Summary
                 <Download size={18} />
               </button>
             </>

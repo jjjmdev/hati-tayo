@@ -107,8 +107,68 @@ export function setExpenses(expenses) {
 }
 
 // Add a new expense
-export function addExpense({ name, amount, paidBy, splitAmong, splits }) {
+export function addExpense(expenseData) {
+  const { name, amount, paidBy, splitAmong, splits } = expenseData
   const expenses = getExpenses()
+
+  const error = validateExpense(expenseData)
+  if (error) {
+    return error
+  }
+
+  // Create expense object
+  const expense = {
+    id: crypto.randomUUID(),
+    name: name.trim(),
+    amount: parseFloat(amount),
+    paidBy,
+    splitAmong,
+    splits,
+    createdAt: new Date().toISOString(),
+  }
+
+  expenses.push(expense)
+  setExpenses(expenses)
+
+  return { success: true, expense }
+}
+
+// Delete an expense
+export function deleteExpense(id) {
+  const expenses = getExpenses()
+
+  setExpenses(expenses.filter((expenses) => expenses.id !== id))
+}
+
+export function updateExpense(id, expenseData) {
+  const expenses = getExpenses()
+  const index = expenses.findIndex((e) => e.id === id)
+
+  if (index === -1) {
+    return { success: false, reason: 'not_found' }
+  }
+
+  const error = validateExpense(expenseData)
+  if (error) {
+    return error
+  }
+
+  expenses[index] = {
+    ...expenses[index],
+    name: expenseData.name.trim(),
+    amount: parseFloat(expenseData.amount),
+    paidBy: expenseData.paidBy,
+    splitAmong: expenseData.splitAmong,
+    splits: expenseData.splits,
+    updatedAt: new Date().toISOString(),
+  }
+
+  setExpenses(expenses)
+  return { success: true }
+}
+
+function validateExpense(expense) {
+  const { name, amount, paidBy, splitAmong } = expense
 
   // Validation
   if (name.trim() === '') {
@@ -136,26 +196,5 @@ export function addExpense({ name, amount, paidBy, splitAmong, splits }) {
     }
   }
 
-  // Create expense object
-  const expense = {
-    id: crypto.randomUUID(),
-    name: name.trim(),
-    amount: parseFloat(amount),
-    paidBy,
-    splitAmong,
-    splits,
-    createdAt: new Date().toISOString(),
-  }
-
-  expenses.push(expense)
-  setExpenses(expenses)
-
-  return { success: true, expense }
-}
-
-// Delete an expense
-export function deleteExpense(id) {
-  const expenses = getExpenses()
-
-  setExpenses(expenses.filter((expenses) => expenses.id !== id))
+  return null
 }

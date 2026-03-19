@@ -6,13 +6,36 @@ import { formatAmount } from '../../utils/utils.js'
 import { motion } from 'framer-motion'
 import { PhilippinePeso, Plus, ArrowLeft, ArrowRight, X } from 'lucide-react'
 import { useState } from 'react'
-import { addExpense, deleteExpense, getExpenses } from '../../data'
+import {
+  addExpense,
+  deleteExpense,
+  getExpenses,
+  updateExpense,
+} from '../../data'
 
-function Expenses({ people, expenses, setExpenses, handleStep, notify }) {
+function Expenses({
+  people,
+  expenses,
+  setExpenses,
+  handleStep,
+  notify,
+  editingExpense,
+  onExpenseEdit,
+}) {
   // Form state
   const [itemName, setItemName] = useState('')
   const [payers, setPayers] = useState([{ personId: '', amount: '' }])
   const [splitAmong, setSplitAmong] = useState([])
+  const [isEditMode, setIsEditMode] = useState(() => !!editingExpense)
+  const [prevEditingExpenses, setPrevEditingExpenses] = useState(editingExpense)
+
+  if (editingExpense !== prevEditingExpenses && editingExpense !== null) {
+    setPrevEditingExpenses(editingExpense)
+    setItemName(editingExpense.name)
+    setPayers(editingExpense.paidBy)
+    setSplitAmong(editingExpense.splitAmong)
+    setIsEditMode(() => !!editingExpense)
+  }
 
   // Helpers
   const { getPersonColor } = usePeople(people)
@@ -124,6 +147,42 @@ function Expenses({ people, expenses, setExpenses, handleStep, notify }) {
     setExpenses(getExpenses())
   }
 
+  const handleSave = () => {
+    const validPayers = payers
+      .filter((p) => p.personId && p.amount)
+      .map((p) => ({ personId: p.personId, amount: parseFloat(p.amount) }))
+
+    const totalAmount = validPayers.reduce((sum, p) => sum + p.amount, 0)
+
+    // UPDATE existing expense
+    const result = updateExpense(editingExpense.id, {
+      name: itemName,
+      amount: totalAmount,
+      paidBy: validPayers,
+      splitAmong,
+      splits: calculateSplits(),
+    })
+
+    if (result.success) {
+      setExpenses(getExpenses())
+      notify({
+        caption: 'Updated',
+        description: 'Expense updated successfully',
+        variant: 'success',
+      })
+      resetForm()
+      onExpenseEdit(null)
+    }
+  }
+
+  const resetForm = () => {
+    onExpenseEdit(null)
+    setItemName('')
+    setPayers([{ personId: '', amount: '' }])
+    setSplitAmong([])
+    setIsEditMode(false)
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -194,7 +253,7 @@ function Expenses({ people, expenses, setExpenses, handleStep, notify }) {
                 {payers.length > 1 && (
                   <button
                     type='button'
-                    className='btn-danger btn-danger-md'
+                    className='btn-md btn-danger btn-danger-md'
                     onClick={() => handleRemovePayer(index)}
                   >
                     <X size={16} />
@@ -251,14 +310,26 @@ function Expenses({ people, expenses, setExpenses, handleStep, notify }) {
           </div>
         </div>
 
-        {/* Add Expense Button */}
-        <button
-          className='btn btn-primary btn-across'
-          onClick={handleAddExpense}
-        >
-          Add Expense
-          <Plus size={18} />
-        </button>
+        {/* Update/Add Expense Button */}
+        {isEditMode ? (
+          <div className='btns-container'>
+            <button className='btn btn-cancel' onClick={resetForm}>
+              Cancel Edit
+            </button>
+            <button className='btn btn-primary' onClick={handleSave}>
+              Update Expense
+              <Plus size={18} />
+            </button>
+          </div>
+        ) : (
+          <button
+            className='btn btn-primary btn-across'
+            onClick={handleAddExpense}
+          >
+            Add Expense
+            <Plus size={18} />
+          </button>
+        )}
       </div>
 
       {/* Expense List */}
@@ -266,6 +337,7 @@ function Expenses({ people, expenses, setExpenses, handleStep, notify }) {
         expenses={expenses}
         people={people}
         onDelete={handleDeleteExpense}
+        onEdit={onExpenseEdit}
       />
 
       <div className='btns-container'>

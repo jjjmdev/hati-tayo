@@ -1,10 +1,10 @@
 import './ExpenseList.css'
 import { usePeople } from '../../hooks/usePeople'
 import EmptyTable from '../EmptyTable/EmptyTable'
-import { ShoppingCart, Trash2 } from 'lucide-react'
+import { ShoppingCart, Trash2, Pencil } from 'lucide-react'
 import { formatAmount } from '../../utils/utils'
 
-function ExpenseList({ expenses, people, onDelete }) {
+function ExpenseList({ expenses, people, onDelete, onEdit }) {
   const { getPersonName, getPersonColor, getPersonInitial } = usePeople(people)
 
   if (expenses.length === 0) {
@@ -26,7 +26,13 @@ function ExpenseList({ expenses, people, onDelete }) {
             <div className='expense-card-header'>
               <span className='expense-name'>{expense.name}</span>
               <button
-                className='btn-danger btn-danger-sm'
+                className='btn-sm btn-info'
+                onClick={() => onEdit(expense)}
+              >
+                <Pencil size={16} />
+              </button>
+              <button
+                className='btn-sm btn-danger'
                 onClick={() => onDelete(expense.id)}
               >
                 <Trash2 size={16} />

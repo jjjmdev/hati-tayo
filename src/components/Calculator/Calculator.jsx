@@ -10,6 +10,7 @@ function Calculator({ notify }) {
   const [activeStep, setActiveStep] = useState(0)
   const [people, setPeople] = useState(getPeople())
   const [expenses, setExpenses] = useState(getExpenses())
+  const [editingExpense, setEditingExpense] = useState(null)
 
   const handleStep = (toStep) => {
     // case: Going from 'People' to 'Expenses'
@@ -42,6 +43,13 @@ function Calculator({ notify }) {
     resetData()
     setPeople(getPeople())
     setExpenses(getExpenses())
+  }
+
+  const handleEditExpense = (expense) => {
+    const element = document.querySelector('.expenses-container')
+    // with timeout to ensure render
+    setTimeout(() => element?.scrollIntoView({ behavior: 'smooth' }), 0)
+    setEditingExpense(expense)
   }
 
   return (
@@ -105,6 +113,8 @@ function Calculator({ notify }) {
                 people={people}
                 expenses={expenses}
                 setExpenses={setExpenses}
+                editingExpense={editingExpense}
+                onExpenseEdit={handleEditExpense}
                 handleStep={handleStep}
                 notify={notify}
               />
