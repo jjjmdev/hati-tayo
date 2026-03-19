@@ -60,6 +60,8 @@
   right: 0.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: end;
   gap: 0.3rem;
 }
 
@@ -75,6 +77,7 @@
   align-items: center;
   transform: scale(0.8);
   display: flex;
+  font-size: 12px;
 
   svg {
     width: 12px;
@@ -102,4 +105,9 @@
 .badge:hover .badge-delete {
   opacity: 1;
   transform: scale(1);
+}
+
+.badge-btn-txt {
+  padding: 0 1rem;
+  border-radius: 12px;
 }

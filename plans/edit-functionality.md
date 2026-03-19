@@ -140,33 +140,32 @@ export function updateExpense(id, expenseData) {
 
 ### Step 1: Edit People
 
-1. Add `updatePeople()` function to `data.js`
-2. Add edit button (Pencil icon) to People.jsx badge
-3. Add edit mode UI with inline input
-4. Handle save/cancel and validation
+1. ~~Add `updatePeople()` function to `data.js`~~
+2. ~~Add edit button (Pencil icon) to People.jsx badge~~
+3. ~~Add edit mode UI with inline input~~
+4. ~~Handle save/cancel and validation~~
 
 ### Step 2: Edit Expenses
 
-1. Add `updateExpense()` function to `data.js`
-2. Add edit button to ExpenseList.jsx cards
-3. Pass `editingExpense` prop to Expenses.jsx
-4. Pre-fill form when editing
-5. Handle update on save
+1. ~~Add `updateExpense()` function to `data.js`~~
+2. ~~Add edit button to ExpenseList.jsx cards~~
+3. ~~Pass `editingExpense` prop to Expenses.jsx~~
+4. ~~Pre-fill form when editing~~
+5. ~~Handle update on save~~
 
 ### Step 3: Edge Cases - IMPORTANT!
 
 **When Editing a Person:**
 
-- Editing name: No issues - expenses use person IDs, not names ✅
+- ~~Editing name: No issues - expenses use person IDs, not names ✅~~
 - Deleting a person: Show warning if referenced in expenses ⚠️
 
 **When Editing an Expense:**
 
-- Changing amount: Allow (no payment tracking in this version) ✅
-- Changing payer: Update paidBy array ✅
-- Removing person from splitAmong: Recalculate splits among remaining ✅
-- Adding new person to splitAmong: Recalculate splits ✅
-- Changing split type (equal → custom): Reset to equal split ✅
+- ~~Changing amount: Allow (no payment tracking in this version) ✅~~
+- ~~Changing payer: Update paidBy array ✅~~
+- ~~Removing person from splitAmong: Recalculate splits among remaining ✅~~
+- ~~Adding new person to splitAmong: Recalculate splits ✅~~
 
 **Future Considerations (not in v1):**
 

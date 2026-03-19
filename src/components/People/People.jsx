@@ -151,10 +151,10 @@ function People({ people, setPeople, handleStep, handleReset, notify }) {
                     />
                     <div className='badge-btns-container'>
                       <div
-                        className='badge-btn badge-primary'
+                        className='badge-btn badge-btn-txt badge-primary'
                         onClick={() => handleEditSave()}
                       >
-                        <Check />
+                        Save
                       </div>
                       <div
                         className='badge-btn badge-info'
