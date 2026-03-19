@@ -11,16 +11,24 @@
   gap: 1rem;
 }
 
+.edit-name-input {
+  padding: 0.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  width: 100%;
+}
+
 .badge {
   padding: 1rem 0.8rem;
   border-radius: 16px;
   border: 1px solid #e2e8f0;
   display: flex;
   gap: 0.8rem;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   transition: var(--transition-medium);
   transform: translateY(0px);
+  position: relative;
 
   .badge-name {
     text-overflow: ellipsis;
@@ -36,8 +44,8 @@
   }
 
   .badge-avatar {
-    height: 36px;
-    width: 36px;
+    min-height: 36px;
+    min-width: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,27 +55,50 @@
   }
 }
 
-.badge-delete {
+.badge-btns-container {
+  position: absolute;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.badge-btn {
   opacity: 0;
   transition: var(--transition-fast);
-  width: 24px;
-  height: 24px;
-  color: #ef4444;
-  background: #fee2e2;
+  width: 18px;
+  height: 18px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
   justify-content: center;
   align-items: center;
   transform: scale(0.8);
+  display: flex;
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
   }
 }
 
+.badge-primary {
+  color: var(--primary);
+  background: var(--primary-lighter);
+}
+
+.badge-info {
+  color: var(--info);
+  background: var(--info-light);
+}
+
+.badge-delete {
+  color: var(--danger);
+  background: var(--danger-light);
+}
+
+.badge:hover .badge-primary,
+.badge:hover .badge-info,
 .badge:hover .badge-delete {
   opacity: 1;
   transform: scale(1);

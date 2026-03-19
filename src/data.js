@@ -54,6 +54,43 @@ export function deletePeople(id) {
   )
 }
 
+export function updatePeople(id, newName) {
+  console.log(id)
+  const people = getPeople()
+  const normalizedName = newName.trim()
+
+  if (normalizedName === '') {
+    return {
+      success: false,
+      reason: 'empty',
+    }
+  }
+
+  if (people.some((p) => p.name === normalizedName && p.id !== id)) {
+    return {
+      success: false,
+      reason: 'duplicate',
+    }
+  }
+
+  const index = people.findIndex((p) => p.id === id)
+
+  console.log(index)
+
+  if (index === -1) {
+    return {
+      success: false,
+      reason: 'not_found',
+    }
+  }
+
+  people[index].name = normalizedName
+  setPeople(people)
+  return {
+    success: true,
+  }
+}
+
 // == EXPENSES ==
 // Get all expenses from localStorage
 export function getExpenses() {

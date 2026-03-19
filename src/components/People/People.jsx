@@ -3,12 +3,23 @@ import { usePeople } from '../../hooks/usePeople'
 import EmptyTable from '../EmptyTable/EmptyTable.jsx'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
-import { UserRound, UsersRound, X, ArrowRight, RotateCcw } from 'lucide-react'
-import { getPeople, addPeople, deletePeople } from '../../data.js'
+import {
+  UserRound,
+  UsersRound,
+  X,
+  ArrowRight,
+  RotateCcw,
+  Pencil,
+  Ban,
+  Check,
+} from 'lucide-react'
+import { getPeople, addPeople, deletePeople, updatePeople } from '../../data.js'
 import { useState } from 'react'
 
 function People({ people, setPeople, handleStep, handleReset, notify }) {
   const [name, setName] = useState('')
+  const [editingId, setEditingId] = useState(null)
+  const [editName, setEditName] = useState('')
 
   // Helper
   const { getPersonColor } = usePeople(people)
@@ -23,8 +34,41 @@ function People({ people, setPeople, handleStep, handleReset, notify }) {
       return
     }
 
+    handleError(result.reason)
+  }
+
+  function handleDelete(id) {
+    deletePeople(id)
+    setPeople(getPeople())
+  }
+
+  function handleEditClick(id, currentName) {
+    setEditingId(id)
+    setEditName(currentName)
+  }
+
+  function handleEditCancel() {
+    setEditingId(null)
+    setEditName('')
+  }
+
+  function handleEditSave() {
+    const result = updatePeople(editingId, editName)
+
+    // Success: refresh list and clear input
+    if (result.success) {
+      setPeople(getPeople())
+      setEditingId(null)
+      setEditName('')
+      return
+    }
+
+    handleError(result.reason)
+  }
+
+  function handleError(reason) {
     // Fail: error handling
-    if (result.reason === 'empty') {
+    if (reason === 'empty') {
       notify({
         caption: 'Name required',
         description: 'Please enter a person name before adding.',
@@ -33,18 +77,21 @@ function People({ people, setPeople, handleStep, handleReset, notify }) {
       return
     }
 
-    if (result.reason === 'duplicate') {
+    if (reason === 'duplicate') {
       notify({
         caption: 'Duplicate name',
         description: 'This person is already in the list',
         variant: 'danger',
       })
     }
-  }
 
-  function handleDelete(id) {
-    deletePeople(id)
-    setPeople(getPeople())
+    if (reason === 'not_found') {
+      notify({
+        caption: 'Not found',
+        description: 'This person ID cannot be found. Refresh the page.',
+        variant: 'danger',
+      })
+    }
   }
 
   function onResetClick() {
@@ -87,16 +134,61 @@ function People({ people, setPeople, handleStep, handleReset, notify }) {
           <div className='people-grid'>
             {people.map(({ id, name }) => (
               <div className='badge' key={id}>
-                <span
-                  className='badge-avatar'
-                  style={{ backgroundColor: getPersonColor(id) }}
-                >
-                  {name.charAt(0).toUpperCase()}
-                </span>
-                <span className='badge-name'>{name}</span>
-                <div className='badge-delete' onClick={() => handleDelete(id)}>
-                  <X />
-                </div>
+                {editingId === id ? (
+                  // EDITING
+                  <>
+                    <span
+                      className='badge-avatar'
+                      style={{ backgroundColor: getPersonColor(id) }}
+                    >
+                      {editName.charAt(0).toUpperCase()}
+                    </span>
+                    <input
+                      type='text'
+                      className='edit-name-input'
+                      onChange={(e) => setEditName(e.target.value)}
+                      value={editName}
+                    />
+                    <div className='badge-btns-container'>
+                      <div
+                        className='badge-btn badge-primary'
+                        onClick={() => handleEditSave()}
+                      >
+                        <Check />
+                      </div>
+                      <div
+                        className='badge-btn badge-info'
+                        onClick={() => handleEditCancel()}
+                      >
+                        <Ban />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <span
+                      className='badge-avatar'
+                      style={{ backgroundColor: getPersonColor(id) }}
+                    >
+                      {name.charAt(0).toUpperCase()}
+                    </span>
+                    <span className='badge-name'>{name}</span>
+                    <div className='badge-btns-container'>
+                      <div
+                        className='badge-btn badge-info'
+                        onClick={() => handleEditClick(id, name)}
+                      >
+                        <Pencil />
+                      </div>
+                      <div
+                        className='badge-btn badge-delete'
+                        onClick={() => handleDelete(id)}
+                      >
+                        <X />
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             ))}
           </div>

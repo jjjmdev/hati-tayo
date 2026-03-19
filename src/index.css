@@ -10,11 +10,15 @@
 :root {
   --primary: #10b981;
   --primary-light: #34d399;
+  --primary-lighter: #a7f3d0;
   --secondary: #6c63ff;
   --secondary-light: #7f78ff;
   --danger: #ef4444;
   --danger-light: #fee2e2;
   --danger-lighter: #fecaca;
+  --info: #3b82f6;
+  --info-light: #dbeafe;
+  --info-lighter: #bfdbfe;
   --input-placeholder: #cbd5e1;
   --gray-text: #94a3b8;
   --border-color: #e2e8f0;
