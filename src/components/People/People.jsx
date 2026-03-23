@@ -1,7 +1,6 @@
 import './People.css'
 import { usePeople } from '../../hooks/usePeople'
 import EmptyTable from '../EmptyTable/EmptyTable.jsx'
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import {
   UserRound,
@@ -18,11 +17,19 @@ import {
   addPeople,
   deletePeople,
   updatePeople,
+  getExpenses,
   getPersonExpenses,
 } from '../../data.js'
 import { useState } from 'react'
 
-function People({ people, setPeople, handleStep, handleReset, notify }) {
+function People({
+  people,
+  setPeople,
+  handleStep,
+  handleReset,
+  notify,
+  setConfirmDialog,
+}) {
   const [name, setName] = useState('')
   const [editingId, setEditingId] = useState(null)
   const [editName, setEditName] = useState('')
@@ -37,6 +44,12 @@ function People({ people, setPeople, handleStep, handleReset, notify }) {
     if (result.success) {
       setPeople(getPeople())
       setName('')
+
+      notify({
+        caption: 'Person added',
+        description: `"${name}" has been added.`,
+        variant: 'success',
+      })
       return
     }
 
@@ -44,21 +57,31 @@ function People({ people, setPeople, handleStep, handleReset, notify }) {
   }
 
   function handleDelete(id) {
+    const person = people.find((p) => p.id === id)
     const references = getPersonExpenses(id)
 
     if (references.length > 0) {
-      // TODO: Show confirmation dialog with references
-      // For now, just log
-      console.log(
-        'Expenses with this person:',
-        references.map((e) => e.name),
-      )
+      setConfirmDialog({
+        title: `Delete '${person.name}'?`,
+        message: 'This person is referenced in:',
+        details: references.map((e) => e.name),
+        onConfirm: () => performDelete(id, person.name),
+      })
       return
     }
 
     // No references - safe to delete
-    deletePeople(id)
+    performDelete(person.id, person.name)
+  }
+
+  function performDelete(personId, personName) {
+    deletePeople(personId)
     setPeople(getPeople())
+    notify({
+      caption: 'Deleted',
+      description: `${personName} has been removed.`,
+      variant: 'warning',
+    })
   }
 
   function handleEditClick(id, currentName) {
@@ -114,8 +137,29 @@ function People({ people, setPeople, handleStep, handleReset, notify }) {
   }
 
   function onResetClick() {
+    const expenses = getExpenses()
+    if (expenses.length > 0) {
+      setConfirmDialog({
+        title: 'Reset all data',
+        message: 'This will delete all data. Cannot be undone.',
+        details: [`${expenses.length} expense(s) will be deleted`],
+        onConfirm: performReset,
+      })
+
+      return
+    }
+
+    performReset()
+  }
+
+  function performReset() {
     handleReset()
     setName('')
+    notify({
+      caption: 'Cleared',
+      description: 'All data has been deleted.',
+      variant: 'warning',
+    })
   }
 
   return (

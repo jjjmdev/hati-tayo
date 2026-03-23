@@ -19,6 +19,9 @@
   --info: #3b82f6;
   --info-light: #dbeafe;
   --info-lighter: #bfdbfe;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --warning-lighter: #fffbeb;
   --input-placeholder: #cbd5e1;
   --gray-text: #94a3b8;
   --border-color: #e2e8f0;
@@ -242,6 +245,15 @@ h4 {
 
 .btn-info:hover {
   background: var(--info-lighter);
+}
+
+.btn-warning {
+  color: var(--warning);
+  background: var(--warning-light);
+}
+
+.btn-warning:hover {
+  background: var(--warning-lighter);
 }
 
 .btn-across {

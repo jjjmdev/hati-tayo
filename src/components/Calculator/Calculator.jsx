@@ -6,7 +6,7 @@ import Expenses from '../Expenses/Expenses.jsx'
 import Results from '../Results/Results.jsx'
 import { getPeople, getExpenses, resetData } from '../../data.js'
 
-function Calculator({ notify }) {
+function Calculator({ notify, setConfirmDialog }) {
   const [activeStep, setActiveStep] = useState(0)
   const [people, setPeople] = useState(getPeople())
   const [expenses, setExpenses] = useState(getExpenses())
@@ -106,6 +106,7 @@ function Calculator({ notify }) {
                 handleStep={handleStep}
                 notify={notify}
                 handleReset={handleReset}
+                setConfirmDialog={setConfirmDialog}
               />
             ),
             1: (
@@ -117,6 +118,7 @@ function Calculator({ notify }) {
                 onExpenseEdit={handleEditExpense}
                 handleStep={handleStep}
                 notify={notify}
+                setConfirmDialog={setConfirmDialog}
               />
             ),
             2: (
