@@ -198,3 +198,14 @@ function validateExpense(expense) {
 
   return null
 }
+
+// For Deletion functionalities
+// Check if a person is referenced in any expenses
+export function getPersonExpenses(personId) {
+  const expenses = getExpenses()
+  return expenses.filter((expense) => {
+    const isPayer = expense.paidBy?.some((p) => p.personId === personId)
+    const isInSplit = expense.splitAmong?.includes(personId)
+    return isPayer || isInSplit
+  })
+}

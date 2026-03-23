@@ -13,7 +13,13 @@ import {
   Ban,
   Check,
 } from 'lucide-react'
-import { getPeople, addPeople, deletePeople, updatePeople } from '../../data.js'
+import {
+  getPeople,
+  addPeople,
+  deletePeople,
+  updatePeople,
+  getPersonExpenses,
+} from '../../data.js'
 import { useState } from 'react'
 
 function People({ people, setPeople, handleStep, handleReset, notify }) {
@@ -38,6 +44,19 @@ function People({ people, setPeople, handleStep, handleReset, notify }) {
   }
 
   function handleDelete(id) {
+    const references = getPersonExpenses(id)
+
+    if (references.length > 0) {
+      // TODO: Show confirmation dialog with references
+      // For now, just log
+      console.log(
+        'Expenses with this person:',
+        references.map((e) => e.name),
+      )
+      return
+    }
+
+    // No references - safe to delete
     deletePeople(id)
     setPeople(getPeople())
   }
