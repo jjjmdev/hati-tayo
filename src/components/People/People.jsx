@@ -20,7 +20,7 @@ import {
   getPersonExpenses,
   cleanupExpensesForPerson,
 } from '../../data.js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function People({
   people,
@@ -34,6 +34,28 @@ function People({
   const [name, setName] = useState('')
   const [editingId, setEditingId] = useState(null)
   const [editName, setEditName] = useState('')
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        if (editingId) {
+          handleEditSave()
+        } else if (name.trim()) {
+          handleAdd()
+        }
+      }
+
+      if (e.key === 'Escape') {
+        setName('')
+        if (editingId) {
+          handleEditCancel()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [name, editingId])
 
   // Helper
   const { getPersonColor } = usePeople(people)
