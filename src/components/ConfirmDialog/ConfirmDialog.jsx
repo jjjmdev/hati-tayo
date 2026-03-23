@@ -1,6 +1,7 @@
 import './ConfirmDialog.css'
 import { motion } from 'framer-motion'
 import { AlertTriangle, X } from 'lucide-react'
+import { useEffect } from 'react'
 
 function ConfirmDialog({
   isOpen,
@@ -13,6 +14,23 @@ function ConfirmDialog({
   cancelText = 'Cancel',
   variant = 'danger',
 }) {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && onCancel) {
+        onCancel()
+      }
+    }
+
+    // Only add listener when dialog is open
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown)
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isOpen, onCancel])
+
   if (!isOpen) return null
 
   return (
