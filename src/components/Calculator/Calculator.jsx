@@ -103,10 +103,11 @@ function Calculator({ notify, setConfirmDialog }) {
               <People
                 people={people}
                 setPeople={setPeople}
-                handleStep={handleStep}
-                notify={notify}
-                handleReset={handleReset}
+                setExpenses={setExpenses}
                 setConfirmDialog={setConfirmDialog}
+                notify={notify}
+                handleStep={handleStep}
+                handleReset={handleReset}
               />
             ),
             1: (

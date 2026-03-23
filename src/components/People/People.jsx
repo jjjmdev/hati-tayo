@@ -10,7 +10,6 @@ import {
   RotateCcw,
   Pencil,
   Ban,
-  Check,
 } from 'lucide-react'
 import {
   getPeople,
@@ -19,16 +18,18 @@ import {
   updatePeople,
   getExpenses,
   getPersonExpenses,
+  cleanupExpensesForPerson,
 } from '../../data.js'
 import { useState } from 'react'
 
 function People({
   people,
   setPeople,
+  setExpenses,
+  setConfirmDialog,
   handleStep,
   handleReset,
   notify,
-  setConfirmDialog,
 }) {
   const [name, setName] = useState('')
   const [editingId, setEditingId] = useState(null)
@@ -75,11 +76,24 @@ function People({
   }
 
   function performDelete(personId, personName) {
+    // Clean up expenses first
+    const result = cleanupExpensesForPerson(personId)
+    // Then delete the person
     deletePeople(personId)
     setPeople(getPeople())
+    setExpenses(getExpenses())
+
+    // Build parts array and join with ". "
+    const parts = [`${personName} has been removed`]
+    if (result.deletedExpenses > 0) {
+      parts.push(`${result.deletedExpenses} expense(s) deleted (sole payer)`)
+    }
+    if (result.updatedExpenses > 0) {
+      parts.push(`${result.updatedExpenses} expenses(s) updated.`)
+    }
     notify({
       caption: 'Deleted',
-      description: `${personName} has been removed.`,
+      description: parts.join('. '),
       variant: 'warning',
     })
   }

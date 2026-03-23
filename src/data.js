@@ -54,8 +54,58 @@ export function deletePeople(id) {
   )
 }
 
+export function cleanupExpensesForPerson(personId) {
+  const expenses = getExpenses()
+  const expensesToDelete = []
+  const updatedExpenseIds = [] // Tracks modified expenses
+
+  expenses.forEach((expense) => {
+    // Check if person is in this expense
+    const isPayer = expense.paidBy?.some((p) => p.personId === personId)
+    const isInSplit = expense.splitAmong?.includes(personId)
+
+    if (!isPayer && !isInSplit) {
+      return // Person not in this expense, skip
+    }
+
+    // Check if this person is the sole payer
+    const isSolePayer =
+      expense.paidBy?.length === 1 && expense.paidBy[0].personId === personId
+
+    if (isSolePayer) {
+      expensesToDelete.push(expense.id)
+    } else {
+      // Remove payer list
+      expense.paidBy = expense.paidBy.filter((p) => p.personId !== personId)
+      // Update amount to sum of remaining payers
+      expense.amount = expense.paidBy.reduce((sum, p) => sum + p.amount, 0)
+      // Remove from splitAmong
+      expense.splitAmong = expense.splitAmong.filter((id) => id !== personId)
+      // Recalculate splits for remaining people
+      if (expense.splitAmong.length > 0) {
+        const splitAmount = expense.amount / expense.splitAmong.length
+        expense.splits = expense.splitAmong.map((id) => ({
+          personId: id,
+          amount: splitAmount,
+        }))
+      }
+
+      updatedExpenseIds.push(expense.id)
+    }
+  })
+  // Delete expenses where deleted person was sole payer
+  // Save remaining updated expenses
+  setExpenses(
+    expenses.filter((expense) => !expensesToDelete.includes(expense.id)),
+  )
+
+  return {
+    deletedExpenses: expensesToDelete.length,
+    updatedExpenses: updatedExpenseIds.length,
+  }
+}
+
 export function updatePeople(id, newName) {
-  console.log(id)
   const people = getPeople()
   const normalizedName = newName.trim()
 
@@ -74,8 +124,6 @@ export function updatePeople(id, newName) {
   }
 
   const index = people.findIndex((p) => p.id === id)
-
-  console.log(index)
 
   if (index === -1) {
     return {
