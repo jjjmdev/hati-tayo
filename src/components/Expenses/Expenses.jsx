@@ -21,6 +21,7 @@ function Expenses({
   notify,
   editingExpense,
   onExpenseEdit,
+  setConfirmDialog,
 }) {
   // Form state
   const [itemName, setItemName] = useState('')
@@ -338,6 +339,7 @@ function Expenses({
         people={people}
         onDelete={handleDeleteExpense}
         onEdit={onExpenseEdit}
+        setConfirmDialog={setConfirmDialog}
       />
 
       <div className='btns-container'>

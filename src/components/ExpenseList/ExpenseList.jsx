@@ -4,7 +4,7 @@ import EmptyTable from '../EmptyTable/EmptyTable'
 import { ShoppingCart, Trash2, Pencil } from 'lucide-react'
 import { formatAmount } from '../../utils/utils'
 
-function ExpenseList({ expenses, people, onDelete, onEdit }) {
+function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
   const { getPersonName, getPersonColor, getPersonInitial } = usePeople(people)
 
   if (expenses.length === 0) {
@@ -33,7 +33,15 @@ function ExpenseList({ expenses, people, onDelete, onEdit }) {
               </button>
               <button
                 className='btn-sm btn-danger'
-                onClick={() => onDelete(expense.id)}
+                onClick={() => {
+                  setConfirmDialog({
+                    title: `Delete "${expense.name}"?`,
+                    message: 'This expense will be permanently deleted.',
+                    details: [`Amount: ₱${expense.amount}`],
+                    onConfirm: () => onDelete(expense.id),
+                    variant: 'danger',
+                  })
+                }}
               >
                 <Trash2 size={16} />
               </button>
