@@ -212,8 +212,12 @@ function People({
           <input
             type='text'
             placeholder='Enter name (e.g. Joshua)'
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value.slice(0, 10).replace(/[<>'"]/g, '')
+              setName(value)
+            }}
             value={name}
+            maxLength={10}
           />
           <UserRound />
         </div>

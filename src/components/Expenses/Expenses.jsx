@@ -3,7 +3,7 @@ import ExpenseList from '../ExpenseList/ExpenseList'
 import { usePeople } from '../../hooks/usePeople'
 import { formatAmount } from '../../utils/utils.js'
 // eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion'
+import { mixValues, motion } from 'framer-motion'
 import { PhilippinePeso, Plus, ArrowLeft, ArrowRight, X } from 'lucide-react'
 import { useState } from 'react'
 import {
@@ -201,7 +201,14 @@ function Expenses({
                 type='text'
                 placeholder='(e.g. Dinner)'
                 value={itemName}
-                onChange={(e) => setItemName(e.target.value)}
+                maxLength={50}
+                onChange={(e) => {
+                  // Limit to 50 chars, prevent special chars
+                  const value = e.target.value
+                    .slice(0, 50)
+                    .replace(/[<>'"]/g, '')
+                  setItemName(value)
+                }}
                 className='expense-name-input'
               />
             </div>
@@ -243,9 +250,14 @@ function Expenses({
                     type='text'
                     placeholder='0'
                     value={payer.amount}
-                    onChange={(e) =>
-                      handlePayerChange(index, 'amount', e.target.value)
-                    }
+                    onChange={(e) => {
+                      // Allow only numbers and one decimal point
+                      const value = e.target.value.replace(/[^0-9.]/g, '')
+                      // Prevent multiple decimals
+                      const parts = value.split('.')
+                      if (parts.length > 2) return
+                      handlePayerChange(index, 'amount', value)
+                    }}
                   />
                   <PhilippinePeso />
                 </div>
