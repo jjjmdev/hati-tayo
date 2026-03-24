@@ -2,8 +2,8 @@ import './Expenses.css'
 import ExpenseList from '../ExpenseList/ExpenseList'
 import { usePeople } from '../../hooks/usePeople'
 import { formatAmount } from '../../utils/utils.js'
-// eslint-disable-next-line no-unused-vars
-import { mixValues, motion } from 'framer-motion'
+import { expenseCategories, getCategoryById } from '../../utils/constants'
+import { motion } from 'framer-motion'
 import { PhilippinePeso, Plus, ArrowLeft, ArrowRight, X } from 'lucide-react'
 import { useState } from 'react'
 import {
@@ -27,12 +27,14 @@ function Expenses({
   const [itemName, setItemName] = useState('')
   const [payers, setPayers] = useState([{ personId: '', amount: '' }])
   const [splitAmong, setSplitAmong] = useState([])
+  const [category, setCategory] = useState(null)
   const [isEditMode, setIsEditMode] = useState(() => !!editingExpense)
   const [prevEditingExpenses, setPrevEditingExpenses] = useState(editingExpense)
 
   if (editingExpense !== prevEditingExpenses && editingExpense !== null) {
     setPrevEditingExpenses(editingExpense)
     setItemName(editingExpense.name)
+    setCategory(editingExpense.category)
     setPayers(editingExpense.paidBy)
     setSplitAmong(editingExpense.splitAmong)
     setIsEditMode(() => !!editingExpense)
@@ -113,6 +115,7 @@ function Expenses({
       name: itemName,
       amount: totalAmount,
       paidBy: validPayers,
+      category,
       splitAmong,
       splits: calculateSplits(),
     })
@@ -120,6 +123,7 @@ function Expenses({
     if (result.success) {
       setExpenses(getExpenses())
       setItemName('')
+      setCategory(null)
       setPayers([{ personId: '', amount: '' }])
       setSplitAmong([])
       notify({
@@ -160,6 +164,7 @@ function Expenses({
       name: itemName,
       amount: totalAmount,
       paidBy: validPayers,
+      category,
       splitAmong,
       splits: calculateSplits(),
     })
@@ -179,6 +184,7 @@ function Expenses({
   const resetForm = () => {
     onExpenseEdit(null)
     setItemName('')
+    setCategory(null)
     setPayers([{ personId: '', amount: '' }])
     setSplitAmong([])
     setIsEditMode(false)
@@ -218,6 +224,30 @@ function Expenses({
               </div>
               <div className='expense-label'>Total</div>
             </div>
+          </div>
+        </div>
+
+        {/* Category Selector */}
+        <div className='form-section'>
+          <div className='form-label'>Category (optional)</div>
+          <div className='category-pills'>
+            {expenseCategories.map((cat) => (
+              <button
+                key={cat.id}
+                type='button'
+                className={`category-pill ${category === cat.id ? 'active' : ''}`}
+                style={{
+                  '--cat-color': cat.color,
+                  backgroundColor:
+                    category === cat.id ? cat.color : 'transparent',
+                  borderColor: cat.color,
+                }}
+                onClick={() => setCategory(category === cat.id ? null : cat.id)}
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.label}</span>
+              </button>
+            ))}
           </div>
         </div>
 

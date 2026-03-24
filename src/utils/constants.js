@@ -13,3 +13,16 @@ export const bgColors = [
   '#06b6d4',
   '#22c55e',
 ]
+
+export const expenseCategories = [
+  { id: 'food', label: 'Food', color: '#f59e0b', icon: '🍔' },
+  { id: 'transport', label: 'Transport', color: '#3b82f6', icon: '🚗' },
+  { id: 'accommodation', label: 'Accommodation', color: '#8b5cf6', icon: '🏨' },
+  { id: 'entertainment', label: 'Entertainment', color: '#ec4899', icon: '🎬' },
+  { id: 'shopping', label: 'Shopping', color: '#10b981', icon: '🛍️' },
+  { id: 'other', label: 'Other', color: '#6b7280', icon: '📦' },
+]
+
+export function getCategoryById(id) {
+  return expenseCategories.find((c) => c.id === id) || null
+}

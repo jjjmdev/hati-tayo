@@ -156,7 +156,7 @@ export function setExpenses(expenses) {
 
 // Add a new expense
 export function addExpense(expenseData) {
-  const { name, amount, paidBy, splitAmong, splits } = expenseData
+  const { name, amount, paidBy, splitAmong, splits, category } = expenseData
   const expenses = getExpenses()
 
   const error = validateExpense(expenseData)
@@ -169,6 +169,7 @@ export function addExpense(expenseData) {
     id: crypto.randomUUID(),
     name: name.trim(),
     amount: parseFloat(amount),
+    category: category || null,
     paidBy,
     splitAmong,
     splits,
@@ -189,6 +190,7 @@ export function deleteExpense(id) {
 }
 
 export function updateExpense(id, expenseData) {
+  const { name, amount, paidBy, splitAmong, splits, category } = expenseData
   const expenses = getExpenses()
   const index = expenses.findIndex((e) => e.id === id)
 
@@ -203,11 +205,12 @@ export function updateExpense(id, expenseData) {
 
   expenses[index] = {
     ...expenses[index],
-    name: expenseData.name.trim(),
-    amount: parseFloat(expenseData.amount),
-    paidBy: expenseData.paidBy,
-    splitAmong: expenseData.splitAmong,
-    splits: expenseData.splits,
+    name: name.trim(),
+    amount: parseFloat(amount),
+    category: category !== undefined ? category : expenses[index].category,
+    paidBy,
+    splitAmong,
+    splits,
     updatedAt: new Date().toISOString(),
   }
 

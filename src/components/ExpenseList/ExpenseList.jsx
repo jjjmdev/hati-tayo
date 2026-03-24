@@ -1,8 +1,9 @@
 import './ExpenseList.css'
 import { usePeople } from '../../hooks/usePeople'
 import EmptyTable from '../EmptyTable/EmptyTable'
-import { ShoppingCart, Trash2, Pencil } from 'lucide-react'
 import { formatAmount } from '../../utils/utils'
+import { getCategoryById } from '../../utils/constants'
+import { ShoppingCart, Trash2, Pencil } from 'lucide-react'
 
 function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
   const { getPersonName, getPersonColor, getPersonInitial } = usePeople(people)
@@ -24,7 +25,20 @@ function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
           <div key={expense.id} className='expense-card'>
             {/* Header: Icon + Name + Delete */}
             <div className='expense-card-header'>
-              <span className='expense-name'>{expense.name}</span>
+              <span className='expense-name'>
+                {expense.name}
+                {expense.category && (
+                  <span
+                    className='category-badge'
+                    style={{
+                      backgroundColor: getCategoryById(expense.category)?.color,
+                    }}
+                  >
+                    {getCategoryById(expense.category)?.icon}{' '}
+                    {getCategoryById(expense.category)?.label}
+                  </span>
+                )}
+              </span>
               <button
                 className='btn-sm btn-info'
                 onClick={() => onEdit(expense)}
