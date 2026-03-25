@@ -184,3 +184,24 @@
   color: var(--gray-400);
   font-size: 0.85rem;
 }
+
+.table-filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.table-filter .category-filter-select {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: var(--white);
+  cursor: pointer;
+}
+
+.table-filter .filter-count {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}

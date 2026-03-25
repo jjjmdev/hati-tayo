@@ -1,18 +1,44 @@
 import './TransactionTable.css'
 import { usePeople } from '../../hooks/usePeople'
 import { formatAmount } from '../../utils/utils'
-import { getCategoryById } from '../../utils/constants'
+import { getCategoryById, expenseCategories } from '../../utils/constants'
+import { useState } from 'react'
 
 function TransactionTable({ people, expenses }) {
   const { getPersonColor } = usePeople(people)
+  const [categoryFilter, setCategoryFilter] = useState('all')
 
   if (!expenses || expenses.length === 0 || !people || people.length === 0) {
     return null
   }
 
+  const filteredExpenses =
+    categoryFilter === 'all'
+      ? expenses
+      : expenses.filter((exp) => exp.category === categoryFilter)
+
   return (
     <section className='transaction-table-container'>
       <h4>Transaction Details</h4>
+      <div className='table-filter'>
+        <select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className='category-filter-select'
+        >
+          <option value='all'>All Categories</option>
+          {expenseCategories.map((cat) => (
+            <option key={cat.id} value={cat.id}>
+              {cat.icon} {cat.label}
+            </option>
+          ))}
+        </select>
+        {categoryFilter !== 'all' && (
+          <span className='filter-count'>
+            {filteredExpenses.length} of {expenses.length} expenses
+          </span>
+        )}
+      </div>
       <div className='table-wrapper'>
         <table className='transaction-table' id='tx-table'>
           <thead>
@@ -36,7 +62,7 @@ function TransactionTable({ people, expenses }) {
             </tr>
           </thead>
           <tbody>
-            {expenses.map((expense) => (
+            {filteredExpenses.map((expense) => (
               <tr key={expense.id}>
                 <td className='expense-name-cell'>{expense.name}</td>
                 <td className='category-cell'>
@@ -100,7 +126,9 @@ function TransactionTable({ people, expenses }) {
               <td className='amount-cell'>
                 <strong>
                   ₱
-                  {formatAmount(expenses.reduce((sum, e) => sum + e.amount, 0))}
+                  {formatAmount(
+                    filteredExpenses.reduce((sum, e) => sum + e.amount, 0),
+                  )}
                 </strong>
               </td>
               {people.map((person) => {
@@ -108,7 +136,7 @@ function TransactionTable({ people, expenses }) {
                 let totalPaid = 0
                 let totalOwes = 0
 
-                expenses.forEach((expense) => {
+                filteredExpenses.forEach((expense) => {
                   const paidEntry = expense.paidBy.find(
                     (p) => p.personId === person.id,
                   )
