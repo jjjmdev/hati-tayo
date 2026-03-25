@@ -34,7 +34,7 @@ function Expenses({
   if (editingExpense !== prevEditingExpenses && editingExpense !== null) {
     setPrevEditingExpenses(editingExpense)
     setItemName(editingExpense.name)
-    setCategory(editingExpense.category)
+    setCategory(editingExpense.category || null)
     setPayers(editingExpense.paidBy)
     setSplitAmong(editingExpense.splitAmong)
     setIsEditMode(() => !!editingExpense)

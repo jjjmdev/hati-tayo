@@ -1,49 +1,16 @@
 import './BalanceSummary.css'
+import { calculateBalances } from '../../data'
 import { usePeople } from '../../hooks/usePeople'
 import { formatAmount } from '../../utils/utils'
 import { Wallet, CreditCard } from 'lucide-react'
-
-// Calculate balances for each person
-function calculateBalances(people, expenses) {
-  const balances = {}
-
-  // Initialize
-  people.forEach((person) => {
-    balances[person.id] = {
-      paid: 0,
-      spent: 0,
-      net: 0,
-    }
-  })
-
-  // Calculate
-  expenses.forEach((expense) => {
-    // What each person paid
-    expense.paidBy.forEach((payer) => {
-      if (balances[payer.personId]) {
-        balances[payer.personId].paid += payer.amount
-      }
-    })
-
-    // What each person owes
-    expense.splits.forEach((split) => {
-      if (balances[split.personId]) {
-        balances[split.personId].spent += split.amount
-      }
-    })
-  })
-
-  // Calculate net (positive = owed money, negative = owes money)
-  Object.keys(balances).forEach((personId) => {
-    balances[personId].net = balances[personId].paid - balances[personId].spent
-  })
-
-  return balances
-}
+import { useMemo } from 'react'
 
 function BalanceSummary({ people, expenses }) {
   // Calculate balances
-  const balances = calculateBalances(people, expenses)
+  const balances = useMemo(
+    () => calculateBalances(people, expenses),
+    [people, expenses],
+  )
 
   // Helpers
   const { getPersonColor } = usePeople(people)

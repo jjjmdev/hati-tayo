@@ -1,19 +1,21 @@
 import './Results.css'
-import { calcSettlements } from '../../utils/utils'
+import { calcSettlements } from '../../data'
 import { ArrowLeft, Receipt, Download } from 'lucide-react'
 import SettlementsList from '../SettlementsList/SettlementsList'
 import BalanceSummary from '../BalanceSummary/BalanceSummary'
 import TransactionTable from '../TransactionTable/TransactionTable'
 import CategoryBreakdown from '../CategoryBreakdown/CategoryBreakdown'
 import EmptyTable from '../EmptyTable/EmptyTable'
-
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import domtoimage from 'dom-to-image-more'
+import { useMemo } from 'react'
 
 function Result({ people, expenses, handleStep }) {
   // Calculate settlements
-  const settlements = calcSettlements(people, expenses)
+  const settlements = useMemo(
+    () => calcSettlements(people, expenses),
+    [people, expenses],
+  )
 
   const handleTableSave = async () => {
     const element = document.getElementById('tx-table')
