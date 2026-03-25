@@ -4,6 +4,7 @@ import { ArrowLeft, Receipt, Download } from 'lucide-react'
 import SettlementsList from '../SettlementsList/SettlementsList'
 import BalanceSummary from '../BalanceSummary/BalanceSummary'
 import TransactionTable from '../TransactionTable/TransactionTable'
+import CategoryBreakdown from '../CategoryBreakdown/CategoryBreakdown'
 import EmptyTable from '../EmptyTable/EmptyTable'
 
 // eslint-disable-next-line no-unused-vars
@@ -85,6 +86,7 @@ function Result({ people, expenses, handleStep }) {
       ) : (
         <div className='results-container' id='results-section'>
           <BalanceSummary people={people} expenses={expenses} />
+          <CategoryBreakdown expenses={expenses} />
           <TransactionTable people={people} expenses={expenses} />
           <SettlementsList settlements={settlements} people={people} />
         </div>
