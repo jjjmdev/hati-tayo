@@ -157,3 +157,30 @@
   padding-top: 1rem !important;
   white-space: nowrap !important;
 }
+
+/* Category Column */
+.category-col {
+  width: 120px;
+  text-align: center;
+}
+
+.category-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.category-badge-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: white;
+  white-space: nowrap;
+}
+
+.no-category {
+  color: var(--gray-400);
+  font-size: 0.85rem;
+}

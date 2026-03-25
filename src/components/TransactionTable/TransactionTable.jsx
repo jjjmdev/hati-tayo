@@ -1,6 +1,7 @@
 import './TransactionTable.css'
 import { usePeople } from '../../hooks/usePeople'
 import { formatAmount } from '../../utils/utils'
+import { getCategoryById } from '../../utils/constants'
 
 function TransactionTable({ people, expenses }) {
   const { getPersonColor } = usePeople(people)
@@ -17,6 +18,7 @@ function TransactionTable({ people, expenses }) {
           <thead>
             <tr>
               <th className='expense-col'>Expense</th>
+              <th className='category-col'>Category</th>
               <th className='amount-col'>Amount</th>
               {people.map((person) => (
                 <th key={person.id} className='person-col'>
@@ -37,6 +39,22 @@ function TransactionTable({ people, expenses }) {
             {expenses.map((expense) => (
               <tr key={expense.id}>
                 <td className='expense-name-cell'>{expense.name}</td>
+                <td className='category-cell'>
+                  {expense.category ? (
+                    <span
+                      className='category-badge-small'
+                      style={{
+                        backgroundColor: getCategoryById(expense.category)
+                          ?.color,
+                      }}
+                    >
+                      {getCategoryById(expense.category)?.icon}{' '}
+                      {getCategoryById(expense.category)?.label}
+                    </span>
+                  ) : (
+                    <span className='no-category'>-</span>
+                  )}
+                </td>
                 <td className='amount-cell'>₱{formatAmount(expense.amount)}</td>
                 {people.map((person) => {
                   // Find what this person paid
@@ -78,6 +96,7 @@ function TransactionTable({ people, expenses }) {
               <td className='expense-name-cell'>
                 <strong>Total</strong>
               </td>
+              <td className='category-cell'></td>
               <td className='amount-cell'>
                 <strong>
                   ₱
