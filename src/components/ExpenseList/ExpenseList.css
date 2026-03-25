@@ -12,6 +12,10 @@
   padding-top: 1rem;
 }
 
+.expense-list-header {
+  display: flex;
+}
+
 /* Compact Card */
 .expense-card {
   background: var(--white);
@@ -160,4 +164,31 @@
   color: white;
   margin-left: 8px;
   height: min-content;
+}
+
+/* Category Filter */
+.expense-filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.category-filter-select {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: var(--white);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.category-filter-select:hover {
+  border-color: var(--primary-light);
+}
+
+.filter-count {
+  font-size: 0.65rem;
+  color: var(--gray-500);
 }
