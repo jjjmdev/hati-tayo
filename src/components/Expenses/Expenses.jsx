@@ -219,10 +219,10 @@ function Expenses({
               />
             </div>
             <div className='expense-amount-display'>
+              <div className='expense-label'>Total</div>
               <div className='amount-total-value'>
                 ₱{formatAmount(payerTotal)}
               </div>
-              <div className='expense-label'>Total</div>
             </div>
           </div>
         </div>

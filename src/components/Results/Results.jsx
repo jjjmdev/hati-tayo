@@ -87,8 +87,8 @@ function Result({ people, expenses, handleStep }) {
         </EmptyTable>
       ) : (
         <div className='results-container' id='results-section'>
-          <BalanceSummary people={people} expenses={expenses} />
           <CategoryBreakdown expenses={expenses} />
+          <BalanceSummary people={people} expenses={expenses} />
           <TransactionTable people={people} expenses={expenses} />
           <SettlementsList settlements={settlements} people={people} />
         </div>

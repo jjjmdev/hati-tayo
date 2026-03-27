@@ -90,3 +90,32 @@
 .confirm-dialog-btns .btn-cancel:hover {
   background: var(--gray-500);
 }
+
+@media (max-width: 480px) {
+  .confirm-dialog-content {
+    margin: 1rem;
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .confirm-dialog-header h4 {
+    font-size: 1.1rem;
+  }
+
+  .confirm-dialog-message {
+    font-size: 0.9rem;
+  }
+
+  .confirm-dialog-details li {
+    font-size: 0.85rem;
+  }
+
+  .confirm-dialog-btns {
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+
+  .confirm-dialog-btns .btn {
+    width: 100%;
+  }
+}

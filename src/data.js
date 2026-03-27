@@ -360,3 +360,27 @@ export function calcSettlements(people, expenses) {
 
   return settlements
 }
+
+export function groupSettlementsByPerson(settlements, people) {
+  const grouped = {}
+
+  people.forEach((person) => {
+    grouped[person.id] = {
+      pays: [],
+      receives: [],
+    }
+  })
+
+  settlements.forEach(({ from, to, amount }) => {
+    grouped[from].pays.push({
+      to,
+      amount,
+    })
+    grouped[to].receives.push({
+      from,
+      amount,
+    })
+  })
+
+  return grouped
+}

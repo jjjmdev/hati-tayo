@@ -280,3 +280,61 @@ button,
   justify-content: space-between;
   align-items: center;
 }
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-primary {
+    padding: 0.875rem 1.5rem;
+  }
+
+  .btns-container {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+
+  .btns-container .btn {
+    width: 100%;
+  }
+
+  .btns-container > div {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .btns-container > div .btn {
+    flex: 1;
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .btns-container > div {
+    flex-direction: column;
+  }
+
+  .btns-container > div .btn {
+    width: 100%;
+  }
+}

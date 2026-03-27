@@ -76,7 +76,6 @@
 }
 
 /* Rows */
-.detail-row,
 .expense-row {
   display: flex;
   align-items: center;
@@ -191,4 +190,102 @@
 .filter-count {
   font-size: 0.65rem;
   color: var(--gray-500);
+}
+
+@media (max-width: 768px) {
+  .expense-list {
+    grid-template-columns: 1fr;
+  }
+
+  .expense-list-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .expense-list-header h3 {
+    margin-bottom: 0;
+  }
+
+  .expense-name {
+    font-size: 1.25rem;
+  }
+
+  .expense-amount {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .expense-card {
+    padding: 0.75rem;
+    border-radius: 10px;
+  }
+
+  .expense-card-header {
+    gap: 0.25rem;
+  }
+
+  .expense-name {
+    font-size: 1.1rem;
+    margin-left: 0.25rem;
+  }
+
+  .expense-total {
+    margin-left: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .expense-amount {
+    font-size: 0.95rem;
+  }
+
+  .expense-split-amount {
+    font-size: 0.75rem;
+  }
+
+  .expense-row {
+    margin-bottom: 0.25rem;
+  }
+
+  .expense-label {
+    font-size: 0.65rem;
+    width: 50px;
+  }
+
+  .expense-tags {
+    gap: 0.25rem;
+  }
+
+  .expense-tag {
+    padding: 0.15rem 0.3rem;
+    font-size: 0.65rem;
+  }
+
+  .tag-avatar {
+    width: 14px;
+    height: 14px;
+    font-size: 0.5rem;
+  }
+
+  .category-badge {
+    font-size: 10px;
+    padding: 1px 6px;
+    margin-left: 4px;
+  }
+
+  .expense-filter {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .category-filter-select {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .filter-count {
+    font-size: 0.6rem;
+  }
 }

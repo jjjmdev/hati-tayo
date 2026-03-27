@@ -35,3 +35,33 @@
   width: 100%;
   margin-bottom: 0;
 }
+
+@media (max-width: 768px) {
+  .results-container {
+    padding: 1rem 1.25rem;
+  }
+
+  .results-container section {
+    margin-bottom: 1.5rem;
+  }
+
+  .results-container h4 {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .results-container {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+  }
+
+  .results-container section {
+    margin-bottom: 1rem;
+  }
+
+  .results-container h4 {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+}

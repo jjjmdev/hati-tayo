@@ -27,7 +27,7 @@ h3 {
   width: 100%;
   padding: 1.2rem 1rem 1.2rem 1rem;
   background-color: var(--gray-50);
-  font-size: 16px;
+  font-size: 14px;
   border: 2px solid transparent;
   border-radius: 16px;
   color: var(--gray-800);
@@ -59,7 +59,7 @@ h3 {
 
 .expenses-container .input-group .expense-name-input {
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 /* Form Sections */
@@ -79,7 +79,7 @@ h3 {
   font-weight: 600;
   color: var(--gray-700);
   margin-bottom: 0.75rem;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-family: 'Space Grotesk', sans-serif;
 }
 
@@ -89,30 +89,33 @@ h3 {
 }
 
 /* Header */
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-/* Total Amount - inline with labels */
 .detail-row .input-group {
   margin-top: 0;
 }
 
 .expense-amount-display {
   display: flex;
-  flex-direction: column;
-  justify-content: end;
-  text-align: right;
-  margin-left: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 .expense-amount-display .expense-label {
-  width: auto;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  font-weight: 500;
 }
 
 .amount-total-value {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--primary);
-  flex: 1;
-  text-align: right;
 }
 
 /* Payer Rows */
@@ -134,7 +137,7 @@ h3 {
   padding: 1rem 1rem 1rem 1rem;
   border: 2px solid var(--border-color);
   border-radius: 16px;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--gray-800);
   background: var(--gray-50);
   cursor: pointer;
@@ -157,7 +160,7 @@ h3 {
   padding: 1rem 1rem 1rem 2.5rem;
   border: 2px solid var(--border-color);
   border-radius: 16px;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--gray-800);
   background: var(--gray-50);
   transition: all 0.3s ease;
@@ -314,4 +317,128 @@ h3 {
 
 .category-pill:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .expenses-container {
+    padding: 1rem 1.25rem;
+  }
+
+  .form-label {
+    font-size: 1.1rem;
+  }
+
+  .expenses-container .input-group .expense-name-input {
+    font-size: 1.25rem;
+  }
+
+  .payer-amount {
+    width: 120px;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .expenses-container {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+  }
+
+  .expense-amount-display {
+    padding: 0.5rem 0;
+  }
+
+  .expense-amount-display .expense-label {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+  }
+
+  .expenses-container .input-group .expense-name-input {
+    font-size: 1.1rem;
+  }
+
+  .expenses-container .input-group input {
+    padding: 0.875rem;
+  }
+
+  .amount-total-value {
+    font-size: 1.1rem;
+  }
+
+  .form-label {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-section {
+    margin-top: 1rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .payer-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .payer-select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 13px;
+  }
+
+  .payer-amount {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .payer-amount input {
+    padding: 0.75rem 0.75rem 0.75rem 2.25rem;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .checkbox-item {
+    padding: 0.5rem 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .checkbox-avatar {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
+
+  .checkbox-name {
+    font-size: 0.75rem;
+  }
+
+  .category-pills {
+    gap: 0.5rem;
+  }
+
+  .category-pill {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+    gap: 4px;
+  }
+
+  .btn-add-payer {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-select-all {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }
