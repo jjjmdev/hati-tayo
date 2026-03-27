@@ -1,74 +1,122 @@
 import './SettlementsList.css'
-import { formatAmount } from '../../utils/utils'
-import { usePeople } from '../../hooks/usePeople'
 import { ArrowRightLeft, Check } from 'lucide-react'
+import { formatAmount } from '../../utils/utils'
+import { groupSettlementsByPerson } from '../../data'
+import { usePeople } from '../../hooks/usePeople'
 
 function SettlementsList({ settlements, people }) {
   const { getPersonName, getPersonColor } = usePeople(people)
-
-  if (settlements.length === 0) {
-    // All settled up (i.e. Calculates to equal)
-    return (
-      <section className='all-settled'>
-        <div className='all-settled-icon'>
-          <Check />
-        </div>
-        <div className='all-settled-text'>All settled up!</div>
-        <div className='all-settled-subtext'>
-          Everyone is even. No payments needed.
-        </div>
-      </section>
-    )
-  }
+  const grouped = groupSettlementsByPerson(settlements, people)
 
   return (
     <section className='results-summary'>
-      <h4 className='section-title-center'>Settlements</h4>
-      <div className='settlements-list'>
-        {settlements.map((settlement, index) => (
-          <div key={index} className='settlement-card'>
-            {/* From Person */}
-            <div className='settlement-person'>
-              <div
-                className='settlement-avatar'
-                style={{
-                  backgroundColor: getPersonColor(settlement.from),
-                }}
-              >
-                {getPersonName(settlement.from).charAt(0).toUpperCase()}
+      <h4>Settlements</h4>
+      <div className='settlements-grid'>
+        {people.map((person) => {
+          const personData = grouped[person.id]
+          const hasActivity =
+            personData.pays.length > 0 || personData.receives.length > 0
+
+          if (!hasActivity) return null
+
+          return (
+            <div
+              key={person.id}
+              className='settlement-card'
+              style={{ borderColor: getPersonColor(person.id) }}
+            >
+              <div className='settlement-card-header'>
+                <div
+                  className='settlement-avatar'
+                  style={{ backgroundColor: getPersonColor(person.id) }}
+                >
+                  {person.name.charAt(0).toUpperCase()}
+                </div>
+                <span className='settlement-name'>{person.name}</span>
               </div>
-              <span className='settlement-name'>
-                {getPersonName(settlement.from)}
-              </span>
-            </div>
 
-            {/* Action */}
-            <div className='settlement-action'>
-              <ArrowRightLeft size={16} className='settlement-arrow' />
-              pays
-            </div>
-
-            {/* To Person */}
-            <div className='settlement-person'>
               <div
-                className='settlement-avatar'
-                style={{
-                  backgroundColor: getPersonColor(settlement.to),
-                }}
+                className='settlement-details'
+                style={{ borderTopColor: getPersonColor(person.id) }}
               >
-                {getPersonName(settlement.to).charAt(0).toUpperCase()}
-              </div>
-              <span className='settlement-name'>
-                {getPersonName(settlement.to)}
-              </span>
-            </div>
+                {personData.pays.length > 0 && (
+                  <>
+                    <div className='settlement-detail'>
+                      <span className='settlement-detail-label'>Pays</span>
+                      <span className='settlement-detail-value pays'>
+                        ₱
+                        {formatAmount(
+                          personData.pays.reduce((sum, p) => sum + p.amount, 0),
+                        )}
+                      </span>
+                    </div>
+                    <div className='settlement-payments'>
+                      {personData.pays.map((payment, idx) => (
+                        <div key={idx} className='settlement-payment'>
+                          <div className='person'>
+                            <span
+                              className='mini-avatar'
+                              style={{
+                                backgroundColor: getPersonColor(payment.to),
+                              }}
+                            >
+                              {getPersonName(payment.to)
+                                .charAt(0)
+                                .toUpperCase()}
+                            </span>
+                            <span>to {getPersonName(payment.to)}</span>
+                          </div>
+                          <span className='amount'>
+                            ₱{formatAmount(payment.amount)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
 
-            {/* Amount */}
-            <div className='settlement-amount'>
-              ₱{formatAmount(settlement.amount)}
+                {personData.receives.length > 0 && (
+                  <>
+                    <div className='settlement-detail'>
+                      <span className='settlement-detail-label'>Receives</span>
+                      <span className='settlement-detail-value receives'>
+                        ₱
+                        {formatAmount(
+                          personData.receives.reduce(
+                            (sum, r) => sum + r.amount,
+                            0,
+                          ),
+                        )}
+                      </span>
+                    </div>
+                    <div className='settlement-payments'>
+                      {personData.receives.map((receipt, idx) => (
+                        <div key={idx} className='settlement-payment'>
+                          <div className='person'>
+                            <span
+                              className='mini-avatar'
+                              style={{
+                                backgroundColor: getPersonColor(receipt.from),
+                              }}
+                            >
+                              {getPersonName(receipt.from)
+                                .charAt(0)
+                                .toUpperCase()}
+                            </span>
+                            <span>from {getPersonName(receipt.from)}</span>
+                          </div>
+                          <span className='amount'>
+                            ₱{formatAmount(receipt.amount)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </section>
   )
