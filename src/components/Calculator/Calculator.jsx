@@ -1,6 +1,6 @@
 import './Calculator.css'
-import { BlStepper, BlStepperItem } from '@trendyol/baklava/dist/baklava-react'
 import { useState } from 'react'
+import Stepper from '../Stepper/Stepper.jsx'
 import People from '../People/People.jsx'
 import Expenses from '../Expenses/Expenses.jsx'
 import Results from '../Results/Results.jsx'
@@ -55,45 +55,12 @@ function Calculator({ notify, setConfirmDialog }) {
   return (
     <div className='calculator-container'>
       <div className='calculator-header'>
-        <BlStepper
-          type='number'
-          direction='horizontal'
-          usage='clickable'
-          id='stepper'
-          onBlStepperChange={(e) => handleStep(e.detail.activeStep)}
-        >
-          <BlStepperItem
-            id='0'
-            title='People'
-            variant={activeStep == 0 ? 'active' : 'success'}
-          />
-          <BlStepperItem
-            id='1'
-            title='Expenses'
-            variant={
-              activeStep == 1
-                ? 'active'
-                : activeStep < 1
-                  ? 'default'
-                  : 'success'
-            }
-            className={canStep(1) ? '' : 'bl-stepper-item--blocked'}
-            aria-disabled={!canStep(1)}
-          />
-          <BlStepperItem
-            id='2'
-            title='Results'
-            variant={
-              activeStep == 2
-                ? 'active'
-                : activeStep > 2
-                  ? 'success'
-                  : 'default'
-            }
-            className={canStep(2) ? '' : 'bl-stepper-item--blocked'}
-            aria-disabled={!canStep(2)}
-          />
-        </BlStepper>
+        <Stepper
+          steps={['People', 'Expenses', 'Results']}
+          activeStep={activeStep}
+          onStepClick={handleStep}
+          canStep={canStep}
+        />
       </div>
 
       <div className='calculator-body'>

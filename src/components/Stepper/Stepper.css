@@ -1,0 +1,150 @@
+.stepper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  flex: 1;
+}
+
+.stepper-item.blocked {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.stepper-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-400);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+.stepper-item.active .stepper-circle {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  transform: scale(1.1);
+}
+
+.stepper-item.completed .stepper-circle {
+  border-color: var(--secondary);
+  background: var(--secondary-light);
+  color: var(--white);
+}
+
+.stepper-check {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.stepper-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.stepper-item.active .stepper-label {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.stepper-item.completed .stepper-label {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+/* Connecting Line */
+.stepper-line {
+  position: absolute;
+  top: 24px;
+  left: calc(50% + 24px);
+  width: calc(100% - 48px);
+  height: 2px;
+  background: var(--gray-200);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.stepper-line.completed {
+  background: var(--secondary);
+}
+
+/* Hover Effects */
+.stepper-item:not(.blocked):hover .stepper-circle {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.stepper-item.active:hover .stepper-circle {
+  transform: scale(1.15);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .stepper {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .stepper-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .stepper-line {
+    top: 20px;
+    left: calc(50% + 20px);
+    width: calc(100% - 40px);
+  }
+
+  .stepper-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stepper {
+    padding: 0 0.5rem;
+  }
+
+  .stepper-circle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .stepper-line {
+    top: 18px;
+    left: calc(50% + 18px);
+    width: calc(100% - 36px);
+    height: 2px;
+  }
+
+  .stepper-label {
+    font-size: 0.7rem;
+  }
+}
