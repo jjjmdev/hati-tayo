@@ -1,11 +1,8 @@
 .calculator-container {
-  background: var(--bg-color);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow:
-    0 20px 50px -12px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(124, 58, 237, 0.05);
-  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-base);
+  border-radius: 14px;
   overflow: hidden;
   transition:
     transform 0.3s ease,
@@ -15,9 +12,9 @@
 }
 
 .calculator-header {
-  background: linear-gradient(to right, #c9eee3, var(--bg-color));
-  padding: 2rem 1.5rem 1rem;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  background: #f8fafc;
+  padding: 1.6rem 1.5rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .calculator-body {
@@ -48,21 +45,21 @@ input {
   border: 2px solid transparent;
   border-radius: 16px;
   color: var(--gray-800);
+}
 
-  &::placeholder {
-    color: #cbd5e1;
-  }
+input::placeholder {
+  color: #cbd5e1;
+}
 
-  &:focus {
-    border-color: var(--bl-color-primary);
-    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
-    outline: none;
-    background: white;
+input:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+  background: white;
+}
 
-    & + svg {
-      stroke: var(--bl-color-primary);
-    }
-  }
+input:focus + svg {
+  stroke: #000000;
 }
 
 .add-person-form {

@@ -240,7 +240,7 @@ function Expenses({
                   '--cat-color': cat.color,
                   backgroundColor:
                     category === cat.id ? cat.color : 'transparent',
-                  borderColor: cat.color,
+                  borderColor: category === cat.id ? cat.color : 'black',
                 }}
                 onClick={() => setCategory(category === cat.id ? null : cat.id)}
               >

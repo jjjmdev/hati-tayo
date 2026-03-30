@@ -21,7 +21,7 @@
 .badge {
   padding: 1rem 0.8rem;
   border-radius: 16px;
-  border: 1px solid #e2e8f0;
+  border: 2px solid #e2e8f0;
   display: flex;
   gap: 0.8rem;
   justify-content: flex-start;
@@ -29,30 +29,30 @@
   transition: var(--transition-medium);
   transform: translateY(0px);
   position: relative;
+}
 
-  .badge-name {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    flex: 1;
-    text-align: left;
-  }
+.badge-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 1;
+  text-align: left;
+}
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-    border-color: var(--color-primary-light);
-  }
+.badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border-color: #000000;
+}
 
-  .badge-avatar {
-    min-height: 36px;
-    min-width: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border-radius: 12px;
-    font-size: 0.9rem;
-  }
+.badge-avatar {
+  min-height: 36px;
+  min-width: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 12px;
+  font-size: 0.9rem;
 }
 
 .badge-btns-container {

@@ -38,8 +38,8 @@ h3 {
   color: var(--input-placeholder);
 }
 .expenses-container .input-group input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+  border-color: #000000;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
   outline: none;
   background: var(--white);
 }
@@ -54,7 +54,7 @@ h3 {
 }
 
 .expenses-container .input-group input:focus + svg {
-  stroke: var(--primary);
+  stroke: #000000;
 }
 
 .expenses-container .input-group .expense-name-input {
@@ -80,7 +80,7 @@ h3 {
   color: var(--gray-700);
   margin-bottom: 0.75rem;
   font-size: 1.1rem;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Playfair Display', serif !important;
 }
 
 .form-label svg {
@@ -145,7 +145,7 @@ h3 {
 }
 
 .payer-select:focus {
-  border-color: var(--primary);
+  border-color: #000000;
   outline: none;
   background: var(--white);
 }
@@ -167,7 +167,7 @@ h3 {
 }
 
 .payer-amount input:focus {
-  border-color: var(--primary);
+  border-color: #000000;
   outline: none;
   background: var(--white);
 }
@@ -191,17 +191,37 @@ h3 {
   padding: 0.875rem;
   font-size: 0.9rem;
   border-radius: 16px;
+  background: #1f2937;
+  color: #f8fafc;
+  border: 1px solid #374151;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+  transition: all 0.2s ease;
+}
+
+.btn-add-payer:hover {
+  background: #111827;
+  border-color: #1f2937;
+  transform: translateY(-1px);
+}
+
+.btn-add-payer:active {
+  transform: translateY(0);
 }
 
 .btn-add-payer svg {
   width: 18px;
   margin-right: 0.3rem;
+  stroke: #f8fafc;
 }
 
+.btn-add-payer:disabled,
 .btn-add-payer:disabled:hover {
   transform: none;
-  background: #e2e8f0;
-  box-shadow: var(--shadow-disabled);
+  background: #64748b;
+  border-color: #64748b;
+  color: #e2e8f0;
+  box-shadow: none;
+  cursor: not-allowed;
 }
 
 /* Split Header with Select All */
@@ -230,9 +250,9 @@ h3 {
 }
 
 .btn-select-all:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-  background: rgba(16, 185, 129, 0.05);
+  border-color: #000000;
+  color: #000000;
+  background: rgba(0, 0, 0, 0.04);
 }
 
 /* Checkbox Grid */
@@ -256,7 +276,7 @@ h3 {
 }
 
 .checkbox-item:hover {
-  border-color: var(--primary-light);
+  border-color: #000000;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
@@ -264,7 +284,7 @@ h3 {
 .checkbox-item input[type='checkbox'] {
   width: 18px;
   height: 18px;
-  accent-color: var(--primary);
+  accent-color: #000000;
   cursor: pointer;
 }
 
@@ -316,7 +336,9 @@ h3 {
 }
 
 .category-pill:hover {
-  opacity: 0.8;
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 @media (max-width: 768px) {

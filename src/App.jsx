@@ -22,17 +22,27 @@ function App() {
 
   return (
     <>
-      <section className='main'>
-        {/* Title & Date */}
-        <div className='section-header'>
-          <h2>Hati Tayo!</h2>
-          <p className='section-description'>
-            Split expenses fairly in 3 simple steps
-          </p>
+      <header className='site-navbar'>
+        <div className='navbar-inner'>
+          <a href='#' className='brand'>
+            Hati Tayo 💰
+          </a>
         </div>
+      </header>
 
-        <Calculator notify={notify} setConfirmDialog={setConfirmDialog} />
-      </section>
+      <main className='app-main'>
+        <section className='hero'>
+          <div className='hero-content'>
+            <h1>Friend, magbayad ka na.</h1>
+            <p>Simpleng expense tracker para sa tropa.</p>
+          </div>
+        </section>
+
+        <section id='calculator' className='calculator-section'>
+          <Calculator notify={notify} setConfirmDialog={setConfirmDialog} />
+        </section>
+      </main>
+
       <BlNotification ref={blNotification} />
       <ConfirmDialog
         isOpen={!!confirmDialog}

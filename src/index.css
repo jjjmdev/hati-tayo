@@ -1,5 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('/fonts/PlayfairDisplay-Regular.woff2') format('woff2'),
+    url('/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('/fonts/PlayfairDisplay-Bold.woff2') format('woff2'),
+    url('/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Geist-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Geist-Bold.woff2') format('woff2');
+}
 
 * {
   margin: 0;
@@ -8,11 +41,10 @@
 }
 
 :root {
-  --primary: #10b981;
-  --primary-light: #34d399;
-  --primary-lighter: #a7f3d0;
-  --secondary: #6c63ff;
-  --secondary-light: #7f78ff;
+  --primary: #0b6cb2;
+  --primary-light: #3b82f6;
+  --secondary: #0f9f66;
+  --secondary-light: #34d399;
   --danger: #ef4444;
   --danger-light: #fee2e2;
   --danger-lighter: #fecaca;
@@ -26,14 +58,14 @@
   --gray-text: #94a3b8;
   --border-color: #e2e8f0;
 
-  --radius: 16px;
-  --shadow-base: 0 4px 15px rgb(0, 0, 0, 0.35);
-  --shadow-hover: 0 4px 15px rgb(0, 0, 0, 0.45);
-  --shadow-primary-base: 0 4px 15px rgba(16, 185, 129, 0.35);
-  --shadow-primary-hover: 0 8px 25px rgba(16, 185, 129, 0.45);
-  --shadow-secondary-base: 0 4px 15px rgba(108, 99, 255, 0.35);
-  --shadow-secondary-hover: 0 8px 25px rgba(108, 99, 255, 0.45);
-  --shadow-disabled: 0 4px 15px rgba(0, 0, 0, 0.35);
+  --radius: 12px;
+  --shadow-base: 0 6px 20px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.12);
+  --shadow-primary-base: 0 6px 18px rgba(11, 108, 178, 0.24);
+  --shadow-primary-hover: 0 8px 24px rgba(11, 108, 178, 0.3);
+  --shadow-secondary-base: 0 6px 18px rgba(0, 0, 0, 0.24);
+  --shadow-secondary-hover: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-disabled: 0 4px 15px rgba(0, 0, 0, 0.15);
 
   --transition-fast: all 0.2s ease;
   --transition-medium: all 0.3s ease;
@@ -42,8 +74,8 @@
   --gradient-hero: linear-gradient(
     135deg,
     #0f172a 0%,
-    #1e293b 50%,
-    #334155 100%
+    #0b1f6c 45%,
+    #0f172a 100%
   );
 
   --white: #ffffff;
@@ -72,18 +104,26 @@
 
 body {
   font-family:
-    'Inter',
+    'Geist',
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
   line-height: 1.6;
+  color: #0f172a;
 }
 
 h1,
 h2,
 h3,
-h4 {
-  font-family: 'Space Grotesk', sans-serif;
+h4,
+h5,
+h6,
+.form-label {
+  font-family: 'Playfair Display', serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 .btn,
@@ -141,31 +181,49 @@ h4 {
 }
 
 .btn-primary {
-  background-image: linear-gradient(
-    135deg,
-    var(--primary) 0%,
-    #34d399 50%,
-    #065f46 100%
-  );
+  background: var(--primary);
   color: var(--white);
+  border: 1px solid transparent;
   box-shadow: var(--shadow-primary-base);
-  padding: 1rem 2rem;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: #075b9b;
+  box-shadow: var(--shadow-primary-hover);
+}
+
+.btn-secondary {
+  background: #1f2937;
+  color: #f8fafc;
+  border: 1px solid #374151;
+  box-shadow: var(--shadow-secondary-base);
+  border-radius: 10px;
+  padding: 0.72rem 1.15rem;
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background: #111827;
+  box-shadow: var(--shadow-secondary-hover);
+}
+
+.btn-outline {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  box-shadow: var(--shadow-base);
+}
+
+.btn-outline:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
 }
 
 .btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: var(--transition-slow);
+  display: none;
 }
 
 .btn:disabled {
@@ -185,13 +243,13 @@ h4 {
 }
 
 .btn-secondary {
-  background: var(--secondary);
-  color: var(--white);
+  background: #1f2937;
+  color: #f8fafc;
   box-shadow: var(--shadow-secondary-base);
 }
 
 .btn-secondary:hover {
-  background: var(--secondary-light);
+  background: #111827;
   box-shadow: var(--shadow-secondary-hover);
 }
 
@@ -259,17 +317,6 @@ h4 {
 .btn-across {
   margin-top: 2rem;
   width: 100%;
-}
-
-h3,
-input,
-button,
-.btn {
-  font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
 }
 
 /* Opposing Buttons */

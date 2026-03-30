@@ -21,12 +21,12 @@
   background: var(--white);
   border: 2px solid var(--border-color);
   border-radius: 12px;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 1.5rem;
   transition: all 0.2s ease;
 }
 
 .expense-card:hover {
-  border-color: var(--primary-light);
+  border-color: var(--black);
 }
 
 .expense-card:hover .btn-info,
@@ -46,7 +46,6 @@
   font-weight: 600;
   font-size: 1.5rem;
   color: var(--gray-800);
-  margin-left: 0.5rem;
   flex: 1;
   width: 100%;
   text-align: left;
@@ -59,7 +58,6 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  margin-left: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
@@ -181,10 +179,11 @@
   background: var(--white);
   color: var(--text-color);
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .category-filter-select:hover {
-  border-color: var(--primary-light);
+  border-color: var(--black);
 }
 
 .filter-count {

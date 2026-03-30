@@ -41,9 +41,13 @@ function BalanceSummary({ people, expenses }) {
                     />
                     Paid
                   </span>
-                  <span className='summary-stat-value paid'>
-                    ₱{formatAmount(balance.paid)}
-                  </span>
+                  {balance.paid > 0 ? (
+                    <span className='summary-stat-value paid'>
+                      ₱{formatAmount(balance.paid)}
+                    </span>
+                  ) : (
+                    <span className='summary-stat-value'>—</span>
+                  )}
                 </div>
                 <div className='summary-stat'>
                   <span className='summary-stat-label'>
@@ -53,9 +57,13 @@ function BalanceSummary({ people, expenses }) {
                     />
                     Spent
                   </span>
-                  <span className='summary-stat-value spent'>
-                    ₱{formatAmount(balance.spent)}
-                  </span>
+                  {balance.spent > 0 ? (
+                    <span className='summary-stat-value spent'>
+                      ₱{formatAmount(balance.spent)}
+                    </span>
+                  ) : (
+                    <span className='summary-stat-value'>—</span>
+                  )}
                 </div>
                 <div className='summary-stat'>
                   <span className='summary-stat-label'>Net</span>
