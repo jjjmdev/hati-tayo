@@ -22,7 +22,10 @@ function BalanceSummary({ people, expenses }) {
         {people.map((person) => {
           const balance = balances[person.id]
           return (
-            <div key={person.id} className='summary-card'>
+            <div
+              key={person.id}
+              className={`summary-card ${balance.net >= 0 ? 'gets-paid' : 'owes-money'}`}
+            >
               <div className='summary-card-header'>
                 <div
                   className='summary-avatar'
@@ -31,6 +34,13 @@ function BalanceSummary({ people, expenses }) {
                   {person.name.charAt(0).toUpperCase()}
                 </div>
                 <span className='summary-name'>{person.name}</span>
+                {balance.net !== 0 && (
+                  <span
+                    className={`net-indicator ${balance.net >= 0 ? 'positive' : 'negative'}`}
+                  >
+                    {balance.net >= 0 ? 'gets back' : 'owes'}
+                  </span>
+                )}
               </div>
               <div className='summary-stats'>
                 <div className='summary-stat'>
@@ -65,7 +75,7 @@ function BalanceSummary({ people, expenses }) {
                     <span className='summary-stat-value'>—</span>
                   )}
                 </div>
-                <div className='summary-stat'>
+                <div className='summary-stat net-row'>
                   <span className='summary-stat-label'>Net</span>
                   <span
                     className={`summary-stat-value ${balance.net >= 0 ? 'positive' : 'negative'}`}

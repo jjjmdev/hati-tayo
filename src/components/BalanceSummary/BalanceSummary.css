@@ -21,6 +21,25 @@
   box-shadow: var(--shadow-hover);
 }
 
+/* Color-coded card variants */
+.summary-card.gets-paid {
+  border-color: var(--secondary);
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 159, 102, 0.03) 0%,
+    white 100%
+  );
+}
+
+.summary-card.owes-money {
+  border-color: var(--danger);
+  background: linear-gradient(
+    to bottom,
+    rgba(239, 68, 68, 0.03) 0%,
+    white 100%
+  );
+}
+
 .summary-card-header {
   display: flex;
   align-items: center;
@@ -90,6 +109,33 @@
 
 .summary-stat-value.negative {
   color: var(--danger);
+}
+
+.net-indicator {
+  margin-left: auto;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+.net-indicator.positive {
+  background: rgba(15, 159, 102, 0.1);
+  color: var(--secondary);
+}
+
+.net-indicator.negative {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.net-row {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 2px dashed var(--gray-200);
 }
 
 @media (max-width: 768px) {

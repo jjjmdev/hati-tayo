@@ -100,8 +100,23 @@
   transition: all 0.3s ease;
 }
 
-.stepper-line.completed {
+.stepper-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
   background: #0f172a;
+  transition: width 0.4s ease;
+}
+
+.stepper-line.completed::after {
+  width: 100%;
+}
+
+.stepper-line.completed {
+  background: var(--gray-200);
 }
 
 /* Hover Effects */

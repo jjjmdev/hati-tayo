@@ -43,6 +43,7 @@
 :root {
   --primary: #0b6cb2;
   --primary-light: #3b82f6;
+  --primary-lighter: #bfdbfe;
   --secondary: #0f9f66;
   --secondary-light: #34d399;
   --danger: #ef4444;
@@ -126,9 +127,7 @@ a {
   text-decoration: none;
 }
 
-.btn,
-.btn-sm,
-.btn-md {
+button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -136,6 +135,10 @@ a {
   cursor: pointer;
   text-wrap: nowrap;
   transition: var(--transition-medium);
+}
+
+button:active {
+  scale: 0.97;
 }
 
 .btn {

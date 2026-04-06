@@ -278,7 +278,7 @@ function People({
                     <span className='badge-name'>{name}</span>
                     <div className='badge-btns-container'>
                       <div
-                        className='badge-btn badge-info'
+                        className='badge-btn badge-primary'
                         onClick={() => handleEditClick(id, name)}
                       >
                         <Pencil />
