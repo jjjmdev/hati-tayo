@@ -86,8 +86,8 @@
 }
 
 .badge-primary {
-  color: var(--primary);
-  background: var(--primary-lighter);
+  color: var(--black);
+  background: var(--primary-light);
 }
 
 .badge-info {

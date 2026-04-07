@@ -34,6 +34,16 @@
   src: url('/fonts/Geist-Bold.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'Gambarino Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('/fonts/Gambarino-Regular.woff2') format('woff2'),
+    url('/fonts/Gambarino-Regular.woff2') format('woff');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -41,8 +51,8 @@
 }
 
 :root {
-  --primary: #0b6cb2;
-  --primary-light: #3b82f6;
+  --primary: #e8e6da;
+  --primary-light: #f2f1e9;
   --primary-lighter: #bfdbfe;
   --secondary: #0f9f66;
   --secondary-light: #34d399;
@@ -62,8 +72,8 @@
   --radius: 12px;
   --shadow-base: 0 6px 20px rgba(15, 23, 42, 0.08);
   --shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.12);
-  --shadow-primary-base: 0 6px 18px rgba(11, 108, 178, 0.24);
-  --shadow-primary-hover: 0 8px 24px rgba(11, 108, 178, 0.3);
+  --shadow-primary-base: 0 6px 6px rgba(86, 82, 68, 0.05);
+  --shadow-primary-hover: 0 8px 12px rgba(86, 82, 68, 0.1);
   --shadow-secondary-base: 0 6px 18px rgba(0, 0, 0, 0.24);
   --shadow-secondary-hover: 0 8px 24px rgba(0, 0, 0, 0.3);
   --shadow-disabled: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -90,7 +100,8 @@
   --gray-700: #374151;
   --gray-800: #1f2937;
   --gray-900: #111827;
-  --black: #000000;
+  --black: #26251e;
+  --subtitle: #545244;
 
   --bl-color-primary: var(--primary);
   --color-primary-light: var(--primary-light);
@@ -111,6 +122,13 @@ body {
     sans-serif;
   line-height: 1.6;
   color: #0f172a;
+  background: #dcd9c9;
+  background: linear-gradient(
+    151deg,
+    rgba(220, 217, 201, 1) 63%,
+    rgba(250, 250, 250, 1) 100%
+  );
+  background-attachment: fixed;
 }
 
 h1,
@@ -120,7 +138,7 @@ h4,
 h5,
 h6,
 .form-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Gambarino Regular', serif;
 }
 
 a {
@@ -184,8 +202,8 @@ button:active {
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: var(--white);
+  background: #e8e6da;
+  color: #171717;
   border: 1px solid transparent;
   box-shadow: var(--shadow-primary-base);
   border-radius: 10px;
@@ -194,7 +212,7 @@ button:active {
 }
 
 .btn-primary:hover {
-  background: #075b9b;
+  background: #f2f1e9;
   box-shadow: var(--shadow-primary-hover);
 }
 

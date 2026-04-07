@@ -1,64 +1,9 @@
-.site-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.68);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.65);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-}
-.navbar-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.brand {
-  font-weight: 700;
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: #0f172a;
-}
-
-.navbar-links {
-  display: flex;
-  gap: 0.85rem;
-}
-
-.navbar-links a {
-  color: #334155;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.45rem 0.65rem;
-  border-radius: 8px;
-  transition:
-    background 0.15s ease,
-    color 0.15s ease;
-}
-
-.navbar-links a:hover,
-.navbar-links a:focus {
-  outline: none;
-  text-decoration: none;
-  background: #eff6ff;
-  color: #0b73c3;
-}
-
-.nav-cta {
-  padding: 0.52rem 1rem;
-}
-
 .app-main {
+  position: relative;
   min-height: 100vh;
-  background: #f8fafc;
   color: #0f172a;
   padding-top: 0;
+  width: 100%;
 }
 
 .container {
@@ -68,7 +13,6 @@
 }
 
 .hero {
-  background: #f8fafc;
   padding: 1.2rem 0 1.2rem;
   text-align: center;
 }
@@ -98,7 +42,7 @@
     BlinkMacSystemFont,
     sans-serif;
   margin: 0;
-  color: #475569;
+  color: var(--subtitle);
   font-size: 1.05rem;
   line-height: 1.55;
 }
@@ -133,39 +77,14 @@
 }
 
 @media (max-width: 768px) {
-  .navbar-inner {
-    flex-wrap: wrap;
-  }
-
   .hero {
-    padding: 2rem 0;
-  }
-
-  .hero-content {
-    padding: 0 1rem;
-  }
-}
-
-.app-main {
-  padding-bottom: 0.5rem;
-}
-@media (max-width: 768px) {
-  .hero {
-    padding: 4rem 1rem 2.7rem;
-  }
-
-  .navbar-inner {
-    padding: 0.75rem 0.85rem;
-  }
-
-  .nav-links {
-    display: none;
+    padding: 1rem 0 2rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
-    padding: 3.5rem 0.8rem 2rem;
+    padding: 1rem 0.8rem 2rem;
   }
 
   .nav-cta {

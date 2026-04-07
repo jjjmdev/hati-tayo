@@ -115,7 +115,7 @@ h3 {
 .amount-total-value {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--black);
 }
 
 /* Payer Rows */

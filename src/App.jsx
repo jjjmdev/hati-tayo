@@ -2,6 +2,7 @@ import './App.css'
 import Calculator from './components/Calculator/Calculator.jsx'
 import { BlNotification } from '@trendyol/baklava/dist/baklava-react.js'
 import ConfirmDialog from './components/ConfirmDialog/ConfirmDialog.jsx'
+import Navbar from './components/Navbar/Navbar.jsx'
 import { useRef, useState } from 'react'
 
 function App() {
@@ -22,15 +23,8 @@ function App() {
 
   return (
     <>
-      <header className='site-navbar'>
-        <div className='navbar-inner'>
-          <a href='#' className='brand'>
-            Hati Tayo 💰
-          </a>
-        </div>
-      </header>
-
       <main className='app-main'>
+        <Navbar />
         <section className='hero'>
           <div className='hero-content'>
             <h1>Friend, magbayad ka na.</h1>

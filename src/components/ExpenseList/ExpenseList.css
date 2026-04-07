@@ -64,7 +64,7 @@
 .expense-amount {
   font-size: 1.2rem; /* Slightly bigger */
   font-weight: 700;
-  color: var(--primary);
+  color: var(--black);
 }
 
 .expense-split-amount {
@@ -124,7 +124,7 @@
 }
 
 .tag-amount {
-  color: var(--primary);
+  color: var(--black);
   font-weight: 600;
 }
 

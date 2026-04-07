@@ -1,0 +1,28 @@
+.nav-container {
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav {
+  backdrop-filter: blur(12px);
+  background: #f4f3ec80;
+  max-width: 56rem;
+  width: 100%;
+  border-radius: 999px;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.brand {
+  font-family: 'Gambarino Regular';
+  font-size: 1.5rem;
+  text-align: center;
+}

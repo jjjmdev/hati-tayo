@@ -23,19 +23,19 @@
 
 /* Color-coded card variants */
 .summary-card.gets-paid {
-  border-color: var(--secondary);
+  border-color: #84cc16;
   background: linear-gradient(
     to bottom,
-    rgba(15, 159, 102, 0.03) 0%,
+    rgba(132, 204, 22, 0.05) 0%,
     white 100%
   );
 }
 
 .summary-card.owes-money {
-  border-color: var(--danger);
+  border-color: #ea580c;
   background: linear-gradient(
     to bottom,
-    rgba(239, 68, 68, 0.03) 0%,
+    rgba(234, 88, 12, 0.04) 0%,
     white 100%
   );
 }
