@@ -3,13 +3,24 @@ import { Users, ShoppingCart, PhilippinePeso } from 'lucide-react'
 
 const stepIcons = [Users, ShoppingCart, PhilippinePeso]
 
-function Stepper({ steps, activeStep, onStepClick, canStep }) {
+function Stepper({
+  steps,
+  activeStep,
+  onStepClick,
+  canStep,
+  isReadOnly,
+  isCreator,
+}) {
+  if (isReadOnly && !isCreator) {
+    activeStep = steps.length - 1
+  }
+
   return (
     <div className='stepper'>
       {steps.map((step, index) => {
         const isActive = index === activeStep
         const isCompleted = index < activeStep
-        const isClickable = canStep(index)
+        const isClickable = isReadOnly && !isCreator ? false : canStep(index)
         const isBlocked = !isClickable && !isActive
         const Icon = stepIcons[index]
 

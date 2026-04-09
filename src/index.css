@@ -177,14 +177,17 @@ button:active {
 }
 
 .btn-sm {
-  width: 28px;
   height: 28px;
   border-radius: 6px;
+}
+
+.expense-card .btn-sm {
+  width: 28px;
   opacity: 0;
   transform: scale(0.8);
 }
 
-.btn-sm:hover {
+.expense-card .btn-sm:hover {
   opacity: 1;
   transform: scale(1);
 }

@@ -1,16 +1,56 @@
 import './Calculator.css'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Stepper from '../Stepper/Stepper.jsx'
 import People from '../People/People.jsx'
 import Expenses from '../Expenses/Expenses.jsx'
 import Results from '../Results/Results.jsx'
 import { getPeople, getExpenses, resetData } from '../../data.js'
+import { getHatian, updateHatian } from '../../api/hatian'
+import { useHatianSync } from '../../hooks/useHatianSync'
 
-function Calculator({ notify, setConfirmDialog }) {
-  const [activeStep, setActiveStep] = useState(0)
+function Calculator({
+  notify,
+  setConfirmDialog,
+  shareId,
+  isReadOnly,
+  setIsReadOnly,
+  isCreator,
+}) {
+  const [activeStep, setActiveStep] = useState(isReadOnly ? 2 : 0)
   const [people, setPeople] = useState(getPeople())
   const [expenses, setExpenses] = useState(getExpenses())
   const [editingExpense, setEditingExpense] = useState(null)
+
+  const saveTimeoutRef = useRef(null)
+  const notifyRef = useRef(notify)
+  notifyRef.current = notify
+
+  useHatianSync({
+    shareId,
+    isReadOnly,
+    isCreator,
+    setIsReadOnly,
+    setActiveStep,
+    setPeople,
+    setExpenses,
+    notifyRef,
+  })
+
+  useEffect(() => {
+    if (!shareId) return
+
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current)
+    }
+
+    saveTimeoutRef.current = setTimeout(async () => {
+      try {
+        await updateHatian(shareId, getPeople(), getExpenses())
+      } catch (error) {
+        console.error('Auto-save failed:', error)
+      }
+    }, 1000)
+  }, [people, expenses, shareId])
 
   const handleStep = (toStep) => {
     // case: Going from 'People' to 'Expenses'
@@ -60,6 +100,8 @@ function Calculator({ notify, setConfirmDialog }) {
           activeStep={activeStep}
           onStepClick={handleStep}
           canStep={canStep}
+          isReadOnly={isReadOnly}
+          isCreator={isCreator}
         />
       </div>
 
