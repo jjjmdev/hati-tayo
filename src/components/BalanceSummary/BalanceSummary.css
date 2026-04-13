@@ -1,11 +1,11 @@
 /* Balance Summary Component */
-.summary-grid {
+.balance-summary__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
 }
 
-.summary-card {
+.balance-summary__card {
   background: var(--white);
   border: 2px solid var(--border-color);
   border-radius: 16px;
@@ -16,13 +16,13 @@
   transition: all 0.2s ease;
 }
 
-.summary-card:hover {
+.balance-summary__card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
 }
 
 /* Color-coded card variants */
-.summary-card.gets-paid {
+.balance-summary__card--positive {
   border-color: #84cc16;
   background: linear-gradient(
     to bottom,
@@ -31,7 +31,7 @@
   );
 }
 
-.summary-card.owes-money {
+.balance-summary__card--negative {
   border-color: #ea580c;
   background: linear-gradient(
     to bottom,
@@ -40,13 +40,13 @@
   );
 }
 
-.summary-card-header {
+.balance-summary__header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.summary-avatar {
+.balance-summary__avatar {
   width: 40px;
   height: 40px;
   display: flex;
@@ -59,13 +59,13 @@
   flex-shrink: 0;
 }
 
-.summary-name {
+.balance-summary__name {
   font-weight: 600;
   font-size: 1.1rem;
   color: var(--gray-800);
 }
 
-.summary-stats {
+.balance-summary__stats {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -74,7 +74,7 @@
   border-top: 1px solid var(--gray-100);
 }
 
-.summary-stat {
+.balance-summary__stat {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -82,36 +82,36 @@
   white-space: nowrap;
 }
 
-.summary-stat-label {
+.balance-summary__label {
   color: var(--gray-500);
 }
 
-.summary-stat-value {
+.balance-summary__value {
   font-weight: 600;
   white-space: nowrap;
 }
 
-.summary-stat-value {
+.balance-summary__value {
   color: var(--black);
 }
 
-.summary-stat-value.paid {
+.balance-summary__value--paid {
   color: var(--secondary);
 }
 
-.summary-stat-value.spent {
+.balance-summary__value--spent {
   color: var(--danger);
 }
 
-.summary-stat-value.positive {
+.balance-summary__value--positive {
   color: var(--secondary);
 }
 
-.summary-stat-value.negative {
+.balance-summary__value--negative {
   color: var(--danger);
 }
 
-.net-indicator {
+.balance-summary__indicator {
   margin-left: auto;
   text-align: center;
   font-size: 0.7rem;
@@ -122,48 +122,48 @@
   border-radius: 6px;
 }
 
-.net-indicator.positive {
+.balance-summary__indicator--positive {
   background: rgba(15, 159, 102, 0.1);
   color: var(--secondary);
 }
 
-.net-indicator.negative {
+.balance-summary__indicator--negative {
   background: rgba(239, 68, 68, 0.1);
   color: var(--danger);
 }
 
-.net-row {
+.balance-summary__stat--net {
   margin-top: 0.5rem;
   padding-top: 0.5rem;
   border-top: 2px dashed var(--gray-200);
 }
 
 @media (max-width: 768px) {
-  .summary-grid {
+  .balance-summary__grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
-  .summary-grid {
+  .balance-summary__grid {
     grid-template-columns: 1fr;
   }
 
-  .summary-card {
+  .balance-summary__card {
     padding: 1rem;
   }
 
-  .summary-avatar {
+  .balance-summary__avatar {
     width: 36px;
     height: 36px;
     font-size: 0.9rem;
   }
 
-  .summary-name {
+  .balance-summary__name {
     font-size: 1rem;
   }
 
-  .summary-stat {
+  .balance-summary__stat {
     font-size: 0.8rem;
   }
 }

@@ -1,0 +1,273 @@
+/* Base button styles */
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  text-wrap: nowrap;
+  transition: var(--transition-base);
+}
+
+button:active {
+  scale: 0.97;
+}
+
+.btn {
+  padding: 1rem 1.5rem;
+  border-radius: 999px;
+  width: min-content;
+  overflow: hidden;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transform: translateY(0px);
+  box-shadow: var(--shadow-base);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #e2e8f0;
+  color: var(--gray-600);
+  box-shadow: var(--shadow-disabled);
+}
+
+/* Button Sizes */
+.btn--sm {
+  height: 28px;
+  min-width: 28px;
+  border-radius: 6px;
+}
+
+.btn--md {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btn--md:hover {
+  transform: scale(1.05);
+}
+
+/* Button Variants */
+.btn--primary {
+  background: #e8e6da;
+  color: #171717;
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-primary-base);
+  font-weight: 600;
+}
+
+.btn--primary:hover {
+  background: #f2f1e9;
+  box-shadow: var(--shadow-primary-hover);
+}
+
+.btn--secondary {
+  background: #1f2937;
+  color: #f8fafc;
+  border: 1px solid #374151;
+  box-shadow: var(--shadow-secondary-base);
+  font-weight: 600;
+}
+
+.btn--secondary:hover {
+  background: #111827;
+  box-shadow: var(--shadow-secondary-hover);
+}
+
+.btn--secondary:disabled,
+.btn--secondary:disabled:hover {
+  transform: none;
+  background: #64748b;
+  border-color: #64748b;
+  color: #e2e8f0;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.btn--outline {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  box-shadow: var(--shadow-base);
+}
+
+.btn--outline:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.btn--cancel {
+  box-shadow: none;
+}
+
+.btn--cancel:hover {
+  box-shadow: var(--shadow-base);
+  color: var(--gray-900);
+}
+
+.btn--reset:hover {
+  color: var(--white);
+  background: var(--danger);
+}
+
+.btn--danger {
+  color: var(--danger);
+  background: var(--danger-light);
+}
+
+.btn--danger:hover {
+  background: var(--danger-lighter);
+}
+
+.btn--info {
+  color: var(--info);
+  background: var(--info-light);
+}
+
+.btn--info:hover {
+  background: var(--info-lighter);
+}
+
+.btn--warning {
+  color: var(--warning);
+  background: var(--warning-light);
+}
+
+.btn--warning:hover {
+  background: var(--warning-lighter);
+}
+
+/* Button with SVG */
+.btn svg {
+  min-width: 18px;
+}
+
+.btn--primary svg {
+  margin-left: 3px;
+}
+
+.btn--secondary svg {
+  margin-left: 3px;
+}
+
+.btn--cancel svg {
+  width: 18px;
+  margin-right: 3px;
+}
+
+/* Special Buttons */
+.btn--full-width {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.button-group {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .btn--primary {
+    padding: 0.875rem 1.5rem;
+  }
+
+  .button-group {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+
+  .button-group .btn {
+    width: 100%;
+  }
+
+  .button-group > div {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .button-group > div .btn {
+    flex: 1;
+    margin-right: 0 !important;
+  }
+
+  .expense-form__button-group {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .btn--primary {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .button-group > div {
+    flex-direction: column;
+  }
+
+  .button-group > div .btn {
+    width: 100%;
+  }
+}
+
+/* Overrides */
+.btn--shown-on-hover {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.expense-list__item:hover .btn--shown-on-hover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.navbar__btn {
+  padding: 1rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: 6px;
+}
+
+.navbar__btn:hover {
+  transform: translateY(-1px);
+}
+
+.navbar__btn svg {
+  margin-left: 0.25rem;
+}
+
+.expense-form__button-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.expense-form__button-group .btn {
+  width: 100%;
+}

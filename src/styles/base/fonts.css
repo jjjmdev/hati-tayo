@@ -1,0 +1,46 @@
+/* Font Definitions */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('/fonts/PlayfairDisplay-Regular.woff2') format('woff2'),
+    url('/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('/fonts/PlayfairDisplay-Bold.woff2') format('woff2'),
+    url('/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Geist-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Geist-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Gambarino Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('/fonts/Gambarino-Regular.woff2') format('woff2'),
+    url('/fonts/Gambarino-Regular.woff2') format('woff');
+}

@@ -197,12 +197,12 @@ function Expenses({
       transition={{ duration: 0.2 }}
     >
       <h3>Manage Expenses</h3>
-      <div className='expenses-container'>
+      <div className='expense-form'>
         {/* Item Name and Total */}
-        <div className='form-section'>
-          <div className='form-label'>What's this for?</div>
-          <div className='detail-row'>
-            <div className='input-group'>
+        <div className='expense-form__section'>
+          <div className='expense-form__label'>What's this for?</div>
+          <div className='expense-form__detail-row'>
+            <div className='expense-form__input-group'>
               <input
                 type='text'
                 placeholder='(e.g. Dinner)'
@@ -215,12 +215,12 @@ function Expenses({
                     .replace(/[<>'"]/g, '')
                   setItemName(value)
                 }}
-                className='expense-name-input'
+                className='expense-form__name-input'
               />
             </div>
-            <div className='expense-amount-display'>
-              <div className='expense-label'>Total</div>
-              <div className='amount-total-value'>
+            <div className='expense-form__amount-display'>
+              <div className='expense-form__total-amount-label'>Total</div>
+              <div className='expense-form__total-amount'>
                 ₱{formatAmount(payerTotal)}
               </div>
             </div>
@@ -228,14 +228,14 @@ function Expenses({
         </div>
 
         {/* Category Selector */}
-        <div className='form-section'>
-          <div className='form-label'>Category (optional)</div>
-          <div className='category-pills'>
+        <div className='expense-form__section'>
+          <div className='expense-form__label'>Category (optional)</div>
+          <div className='expense-form__category-pills'>
             {expenseCategories.map((cat) => (
               <button
                 key={cat.id}
                 type='button'
-                className={`category-pill ${category === cat.id ? 'active' : ''}`}
+                className={`expense-form__category-pill ${category === cat.id ? 'expense-form__category-pill--active' : ''}`}
                 style={{
                   '--cat-color': cat.color,
                   backgroundColor:
@@ -252,15 +252,15 @@ function Expenses({
         </div>
 
         {/* Who Paid */}
-        <div className='form-section'>
-          <div className='form-label'>Who paid?</div>
+        <div className='expense-form__section'>
+          <div className='expense-form__label'>Who paid?</div>
 
-          <div className='payers-list'>
+          <div className='expense-form__payers-list'>
             {payers.map((payer, index) => (
-              <div key={index} className='payer-row'>
+              <div key={index} className='expense-form__payer-row'>
                 {/* Person dropdown */}
                 <select
-                  className='payer-select'
+                  className='expense-form__payer-select'
                   value={payer.personId}
                   onChange={(e) =>
                     handlePayerChange(index, 'personId', e.target.value)
@@ -275,7 +275,7 @@ function Expenses({
                 </select>
 
                 {/* Amount Input */}
-                <div className='payer-amount'>
+                <div className='expense-form__payer-amount'>
                   <input
                     type='text'
                     placeholder='0'
@@ -296,10 +296,10 @@ function Expenses({
                 {payers.length > 1 && (
                   <button
                     type='button'
-                    className='btn-md btn-danger btn-danger-md'
+                    className='btn--md btn--danger btn-danger-md'
                     onClick={() => handleRemovePayer(index)}
                   >
-                    <X size={16} />
+                    <X size={15} />
                   </button>
                 )}
               </div>
@@ -309,7 +309,7 @@ function Expenses({
           {/* Add another payer button */}
           <button
             type='button'
-            className='btn btn-secondary btn-add-payer'
+            className='btn btn--secondary btn--full-width'
             onClick={handleAddPayer}
             disabled={people.length === payers.length}
           >
@@ -320,12 +320,12 @@ function Expenses({
         </div>
 
         {/* Split Among */}
-        <div className='form-section'>
-          <div className='form-label'>
+        <div className='expense-form__section'>
+          <div className='expense-form__label'>
             Split among
             <button
               type='button'
-              className='btn-select-all'
+              className='expense-form__btn--select-all'
               onClick={handleSplitSelectAll}
             >
               {splitAmong.length === people.length
@@ -333,21 +333,23 @@ function Expenses({
                 : 'Select all'}
             </button>
           </div>
-          <div className='checkbox-grid'>
+          <div className='expense-form__checkbox-grid'>
             {people.map((person) => (
-              <label key={person.id} className='checkbox-item'>
+              <label key={person.id} className='expense-form__checkbox-item'>
                 <input
                   type='checkbox'
                   checked={splitAmong.includes(person.id)}
                   onChange={() => handleSplitAmongToggle(person.id)}
                 />
                 <span
-                  className='checkbox-avatar'
+                  className='expense-form__checkbox-avatar'
                   style={{ backgroundColor: getPersonColor(person.id) }}
                 >
                   {person.name.charAt(0).toUpperCase()}
                 </span>
-                <span className='checkbox-name'>{person.name}</span>
+                <span className='expense-form__checkbox-name'>
+                  {person.name}
+                </span>
               </label>
             ))}
           </div>
@@ -355,22 +357,22 @@ function Expenses({
 
         {/* Update/Add Expense Button */}
         {isEditMode ? (
-          <div className='btns-container'>
-            <button className='btn btn-cancel' onClick={resetForm}>
+          <div className='expense-form__button-group'>
+            <button className='btn btn--cancel' onClick={resetForm}>
               Cancel Edit
             </button>
-            <button className='btn btn-primary' onClick={handleSave}>
+            <button className='btn btn--primary' onClick={handleSave}>
               Update Expense
-              <Plus size={18} />
+              <Plus size={15} />
             </button>
           </div>
         ) : (
           <button
-            className='btn btn-primary btn-across'
+            className='btn btn--primary btn--full-width'
             onClick={handleAddExpense}
           >
-            Add Expense
-            <Plus size={18} />
+            <span>Add Expense</span>
+            <Plus size={15} />
           </button>
         )}
       </div>
@@ -384,15 +386,15 @@ function Expenses({
         setConfirmDialog={setConfirmDialog}
       />
 
-      <div className='btns-container'>
-        <button className='btn btn-cancel' onClick={() => handleStep(0)}>
-          <ArrowLeft />
+      <div className='button-group'>
+        <button className='btn btn--cancel' onClick={() => handleStep(0)}>
+          <ArrowLeft size={15} />
           Back
         </button>
 
-        <button className='btn btn-secondary' onClick={() => handleStep(2)}>
+        <button className='btn btn--secondary' onClick={() => handleStep(2)}>
           Calculate Results
-          <ArrowRight />
+          <ArrowRight size={15} />
         </button>
       </div>
     </motion.div>

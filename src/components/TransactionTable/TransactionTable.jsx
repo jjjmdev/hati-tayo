@@ -18,13 +18,13 @@ function TransactionTable({ people, expenses }) {
       : expenses.filter((exp) => exp.category === categoryFilter)
 
   return (
-    <section className='transaction-table-container'>
+    <section className='transaction-table'>
       <h4>Transaction Details</h4>
-      <div className='table-filter'>
+      <div className='transaction-table__filter'>
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className='category-filter-select'
+          className='transaction-table__filter-select'
         >
           <option value='all'>All Categories</option>
           {expenseCategories.map((cat) => (
@@ -34,23 +34,23 @@ function TransactionTable({ people, expenses }) {
           ))}
         </select>
         {categoryFilter !== 'all' && (
-          <span className='filter-count'>
+          <span className='transaction-table__filter-count'>
             {filteredExpenses.length} of {expenses.length} expenses
           </span>
         )}
       </div>
-      <div className='table-wrapper'>
-        <table className='transaction-table' id='tx-table'>
+      <div className='transaction-table__wrapper'>
+        <table className='transaction-table__table' id='tx-table'>
           <thead>
             <tr>
-              <th className='expense-col'>Expense</th>
-              <th className='category-col'>Category</th>
-              <th className='amount-col'>Amount</th>
+              <th className='transaction-table__col--expense'>Expense</th>
+              <th className='transaction-table__col--category'>Category</th>
+              <th className='transaction-table__col--amount'>Amount</th>
               {people.map((person) => (
-                <th key={person.id} className='person-col'>
-                  <div className='person-header'>
+                <th key={person.id} className='transaction-table__col--person'>
+                  <div className='transaction-table__person-header'>
                     <div
-                      className='person-avatar-small'
+                      className='transaction-table__avatar'
                       style={{ backgroundColor: getPersonColor(person.id) }}
                     >
                       {person.name.charAt(0).toUpperCase()}
@@ -64,11 +64,13 @@ function TransactionTable({ people, expenses }) {
           <tbody>
             {filteredExpenses.map((expense) => (
               <tr key={expense.id}>
-                <td className='expense-name-cell'>{expense.name}</td>
-                <td className='category-cell'>
+                <td className='transaction-table__cell--name'>
+                  {expense.name}
+                </td>
+                <td className='transaction-table__cell--category'>
                   {expense.category ? (
                     <span
-                      className='category-badge-small'
+                      className='transaction-table__category-badge'
                       style={{
                         backgroundColor: getCategoryById(expense.category)
                           ?.color,
@@ -78,10 +80,12 @@ function TransactionTable({ people, expenses }) {
                       {getCategoryById(expense.category)?.label}
                     </span>
                   ) : (
-                    <span className='no-category'>-</span>
+                    <span className='transaction-table__no-category'>-</span>
                   )}
                 </td>
-                <td className='amount-cell'>₱{formatAmount(expense.amount)}</td>
+                <td className='transaction-table__cell--amount'>
+                  ₱{formatAmount(expense.amount)}
+                </td>
                 {people.map((person) => {
                   // Find what this person paid
                   const paidEntry = expense.paidBy.find(
@@ -96,20 +100,25 @@ function TransactionTable({ people, expenses }) {
                   const owes = splitEntry ? splitEntry.amount : 0
 
                   return (
-                    <td key={person.id} className='person-cell'>
-                      <div className='person-amounts'>
+                    <td
+                      key={person.id}
+                      className='transaction-table__cell--person'
+                    >
+                      <div className='transaction-table__amounts'>
                         {paid > 0 && (
-                          <span className='paid-amount'>
+                          <span className='transaction-table__amount--paid'>
                             +₱{formatAmount(paid)}
                           </span>
                         )}
                         {owes > 0 && (
-                          <span className='owed-amount'>
+                          <span className='transaction-table__amount--owed'>
                             -₱{formatAmount(owes)}
                           </span>
                         )}
                         {paid === 0 && owes === 0 && (
-                          <span className='zero-amount'>-</span>
+                          <span className='transaction-table__amount--zero'>
+                            -
+                          </span>
                         )}
                       </div>
                     </td>
@@ -118,12 +127,12 @@ function TransactionTable({ people, expenses }) {
               </tr>
             ))}
             {/* Total row */}
-            <tr className='total-row'>
-              <td className='expense-name-cell'>
+            <tr className='transaction-table__row--total'>
+              <td className='transaction-table__cell--name'>
                 <strong>Total</strong>
               </td>
-              <td className='category-cell'></td>
-              <td className='amount-cell'>
+              <td className='transaction-table__cell--category'></td>
+              <td className='transaction-table__cell--amount transaction-table__cell--total'>
                 <strong>
                   ₱
                   {formatAmount(
@@ -150,9 +159,12 @@ function TransactionTable({ people, expenses }) {
                 const net = totalPaid - totalOwes
 
                 return (
-                  <td key={person.id} className='person-cell total-cell'>
+                  <td
+                    key={person.id}
+                    className='transaction-table__cell--person transaction-table__cell--total'
+                  >
                     <span
-                      className={`total-net ${net >= 0 ? 'positive' : 'negative'}`}
+                      className={`transaction-table__net ${net >= 0 ? 'transaction-table__net--positive' : 'transaction-table__net--negative'}`}
                     >
                       {net >= 0 ? '+' : '-'}₱{formatAmount(Math.abs(net))}
                     </span>

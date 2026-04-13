@@ -86,26 +86,29 @@ function Calculator({
   }
 
   const handleEditExpense = (expense) => {
-    const element = document.querySelector('.expenses-container')
+    const element = document.querySelector('.expense-form')
     // with timeout to ensure render
     setTimeout(() => element?.scrollIntoView({ behavior: 'smooth' }), 0)
     setEditingExpense(expense)
   }
 
   return (
-    <div className='calculator-container'>
-      <div className='calculator-header'>
-        <Stepper
-          steps={['People', 'Expenses', 'Results']}
-          activeStep={activeStep}
-          onStepClick={handleStep}
-          canStep={canStep}
-          isReadOnly={isReadOnly}
-          isCreator={isCreator}
-        />
-      </div>
-
-      <div className='calculator-body'>
+    <div className='calculator'>
+      {!isReadOnly || isCreator ? (
+        <div className='calculator__header'>
+          <Stepper
+            steps={['People', 'Expenses', 'Results']}
+            activeStep={activeStep}
+            onStepClick={handleStep}
+            canStep={canStep}
+            isReadOnly={isReadOnly}
+            isCreator={isCreator}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
+      <div className='calculator__body'>
         {
           {
             0: (
@@ -136,6 +139,8 @@ function Calculator({
                 people={people}
                 expenses={expenses}
                 handleStep={handleStep}
+                isReadOnly={isReadOnly}
+                isCreator={isCreator}
               />
             ),
           }[activeStep]

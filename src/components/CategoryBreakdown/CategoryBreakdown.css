@@ -6,19 +6,19 @@
   color: var(--gray-700);
 }
 
-.category-bars {
+.category-breakdown__bars {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.category-bar-row {
+.category-breakdown__row {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.category-bar-label {
+.category-breakdown__label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -27,11 +27,11 @@
   color: var(--gray-700);
 }
 
-.category-bar-icon {
+.category-breakdown__icon {
   font-size: 1.1rem;
 }
 
-.category-bar-track {
+.category-breakdown__track {
   flex: 1;
   height: 8px;
   background: var(--gray-100);
@@ -39,13 +39,13 @@
   overflow: hidden;
 }
 
-.category-bar-fill {
+.category-breakdown__fill {
   height: 100%;
   border-radius: 4px;
   transition: width 0.3s ease;
 }
 
-.category-bar-amount {
+.category-breakdown__amount {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -55,7 +55,7 @@
   font-size: 0.9rem;
 }
 
-.category-bar-percent {
+.category-breakdown__percent {
   color: var(--gray-500);
   font-size: 0.8rem;
   font-weight: 400;
@@ -63,29 +63,29 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-  .category-bar-row {
+  .category-breakdown__row {
     gap: 0.75rem;
   }
 
-  .category-bar-label {
+  .category-breakdown__label {
     width: 100px;
     font-size: 0.85rem;
   }
 
-  .category-bar-icon {
+  .category-breakdown__icon {
     font-size: 1rem;
   }
 
-  .category-bar-track {
+  .category-breakdown__track {
     height: 6px;
   }
 
-  .category-bar-amount {
+  .category-breakdown__amount {
     min-width: 80px;
     font-size: 0.85rem;
   }
 
-  .category-bar-percent {
+  .category-breakdown__percent {
     font-size: 0.75rem;
   }
 }
@@ -96,37 +96,37 @@
     margin-bottom: 0.75rem;
   }
 
-  .category-bars {
+  .category-breakdown__bars {
     gap: 0.5rem;
   }
 
-  .category-bar-row {
+  .category-breakdown__row {
     flex-wrap: wrap;
     gap: 0.5rem;
   }
 
-  .category-bar-label {
+  .category-breakdown__label {
     width: 100%;
     font-size: 0.8rem;
   }
 
-  .category-bar-icon {
+  .category-breakdown__icon {
     font-size: 0.9rem;
   }
 
-  .category-bar-track {
+  .category-breakdown__track {
     width: 100%;
     height: 6px;
   }
 
-  .category-bar-amount {
+  .category-breakdown__amount {
     width: 100%;
     justify-content: space-between;
     min-width: auto;
     font-size: 0.8rem;
   }
 
-  .category-bar-percent {
+  .category-breakdown__percent {
     font-size: 0.7rem;
   }
 }

@@ -10,7 +10,7 @@ import { motion } from 'framer-motion'
 import domtoimage from 'dom-to-image-more'
 import { useMemo } from 'react'
 
-function Result({ people, expenses, handleStep }) {
+function Result({ people, expenses, handleStep, isReadOnly, isCreator }) {
   // Calculate settlements
   const settlements = useMemo(
     () => calcSettlements(people, expenses),
@@ -46,7 +46,7 @@ function Result({ people, expenses, handleStep }) {
 
     // Add footer before capturing
     const footer = document.createElement('h4')
-    footer.className = 'results-footer'
+    footer.className = 'results-section__footer'
     footer.textContent = 'Hatian App by jjjmdev 🐼'
     element.appendChild(footer)
 
@@ -86,7 +86,7 @@ function Result({ people, expenses, handleStep }) {
           No transactions yet.
         </EmptyTable>
       ) : (
-        <div className='results-container' id='results-section'>
+        <div className='results-section' id='results-section'>
           <CategoryBreakdown expenses={expenses} />
           <BalanceSummary people={people} expenses={expenses} />
           <TransactionTable people={people} expenses={expenses} />
@@ -94,30 +94,37 @@ function Result({ people, expenses, handleStep }) {
         </div>
       )}
 
-      <div className='btns-container'>
-        <button className='btn btn-cancel' onClick={() => handleStep(1)}>
-          <ArrowLeft />
-          Back
-        </button>
-        <div>
-          {expenses.length > 0 && (
-            <>
-              <button
-                className='btn btn-secondary'
-                onClick={handleTableSave}
-                style={{ marginRight: '1rem' }}
-              >
-                Table
-                <Download size={18} />
-              </button>
-              <button className='btn btn-primary' onClick={handleSummarySave}>
-                Summary
-                <Download size={18} />
-              </button>
-            </>
-          )}
+      {!isReadOnly || isCreator ? (
+        <div className='button-group'>
+          <button className='btn btn--cancel' onClick={() => handleStep(1)}>
+            <ArrowLeft size={15} />
+            Back
+          </button>
+          <div>
+            {expenses.length > 0 && (
+              <>
+                <button
+                  className='btn btn--primary'
+                  onClick={handleSummarySave}
+                  style={{ marginRight: '0.5rem' }}
+                >
+                  Summary
+                  <Download size={15} />
+                </button>
+                <button
+                  className='btn btn--secondary'
+                  onClick={handleTableSave}
+                >
+                  Table
+                  <Download size={15} />
+                </button>
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <></>
+      )}
     </motion.div>
   )
 }

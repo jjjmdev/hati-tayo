@@ -49,34 +49,14 @@ function Navbar({ shareId, setShareId, isReadOnly, setIsReadOnly, notify }) {
   }
 
   return (
-    <nav className='nav-container'>
-      <div className='nav'>
-        <div className='brand'>hati tayo.</div>
+    <nav className='navbar'>
+      <div className='navbar__container'>
+        <div className='navbar__brand'>hati tayo.</div>
 
-        <div className='nav-actions'>
-          {shareId ? (
-            <button
-              className='btn btn-outline btn-sm'
-              onClick={async () => {
-                const shareUrl = `${window.location.origin}/hati-tayo/${shareId}`
-                await navigator.clipboard.writeText(shareUrl)
-                notify({ caption: 'Link copied!', variant: 'success' })
-              }}
-            >
-              Copy Link
-            </button>
-          ) : (
-            <button
-              className='btn btn-secondary btn-sm'
-              onClick={handleCreateShareLink}
-            >
-              Share <Link size={14} />
-            </button>
-          )}
-
+        <div className='navbar__actions'>
           {shareId && localStorage.getItem('createdHatian') === shareId && (
             <button
-              className='btn btn-secondary btn-sm'
+              className='navbar__btn btn--secondary btn--sm'
               onClick={async () => {
                 await updateHatianPermissions(shareId, isReadOnly)
                 setIsReadOnly(!isReadOnly)
@@ -87,6 +67,26 @@ function Navbar({ shareId, setShareId, isReadOnly, setIsReadOnly, notify }) {
               }}
             >
               {isReadOnly ? 'Make Editable' : 'Make View Only'}
+            </button>
+          )}
+
+          {shareId ? (
+            <button
+              className='navbar__btn btn--outline btn--sm'
+              onClick={async () => {
+                const shareUrl = `${window.location.origin}/hati-tayo/${shareId}`
+                await navigator.clipboard.writeText(shareUrl)
+                notify({ caption: 'Link copied!', variant: 'success' })
+              }}
+            >
+              Copy Link
+            </button>
+          ) : (
+            <button
+              className='navbar__btn btn--secondary btn--sm'
+              onClick={handleCreateShareLink}
+            >
+              Share <Link size={14} />
             </button>
           )}
         </div>

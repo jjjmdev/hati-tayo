@@ -203,12 +203,12 @@ function People({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
-      className='people-container'
+      className='people'
     >
       <h3>Add Group Members</h3>
 
-      <div className='add-person-form'>
-        <div className='input-group'>
+      <div className='people__form'>
+        <div className='people__input-group'>
           <input
             type='text'
             placeholder='Enter name (e.g. Joshua)'
@@ -222,7 +222,7 @@ function People({
           <UserRound />
         </div>
 
-        <button className='btn btn-primary' onClick={handleAdd}>
+        <button className='btn btn--primary' onClick={handleAdd}>
           Add
         </button>
       </div>
@@ -234,33 +234,33 @@ function People({
         </EmptyTable>
       ) : (
         <>
-          <div className='people-grid'>
+          <div className='people__grid'>
             {people.map(({ id, name }) => (
-              <div className='badge' key={id}>
+              <div className='person-card' key={id}>
                 {editingId === id ? (
                   // EDITING
                   <>
                     <span
-                      className='badge-avatar'
+                      className='person-card__avatar'
                       style={{ backgroundColor: getPersonColor(id) }}
                     >
                       {editName.charAt(0).toUpperCase()}
                     </span>
                     <input
                       type='text'
-                      className='edit-name-input'
+                      className='person-card__edit-input'
                       onChange={(e) => setEditName(e.target.value)}
                       value={editName}
                     />
-                    <div className='badge-btns-container'>
+                    <div className='person-card__actions'>
                       <div
-                        className='badge-btn badge-btn-txt badge-primary'
+                        className='person-card__btn btn--save btn--primary'
                         onClick={() => handleEditSave()}
                       >
                         Save
                       </div>
                       <div
-                        className='badge-btn badge-info'
+                        className='person-card__btn btn--cancel btn--info'
                         onClick={() => handleEditCancel()}
                       >
                         <Ban />
@@ -270,21 +270,21 @@ function People({
                 ) : (
                   <>
                     <span
-                      className='badge-avatar'
+                      className='person-card__avatar'
                       style={{ backgroundColor: getPersonColor(id) }}
                     >
                       {name.charAt(0).toUpperCase()}
                     </span>
-                    <span className='badge-name'>{name}</span>
-                    <div className='badge-btns-container'>
+                    <span className='person-card__name'>{name}</span>
+                    <div className='person-card__actions'>
                       <div
-                        className='badge-btn badge-primary'
+                        className='person-card__btn btn--edit btn--primary'
                         onClick={() => handleEditClick(id, name)}
                       >
                         <Pencil />
                       </div>
                       <div
-                        className='badge-btn badge-delete'
+                        className='person-card__btn btn--delete btn--danger'
                         onClick={() => handleDelete(id)}
                       >
                         <X />
@@ -296,15 +296,21 @@ function People({
             ))}
           </div>
 
-          <div className='btns-container'>
-            <button className='btn btn-cancel btn-reset' onClick={onResetClick}>
-              <RotateCcw />
+          <div className='button-group'>
+            <button
+              className='btn btn--cancel btn--reset'
+              onClick={onResetClick}
+            >
+              <RotateCcw size={15} />
               Start Over
             </button>
 
-            <button className='btn btn-secondary' onClick={() => handleStep(1)}>
-              Next: Add Expenses
-              <ArrowRight />
+            <button
+              className='btn btn--secondary'
+              onClick={() => handleStep(1)}
+            >
+              Add Expenses
+              <ArrowRight size={15} />
             </button>
           </div>
         </>

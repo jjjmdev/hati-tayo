@@ -18,33 +18,33 @@ function BalanceSummary({ people, expenses }) {
   return (
     <section className='balance-summary'>
       <h4>Balance Summary</h4>
-      <div className='summary-grid'>
+      <div className='balance-summary__grid'>
         {people.map((person) => {
           const balance = balances[person.id]
           return (
             <div
               key={person.id}
-              className={`summary-card ${balance.net >= 0 ? 'gets-paid' : 'owes-money'}`}
+              className={`balance-summary__card ${balance.net >= 0 ? 'balance-summary__card--positive' : 'balance-summary__card--negative'}`}
             >
-              <div className='summary-card-header'>
+              <div className='balance-summary__header'>
                 <div
-                  className='summary-avatar'
+                  className='balance-summary__avatar'
                   style={{ backgroundColor: getPersonColor(person.id) }}
                 >
                   {person.name.charAt(0).toUpperCase()}
                 </div>
-                <span className='summary-name'>{person.name}</span>
+                <span className='balance-summary__name'>{person.name}</span>
                 {balance.net !== 0 && (
                   <span
-                    className={`net-indicator ${balance.net >= 0 ? 'positive' : 'negative'}`}
+                    className={`balance-summary__indicator ${balance.net >= 0 ? 'balance-summary__indicator--positive' : 'balance-summary__indicator--negative'}`}
                   >
                     {balance.net >= 0 ? 'gets back' : 'owes'}
                   </span>
                 )}
               </div>
-              <div className='summary-stats'>
-                <div className='summary-stat'>
-                  <span className='summary-stat-label'>
+              <div className='balance-summary__stats'>
+                <div className='balance-summary__stat'>
+                  <span className='balance-summary__label'>
                     <Wallet
                       size={12}
                       style={{ display: 'inline', marginRight: '4px' }}
@@ -52,15 +52,15 @@ function BalanceSummary({ people, expenses }) {
                     Paid
                   </span>
                   {balance.paid > 0 ? (
-                    <span className='summary-stat-value paid'>
+                    <span className='balance-summary__value balance-summary__value--paid'>
                       ₱{formatAmount(balance.paid)}
                     </span>
                   ) : (
-                    <span className='summary-stat-value'>—</span>
+                    <span className='balance-summary__value'>—</span>
                   )}
                 </div>
-                <div className='summary-stat'>
-                  <span className='summary-stat-label'>
+                <div className='balance-summary__stat'>
+                  <span className='balance-summary__label'>
                     <CreditCard
                       size={12}
                       style={{ display: 'inline', marginRight: '4px' }}
@@ -68,17 +68,17 @@ function BalanceSummary({ people, expenses }) {
                     Spent
                   </span>
                   {balance.spent > 0 ? (
-                    <span className='summary-stat-value spent'>
+                    <span className='balance-summary__value balance-summary__value--spent'>
                       ₱{formatAmount(balance.spent)}
                     </span>
                   ) : (
-                    <span className='summary-stat-value'>—</span>
+                    <span className='balance-summary__value'>—</span>
                   )}
                 </div>
-                <div className='summary-stat net-row'>
-                  <span className='summary-stat-label'>Net</span>
+                <div className='balance-summary__stat balance-summary__stat--net'>
+                  <span className='balance-summary__label'>Net</span>
                   <span
-                    className={`summary-stat-value ${balance.net >= 0 ? 'positive' : 'negative'}`}
+                    className={`balance-summary__value ${balance.net >= 0 ? 'balance-summary__value--positive' : 'balance-summary__value--negative'}`}
                   >
                     {balance.net >= 0 ? '+' : '-'}₱
                     {formatAmount(Math.abs(balance.net))}

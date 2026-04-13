@@ -1,4 +1,4 @@
-.nav-container {
+.navbar {
   position: sticky;
   z-index: 50;
   top: 0;
@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.nav {
+.navbar__container {
   backdrop-filter: blur(12px);
   background: #f4f3ec80;
   max-width: 56rem;
@@ -25,35 +25,14 @@
   align-items: center;
 }
 
-.brand {
+.navbar__brand {
   font-family: 'Gambarino Regular';
   font-size: 1.5rem;
   text-align: center;
 }
 
-.nav-actions {
+.navbar__actions {
   display: flex;
   gap: 0.5rem;
   align-items: center;
-}
-
-.nav-actions .btn {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  white-space: nowrap;
-  border-radius: 6px;
-}
-
-.nav-actions .btn:hover {
-  transform: translateY(-1px);
-}
-
-.nav-actions .btn.btn-sm {
-  padding: 0.5rem 0.875rem;
-  font-size: 0.8rem;
-}
-
-.nav-actions .btn svg {
-  margin-left: 0.25rem;
 }

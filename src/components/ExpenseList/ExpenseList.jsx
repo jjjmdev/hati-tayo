@@ -25,19 +25,19 @@ function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
       : expenses.filter((exp) => exp.category === categoryFilter)
 
   return (
-    <div className='expense-list-container'>
-      <div className='expense-list-header'>
+    <div className='expense-list__container'>
+      <div className='expense-list__header'>
         <h3>Expenses ({expenses.length})</h3>
-        <div className='expense-filter'>
+        <div className='expense-list__filter'>
           {categoryFilter !== 'all' && (
-            <span className='filter-count'>
+            <span className='expense-list__filter-count'>
               Showing {filteredExpenses.length} of {expenses.length}
             </span>
           )}
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className='category-filter-select'
+            className='expense-list__filter-select'
           >
             <option value='all'>All Categories</option>
             {expenseCategories.map((cat) => (
@@ -50,16 +50,16 @@ function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
       </div>
 
       {filteredExpenses.length > 0 ? (
-        <div className='expense-list'>
+        <div className='expense-list__items'>
           {filteredExpenses.map((expense) => (
-            <div key={expense.id} className='expense-card'>
+            <div key={expense.id} className='expense-list__item'>
               {/* Header: Icon + Name + Delete */}
-              <div className='expense-card-header'>
-                <span className='expense-name'>
+              <div className='expense-list__item-header'>
+                <span className='expense-list__item-name'>
                   {expense.name}
                   {expense.category && (
                     <span
-                      className='category-badge'
+                      className='expense-list__category-badge'
                       style={{
                         backgroundColor: getCategoryById(expense.category)
                           ?.color,
@@ -71,13 +71,13 @@ function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
                   )}
                 </span>
                 <button
-                  className='btn-sm btn-info'
+                  className='btn--sm btn--info btn--shown-on-hover'
                   onClick={() => onEdit(expense)}
                 >
-                  <Pencil size={16} />
+                  <Pencil size={15} />
                 </button>
                 <button
-                  className='btn-sm btn-danger'
+                  className='btn--sm btn--danger btn--shown-on-hover'
                   onClick={() => {
                     setConfirmDialog({
                       title: `Delete "${expense.name}"?`,
@@ -88,16 +88,16 @@ function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
                     })
                   }}
                 >
-                  <Trash2 size={16} />
+                  <Trash2 size={15} />
                 </button>
               </div>
 
               {/* Amount */}
-              <div className='expense-total'>
-                <span className='expense-amount'>
+              <div className='expense-list__item-total'>
+                <span className='expense-list__item-amount'>
                   ₱{formatAmount(expense.amount)}
                 </span>
-                <span className='expense-split-amount'>
+                <span className='expense-list__item-split'>
                   (₱
                   {formatAmount(
                     expense.amount / expense.splitAmong.length,
@@ -107,13 +107,13 @@ function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
               </div>
 
               {/* Paid By */}
-              <div className='expense-row'>
-                <span className='expense-label'>Paid by</span>
-                <div className='expense-tags'>
+              <div className='expense-list__row'>
+                <span className='expense-list__label'>Paid by</span>
+                <div className='expense-list__tags'>
                   {expense.paidBy.map((payer, idx) => (
-                    <span key={idx} className='expense-tag'>
+                    <span key={idx} className='expense-list__tag'>
                       <span
-                        className='tag-avatar'
+                        className='expense-list__tag-avatar'
                         style={{
                           backgroundColor: getPersonColor(payer.personId),
                         }}
@@ -121,7 +121,7 @@ function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
                         {getPersonInitial(payer.personId)}
                       </span>
                       <span>{getPersonName(payer.personId)}</span>
-                      <span className='tag-amount'>
+                      <span className='expense-list__tag-amount'>
                         ₱{formatAmount(payer.amount)}
                       </span>
                     </span>
@@ -130,13 +130,13 @@ function ExpenseList({ expenses, people, onDelete, onEdit, setConfirmDialog }) {
               </div>
 
               {/* Split Among */}
-              <div className='expense-row'>
-                <span className='expense-label'>Split among</span>
-                <div className='expense-tags'>
+              <div className='expense-list__row'>
+                <span className='expense-list__label'>Split among</span>
+                <div className='expense-list__tags'>
                   {expense.splitAmong.map((personId) => (
-                    <span key={personId} className='expense-tag'>
+                    <span key={personId} className='expense-list__tag'>
                       <span
-                        className='tag-avatar'
+                        className='expense-list__tag-avatar'
                         style={{ backgroundColor: getPersonColor(personId) }}
                       >
                         {getPersonInitial(personId)}

@@ -1,10 +1,10 @@
-.settlements-grid {
+.settlements__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
 }
 
-.settlement-card {
+.settlements__card {
   background: var(--white);
   border: 2px solid var(--border-color);
   border-radius: 16px;
@@ -15,18 +15,18 @@
   transition: all 0.2s ease;
 }
 
-.settlement-card:hover {
+.settlements__card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
 }
 
-.settlement-card-header {
+.settlements__header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.settlement-avatar {
+.settlements__avatar {
   width: 40px;
   height: 40px;
   display: flex;
@@ -39,13 +39,13 @@
   flex-shrink: 0;
 }
 
-.settlement-name {
+.settlements__name {
   font-weight: 600;
   font-size: 1.1rem;
   color: var(--gray-800);
 }
 
-.settlement-details {
+.settlements__details {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -54,7 +54,7 @@
   border-top: 1px solid var(--gray-100);
 }
 
-.settlement-detail {
+.settlements__detail {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,32 +62,32 @@
   white-space: nowrap;
 }
 
-.settlement-detail-label {
+.settlements__label {
   color: var(--gray-500);
 }
 
-.settlement-detail-value {
+.settlements__value {
   font-weight: 600;
   white-space: nowrap;
 }
 
-.settlement-detail-value.pays {
+.settlements__value--pays {
   color: var(--danger);
 }
 
-.settlement-detail-value.receives {
+.settlements__value--receives {
   color: var(--secondary);
 }
 
 /* Payment Items */
-.settlement-payments {
+.settlements__payments {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   margin-top: 0.5rem;
 }
 
-.settlement-payment {
+.settlements__payment {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -96,13 +96,13 @@
   padding: 0.25rem 0;
 }
 
-.settlement-payment .person {
+.settlements__payment .settlements__person {
   display: flex;
   align-items: center;
   gap: 0.35rem;
 }
 
-.settlement-payment .mini-avatar {
+.settlements__payment .settlements__mini-avatar {
   width: 18px;
   height: 18px;
   display: flex;
@@ -115,46 +115,46 @@
   flex-shrink: 0;
 }
 
-.settlement-payment .amount {
+.settlements__payment .settlements__amount {
   font-weight: 600;
   color: var(--gray-800);
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .settlements-grid {
+  .settlements__grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
-  .settlements-grid {
+  .settlements__grid {
     grid-template-columns: 1fr;
   }
 
-  .settlement-card {
+  .settlements__card {
     padding: 1rem;
   }
 
-  .settlement-avatar {
+  .settlements__avatar {
     width: 36px;
     height: 36px;
     font-size: 0.9rem;
   }
 
-  .settlement-name {
+  .settlements__name {
     font-size: 1rem;
   }
 
-  .settlement-detail {
+  .settlements__detail {
     font-size: 0.8rem;
   }
 
-  .settlement-payment {
+  .settlements__payment {
     font-size: 0.75rem;
   }
 
-  .settlement-payment .mini-avatar {
+  .settlements__payment .settlements__mini-avatar {
     width: 16px;
     height: 16px;
     font-size: 0.5rem;

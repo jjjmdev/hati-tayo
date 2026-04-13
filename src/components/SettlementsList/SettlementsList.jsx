@@ -9,9 +9,9 @@ function SettlementsList({ settlements, people }) {
   const grouped = groupSettlementsByPerson(settlements, people)
 
   return (
-    <section className='results-summary'>
+    <section className='settlements'>
       <h4>Settlements</h4>
-      <div className='settlements-grid'>
+      <div className='settlements__grid'>
         {people.map((person) => {
           const personData = grouped[person.id]
           const hasActivity =
@@ -22,40 +22,40 @@ function SettlementsList({ settlements, people }) {
           return (
             <div
               key={person.id}
-              className='settlement-card'
+              className='settlements__card'
               style={{ borderColor: getPersonColor(person.id) }}
             >
-              <div className='settlement-card-header'>
+              <div className='settlements__header'>
                 <div
-                  className='settlement-avatar'
+                  className='settlements__avatar'
                   style={{ backgroundColor: getPersonColor(person.id) }}
                 >
                   {person.name.charAt(0).toUpperCase()}
                 </div>
-                <span className='settlement-name'>{person.name}</span>
+                <span className='settlements__name'>{person.name}</span>
               </div>
 
               <div
-                className='settlement-details'
+                className='settlements__details'
                 style={{ borderTopColor: getPersonColor(person.id) }}
               >
                 {personData.pays.length > 0 && (
                   <>
-                    <div className='settlement-detail'>
-                      <span className='settlement-detail-label'>Pays</span>
-                      <span className='settlement-detail-value pays'>
+                    <div className='settlements__detail'>
+                      <span className='settlements__label'>Pays</span>
+                      <span className='settlements__value settlements__value--pays'>
                         ₱
                         {formatAmount(
                           personData.pays.reduce((sum, p) => sum + p.amount, 0),
                         )}
                       </span>
                     </div>
-                    <div className='settlement-payments'>
+                    <div className='settlements__payments'>
                       {personData.pays.map((payment, idx) => (
-                        <div key={idx} className='settlement-payment'>
-                          <div className='person'>
+                        <div key={idx} className='settlements__payment'>
+                          <div className='settlements__person'>
                             <span
-                              className='mini-avatar'
+                              className='settlements__mini-avatar'
                               style={{
                                 backgroundColor: getPersonColor(payment.to),
                               }}
@@ -66,7 +66,7 @@ function SettlementsList({ settlements, people }) {
                             </span>
                             <span>to {getPersonName(payment.to)}</span>
                           </div>
-                          <span className='amount'>
+                          <span className='settlements__amount'>
                             ₱{formatAmount(payment.amount)}
                           </span>
                         </div>
@@ -77,9 +77,9 @@ function SettlementsList({ settlements, people }) {
 
                 {personData.receives.length > 0 && (
                   <>
-                    <div className='settlement-detail'>
-                      <span className='settlement-detail-label'>Receives</span>
-                      <span className='settlement-detail-value receives'>
+                    <div className='settlements__detail'>
+                      <span className='settlements__label'>Receives</span>
+                      <span className='settlements__value settlements__value--receives'>
                         ₱
                         {formatAmount(
                           personData.receives.reduce(
@@ -89,12 +89,12 @@ function SettlementsList({ settlements, people }) {
                         )}
                       </span>
                     </div>
-                    <div className='settlement-payments'>
+                    <div className='settlements__payments'>
                       {personData.receives.map((receipt, idx) => (
-                        <div key={idx} className='settlement-payment'>
-                          <div className='person'>
+                        <div key={idx} className='settlements__payment'>
+                          <div className='settlements__person'>
                             <span
-                              className='mini-avatar'
+                              className='settlements__mini-avatar'
                               style={{
                                 backgroundColor: getPersonColor(receipt.from),
                               }}
@@ -105,7 +105,7 @@ function SettlementsList({ settlements, people }) {
                             </span>
                             <span>from {getPersonName(receipt.from)}</span>
                           </div>
-                          <span className='amount'>
+                          <span className='settlements__amount'>
                             ₱{formatAmount(receipt.amount)}
                           </span>
                         </div>

@@ -27,20 +27,20 @@ function Stepper({
         return (
           <div
             key={index}
-            className={`stepper-item ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''} ${isBlocked ? 'blocked' : ''}`}
+            className={`stepper__item ${isActive ? 'stepper__item--active' : ''} ${isCompleted ? 'stepper__item--completed' : ''} ${isBlocked ? 'stepper__item--blocked' : ''}`}
             onClick={() => isClickable && onStepClick(index)}
           >
-            <div className='stepper-circle'>
+            <div className='stepper__circle'>
               {isCompleted ? (
-                <span className='stepper-check'>✓</span>
+                <span className='stepper__check'>✓</span>
               ) : (
                 <Icon size={18} />
               )}
             </div>
-            <span className='stepper-label'>{step}</span>
+            <span className='stepper__label'>{step}</span>
             {index < steps.length - 1 && (
               <div
-                className={`stepper-line ${isCompleted ? 'completed' : ''}`}
+                className={`stepper__line ${isCompleted ? 'stepper__line--completed' : ''}`}
               ></div>
             )}
           </div>
