@@ -1,4 +1,7 @@
-const API_BASE = 'http://localhost:3001/api/hatian'
+const API_BASE =
+  process.env.NODE_ENV === 'production'
+    ? '/api/hatian' // Same domain on Railway
+    : 'http://localhost:3001/api/hatian' // Local development
 
 async function handleResponse(response) {
   const result = await response.json()

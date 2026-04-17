@@ -100,6 +100,11 @@
   vertical-align: middle;
 }
 
+.transaction-table__amounts {
+  display: flex;
+  flex-direction: column;
+}
+
 .transaction-table__amount--paid {
   color: var(--secondary);
   font-weight: 600;

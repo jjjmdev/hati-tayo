@@ -2,8 +2,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const { v4: uuidv4 } = require('uuid')
+const path = require('path')
 
-require('dotenv').config({ path: '.env.local' })
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: '.env.local' })
+}
 
 const app = express()
 app.use(express.json())
@@ -129,8 +132,8 @@ app.put('/api/hatian/:shareId/permissions', async (req, res) => {
 const MONGODB_URI = process.env.MONGODB_URI
 
 if (!MONGODB_URI) {
-  console.error('ERROR: MONGODB_URI not found in .env.local')
-  console.log('Please add your MongoDB connection string to .env.local')
+  console.error('ERROR: MONGODB_URI not found in environment variables')
+  console.log('Please add MONGODB_URI to your environment variables')
   process.exit(1)
 }
 
@@ -138,6 +141,22 @@ mongoose
   .connect(MONGODB_URI)
   .then(() => {
     console.log('Connected to MongoDB!')
+
+    // Serve static files in production
+    if (process.env.NODE_ENV === 'production') {
+      app.use(
+        express.static(path.join(__dirname, '../dist'), {
+          setHeaders: (res, path) => {
+            if (path.endsWith('.js')) {
+              res.setHeader('Content-Type', 'application/javascript')
+            }
+          },
+        }),
+      )
+      app.get(/(.*)/, (req, res) => {
+        res.sendFile(path.join(__dirname, '../dist/index.html'))
+      })
+    }
 
     const PORT = process.env.PORT || 3001
     app.listen(PORT, () => {
