@@ -140,18 +140,10 @@ mongoose
   .then(() => {
     console.log('Connected to MongoDB!')
 
-    // Serve static files in production
     if (process.env.NODE_ENV === 'production') {
-      app.use(
-        express.static(path.join(__dirname, '../dist'), {
-          setHeaders: (res, path) => {
-            if (path.endsWith('.js')) {
-              res.setHeader('Content-Type', 'application/javascript')
-            }
-          },
-        }),
-      )
-      app.get(/(.*)/, (req, res) => {
+      app.use(express.static(path.join(__dirname, '../dist')))
+
+      app.get(/.*/, (req, res) => {
         res.sendFile(path.join(__dirname, '../dist/index.html'))
       })
     }

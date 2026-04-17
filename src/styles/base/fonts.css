@@ -5,8 +5,8 @@
   font-weight: 400;
   font-display: swap;
   src:
-    url('/fonts/PlayfairDisplay-Regular.woff2') format('woff2'),
-    url('/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+    url('/public/fonts/PlayfairDisplay-Regular.ttf') format('woff2'),
+    url('/public/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -14,9 +14,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src:
-    url('/fonts/PlayfairDisplay-Bold.woff2') format('woff2'),
-    url('/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+  src: url('/public/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -24,7 +22,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/Geist-Regular.woff2') format('woff2');
+  src: url('/fonts/Geist-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -32,7 +30,7 @@
   font-style: bold;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/Geist-Bold.woff2') format('woff2');
+  src: url('/fonts/Geist-Bold.ttf') format('truetype');
 }
 
 @font-face {
