@@ -37,7 +37,7 @@ function Calculator({
   })
 
   useEffect(() => {
-    if (!shareId) return
+    if (!shareId || (isReadOnly && !isCreator)) return
 
     if (saveTimeoutRef.current) {
       clearTimeout(saveTimeoutRef.current)
