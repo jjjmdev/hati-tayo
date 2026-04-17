@@ -113,8 +113,6 @@ app.put('/api/hatian/:shareId/permissions', async (req, res) => {
     const { shareId } = req.params
     const { permissions } = req.body
 
-    console.log('server:', shareId, permissions)
-
     await Hatian.findOneAndUpdate(
       { shareId },
       { permissions, updatedAt: Date.now() },

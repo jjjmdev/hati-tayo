@@ -42,7 +42,6 @@ function App() {
 
     try {
       const result = await getHatian(id)
-      console.log('Permission', result.permissions)
 
       if (result.success) {
         setShareId(id)

@@ -20,7 +20,7 @@ import {
   getPersonExpenses,
   cleanupExpensesForPerson,
 } from '../../data.js'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 function People({
   people,
@@ -34,6 +34,7 @@ function People({
   const [name, setName] = useState('')
   const [editingId, setEditingId] = useState(null)
   const [editName, setEditName] = useState('')
+  const editInputRef = useRef(null)
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -198,6 +199,13 @@ function People({
     })
   }
 
+  const focusInput = (element) => {
+    if (element && editingId) {
+      element.focus()
+    }
+    editInputRef.current = element
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -251,6 +259,7 @@ function People({
                       className='person-card__edit-input'
                       onChange={(e) => setEditName(e.target.value)}
                       value={editName}
+                      ref={focusInput}
                     />
                     <div className='person-card__actions'>
                       <div

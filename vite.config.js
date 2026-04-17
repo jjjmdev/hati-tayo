@@ -1,8 +1,20 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  build: {
+    assetsInlineLimit: 0,
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.woff2')) {
+            return 'fonts/[name].[ext]'
+          }
+          return 'assets/[name].[ext]'
+        },
+      },
+    },
+  },
 })

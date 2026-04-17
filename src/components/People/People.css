@@ -166,10 +166,11 @@
 
   .person-card__actions {
     right: var(--space-xs);
+    flex-direction: row;
   }
 
   .person-card__btn {
-    width: var(--avatar-xs);
-    height: var(--avatar-xs);
+    width: var(--avatar-s);
+    height: var(--avatar-s);
   }
 }

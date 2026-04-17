@@ -57,7 +57,6 @@ export async function updateHatian(shareId, people, expenses) {
 }
 
 export async function updateHatianPermissions(shareId, editable) {
-  console.log(`${API_BASE}/${shareId}/permissions`)
   try {
     const response = await fetch(`${API_BASE}/${shareId}/permissions`, {
       method: 'PUT',
